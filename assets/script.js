@@ -6,3 +6,5 @@ var descripInput =document.getElementById("descripInput");
 var submitBTN = document.getElementById("btn");
 var searchInput = document.getElementById("searchInput");
 var filter = document.getElementById("filter");
+
+var table = document.getElementById("productTable").querySelector("tbody")
