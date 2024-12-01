@@ -13,10 +13,12 @@ body {
     max-width: 100%;
 }
 main{
+    width: 100%;
+    border: 1px solid red;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     gap: 30px;
     margin: 0;
     max-width: 100%;
@@ -69,4 +71,26 @@ option:first-child{
     flex-direction: row;
     justify-content: space-between;
     gap: 15px;
+}
+
+.table-container{
+    width: 100%;
+    border: 1px solid black;
+}
+
+#productTable {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+th{
+    height: 50px;
 }
