@@ -15,7 +15,7 @@ if(localStorage.getItem("productsArray") != null){
     productsArray = JSON.parse(localStorage.getItem("productsArray"))
     console.log(productsArray)
 }
-
+// localStorage.clear();
 function validateName() {
     var messageError = document.getElementById("nameError");
     var name = nameInput.value;
@@ -88,6 +88,19 @@ function addProduct() {
     if(validateName() &&validatePrice() && validateCategory()){
         productsArray.push(product);
         localStorage.setItem("productsArray", JSON.stringify(productsArray))
+        clearForm()
         // console.log(product);
     }
+}
+
+function clearForm() {
+    nameInput.value="";
+    priceInput.value="";
+    category.value="";
+    countInput.value="";
+    dateInput.value="";
+}
+
+window.onload = function(){
+    clearForm()
 }
