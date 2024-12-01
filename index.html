@@ -18,7 +18,8 @@
                     <input type="text" placeholder="Name" name="name" id="nameInput">
                     <span  class="message" id="nameError"></span>
                 </div>
-
+                
+                <!-- price and Category -->
                 <div class="priceCategory">
                     <div class="form-control">
                         <label for="price">Price</label>
@@ -37,7 +38,21 @@
                         <span class="message" id="selected"></span>
                     </div>
                 </div>
+                <!-- price and Category -->
+                <div class="form-control">
+                    <label for="count">count</label>
+                    <input type="number" name="count" id="count">
+                </div>
+                <div class="form-control">
+                    <label for="productDescription">product Description</label>
+                    <textarea id="productDescription" rows="3"></textarea>
+                </div>
+
+                <div class="form-control">
+                    <button type="button" id="btn" onclick="addProduct()">add</button>
+                </div>
             </form>
+
         </div>
         <!-- form -->
 
