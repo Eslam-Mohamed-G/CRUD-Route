@@ -99,6 +99,7 @@ function clearForm() {
     category.value="";
     countInput.value="";
     dateInput.value="";
+    descripInput.value="";
 }
 
 window.onload = function(){
