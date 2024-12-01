@@ -65,7 +65,7 @@ option:first-child{
     background-color: #555;
 }
 
-.priceCategory{
+.priceCategory, .countDate{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
