@@ -55,3 +55,29 @@ function validatePrice() {
     }
 }
 priceInput.addEventListener("input", validatePrice);
+
+function validateCategory() {
+    var cate = category.value;
+    if(!cate){
+        category.style.border = "1px solid red";
+        return false;
+    }else {
+        category.style.border = "1px solid #ddd";
+        return true;
+    }
+}
+
+submitBTN.addEventListener("click", addProduct)
+function addProduct() {
+    var product = {
+        name: nameInput.value,
+        price: priceInput.value,
+        category: category.value,
+        count: countInput.value,
+        description : descripInput.value,
+    }
+
+    if(validateName() &&validatePrice() && validateCategory()){
+        console.log(product);
+    }
+}
