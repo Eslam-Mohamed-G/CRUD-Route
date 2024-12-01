@@ -11,7 +11,34 @@
 <body>
     <main>
         <!-- form -->
-        <div class="form-container"></div>
+        <div class="form-container">
+            <form action="">
+                <div class="form-control">
+                    <label for="name">Product Name</label>
+                    <input type="text" placeholder="Name" name="name" id="nameInput">
+                    <span  class="message" id="nameError"></span>
+                </div>
+
+                <div class="priceCategory">
+                    <div class="form-control">
+                        <label for="price">Price</label>
+                        <input type="number" name="price" id="priceInput">
+                        <span class="message" id="priceError"></span>
+                    </div>
+                    <div  class="form-control">
+                        <label for="category">Category</label>
+                        <select id="category" required>
+                            <option value="">Category</option>
+                            <option value="samsung">Samsung</option>
+                            <option value="oppo">Oppo</option>
+                            <option value="iphone">iphone</option>
+                            <option value="huawei">huawei</option>
+                        </select>
+                        <span class="message" id="selected"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
         <!-- form -->
 
         <!-- table -->
