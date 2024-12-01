@@ -14,12 +14,11 @@ body {
 }
 main{
     width: 100%;
-    border: 1px solid red;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: start;
-    gap: 30px;
+    gap: 25px;
     margin: 0;
     max-width: 100%;
 }
@@ -75,7 +74,6 @@ option:first-child{
 
 .table-container{
     width: 100%;
-    border: 1px solid black;
 }
 
 #productTable {
