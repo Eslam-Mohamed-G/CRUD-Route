@@ -6,7 +6,7 @@ var dateInput = document.getElementById("dateInput");
 var descripInput =document.getElementById("descripInput");
 var submitBTN = document.getElementById("btn");
 var searchInput = document.getElementById("searchInput");
-var filter = document.getElementById("filter");
+var filterInput = document.getElementById("filter");
 
 var table = document.getElementById("productTable").querySelector("tbody");
 
@@ -74,7 +74,6 @@ function validateCategory() {
     }
 }
 
-submitBTN.addEventListener("click", addProduct)
 function addProduct() {
     var product = {
         name: nameInput.value,
@@ -84,14 +83,41 @@ function addProduct() {
         date: dateInput.value,
         description : descripInput.value,
     }
-
+    
     if(validateName() &&validatePrice() && validateCategory()){
         productsArray.push(product);
         localStorage.setItem("productsArray", JSON.stringify(productsArray))
+        productToTable()
         clearForm()
         // console.log(product);
     }
 }
+submitBTN.addEventListener("click", addProduct);
+
+function productToTable(){
+    var search = searchInput.value;
+    var filter = filterInput.value;
+    var hambozo = '';
+
+    for(i=0; i<productsArray.length; i++){
+        hambozo += 
+        `
+        <tr>
+            <td>${i+1}</td>
+            <td>${productsArray[i].name}</td>
+            <td>${productsArray[i].price}</td>
+            <td>${productsArray[i].count}</td>
+            <td>${productsArray[i].category}</td>
+            <td>${productsArray[i].description}</td>
+            <td><button class="btn-warning" onclick="update(${i})">Update</button></td>
+            <td><button class="btn-danger" onclick="remov(${i})">Delete</button></td>
+        </tr>
+        `
+    }
+    
+    table.innerHTML = hambozo;
+}
+
 
 function clearForm() {
     nameInput.value="";
@@ -103,5 +129,6 @@ function clearForm() {
 }
 
 window.onload = function(){
+    productToTable()
     clearForm()
 }
