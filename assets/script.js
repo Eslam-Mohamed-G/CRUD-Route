@@ -78,6 +78,8 @@ function validateCategory() {
     }
 }
 
+var mainIndex;
+var modeOfSubmitBTN = false;
 function addProduct() {
     var product = {
         name: nameInput.value,
@@ -89,7 +91,12 @@ function addProduct() {
     }
     
     if(validateName() &&validatePrice() && validateCategory()){
-        productsArray.push(product);
+        if(!modeOfSubmitBTN){
+            productsArray.push(product);
+        }else {
+            productsArray.splice(mainIndex, 1, product)
+            submitBTN.textContent = "add"
+        }
         localStorage.setItem("productsArray", JSON.stringify(productsArray))
         productToTable()
         clearForm()
@@ -161,6 +168,8 @@ function update(index){
     dateInput.value = productsArray[index].date
     descripInput.value = productsArray[index].description
     submitBTN.textContent = "Update"
+    modeOfSubmitBTN = true;
+    mainIndex = index;
 }
 
 function clearForm() {
