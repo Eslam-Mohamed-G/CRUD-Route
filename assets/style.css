@@ -48,7 +48,7 @@ main{
     outline: none;
 }
 
-option:first-child{
+#category option:first-child{
     display: none;
 }
 

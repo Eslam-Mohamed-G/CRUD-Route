@@ -124,6 +124,11 @@ function productToTable(){
 searchInput.addEventListener("input", productToTable);
 filterInput.addEventListener("change", productToTable);
 
+function remov(index){
+    productsArray.splice(index, 1);
+    localStorage.setItem("productsArray", JSON.stringify(productsArray))
+    productToTable()
+}
 
 function clearForm() {
     nameInput.value="";
