@@ -153,6 +153,16 @@ function remov(index){
     productToTable()
 }
 
+function update(index){
+    nameInput.value = productsArray[index].name
+    priceInput.value = productsArray[index].price
+    category.value = productsArray[index].category
+    countInput.value = productsArray[index].count
+    dateInput.value = productsArray[index].date
+    descripInput.value = productsArray[index].description
+    submitBTN.textContent = "Update"
+}
+
 function clearForm() {
     nameInput.value="";
     priceInput.value="";
