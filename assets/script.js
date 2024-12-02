@@ -154,10 +154,13 @@ document.body.addEventListener("keydown", function(e){
 });
 filterInput.addEventListener("change", productToTable);
 
-function remov(index){
-    productsArray.splice(index, 1);
-    localStorage.setItem("productsArray", JSON.stringify(productsArray))
-    productToTable()
+function remov(i){
+    var userConfirmed = confirm(`"Delete : ${productsArray[i].name}`);
+    if(userConfirmed){
+        productsArray.splice(i, 1);
+        localStorage.setItem("productsArray", JSON.stringify(productsArray))
+        productToTable()
+    }
 }
 
 function update(index){
