@@ -89,7 +89,7 @@ main{
     content: "All Products: "; 
 }
 .filterCount::before {
-    content: "count: ";
+    content: var(--my-content);
     right: 0;
 }
 
