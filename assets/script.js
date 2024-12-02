@@ -8,8 +8,8 @@ var submitBTN = document.getElementById("btn");
 var searchInput = document.getElementById("searchInput");
 var filterInput = document.getElementById("filter");
 var totalCount = document.getElementById("totalCount");
-var countByFilter = document.getElementById("countByFilter");
-var searchByName = document.getElementById("searchByName");
+var countBySearch = document.getElementById("countBySearch");
+var date = document.getElementById("date");
 
 
 var table = document.getElementById("productTable").querySelector("tbody");
@@ -102,7 +102,7 @@ function productToTable(){
     var search = searchInput.value;
     var filter = filterInput.value;
     var productRow = '';
-    var productName = '';
+    var dateSearch = '';
     var allCount = 0;
     var count = 0;
 
@@ -110,15 +110,19 @@ function productToTable(){
         if(filter ===productsArray[i].category || filter === "all" ){
             allCount = allCount + parseFloat(productsArray[i].count);
             if(productsArray[i].name.toLowerCase().includes(search.toLowerCase()) || productsArray[i].price.includes(search)){
-                productName += search;
-                count += parseFloat(productsArray[i].count)
+                if(search === ""){
+                    dateSearch = '';
+                    count = 0;
+                }else {
+                    dateSearch += productsArray[i].date;
+                    count += parseFloat(productsArray[i].count)
+                }
                 productRow += 
                 `
                 <tr>
                     <td>${i+1}</td>
                     <td>${productsArray[i].name}</td>
                     <td>${productsArray[i].price}</td>
-                    <td>${productsArray[i].count}</td>
                     <td>${productsArray[i].category}</td>
                     <td>${productsArray[i].description}</td>
                     <td><button class="btn-warning" onclick="update(${i})">Update</button></td>
@@ -129,8 +133,8 @@ function productToTable(){
         }
     }
     totalCount.innerHTML = allCount;
-    searchByName.innerHTML = productName;
-    countByFilter.innerHTML = count;
+    date.innerHTML = `<h4>Date : ${dateSearch}</h4>`;
+    countBySearch.innerHTML = `<h4>Count : ${count}</h4>`;
     table.innerHTML = productRow;
 }
 document.body.addEventListener("keydown", function(e){

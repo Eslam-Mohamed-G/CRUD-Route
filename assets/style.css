@@ -72,9 +72,14 @@ main{
     gap: 15px;
 }
 .count-control{
-    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.totalCount{
     display: flex;
     justify-content: space-between;
+    margin-top: 15px;
 }
 
 

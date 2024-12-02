@@ -62,11 +62,6 @@
 
             <div class="content-action">
                 <div class="form-control">
-                    <label for="search">Search</label>
-                    <input type="text" placeholder="Search" name="search" id="searchInput">
-                </div>
-
-                <div class="form-control">
                     <label for="category">Category</label>
                     <select id="filter" required>
                         <option value="all">All Products</option>
@@ -75,16 +70,22 @@
                         <option value="iphone">iphone</option>
                         <option value="huawei">huawei</option>
                     </select>
+                    <div class="totalCount">
+                        <h5>All Count :</h5>
+                        <h5 id="totalCount"></h5>
+                    </div>
                 </div>
 
+                <div class="form-control">
+                    <label for="search">Search</label>
+                    <input type="text" placeholder="Search" name="search" id="searchInput">
+                </div>
+
+
                 <div class="count-control">
-                    <div class="totalCount">
-                        <h5>All Count</h5>
-                        <small id="totalCount"></small>
-                    </div>
                     <div class="countBySearch">
-                        <h5 id="searchByName"></h5>
-                        <small id="countByFilter"></small>
+                        <small id="countBySearch"></small>
+                        <small id="date"></small>
                     </div>
                 </div>
             </div>
@@ -99,7 +100,7 @@
                         <th>ID</th>
                         <th>name</th>
                         <th>price</th>
-                        <th>count</th>
+                        <!-- <th>count</th> -->
                         <th>category</th>
                         <th>description</th>
                         <th>update</th>
