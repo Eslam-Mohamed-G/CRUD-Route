@@ -97,26 +97,29 @@ submitBTN.addEventListener("click", addProduct);
 function productToTable(){
     var search = searchInput.value;
     var filter = filterInput.value;
-    var hambozo = '';
+    var productRow = '';
 
     for(i=0; i<productsArray.length; i++){
-        hambozo += 
-        `
-        <tr>
-            <td>${i+1}</td>
-            <td>${productsArray[i].name}</td>
-            <td>${productsArray[i].price}</td>
-            <td>${productsArray[i].count}</td>
-            <td>${productsArray[i].category}</td>
-            <td>${productsArray[i].description}</td>
-            <td><button class="btn-warning" onclick="update(${i})">Update</button></td>
-            <td><button class="btn-danger" onclick="remov(${i})">Delete</button></td>
-        </tr>
-        `
+        if(filter ===productsArray[i].category || filter === "all" ){
+            productRow += 
+            `
+            <tr>
+                <td>${i+1}</td>
+                <td>${productsArray[i].name}</td>
+                <td>${productsArray[i].price}</td>
+                <td>${productsArray[i].count}</td>
+                <td>${productsArray[i].category}</td>
+                <td>${productsArray[i].description}</td>
+                <td><button class="btn-warning" onclick="update(${i})">Update</button></td>
+                <td><button class="btn-danger" onclick="remov(${i})">Delete</button></td>
+            </tr>
+            `
+        }
     }
     
-    table.innerHTML = hambozo;
+    table.innerHTML = productRow;
 }
+filterInput.addEventListener("change", productToTable);
 
 
 function clearForm() {
