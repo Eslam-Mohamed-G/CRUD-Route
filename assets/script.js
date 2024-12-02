@@ -96,6 +96,7 @@ function addProduct() {
         }else {
             productsArray.splice(mainIndex, 1, product)
             submitBTN.textContent = "add"
+            modeOfSubmitBTN = false;
         }
         localStorage.setItem("productsArray", JSON.stringify(productsArray))
         productToTable()
@@ -164,15 +165,18 @@ function remov(i){
 }
 
 function update(index){
-    nameInput.value = productsArray[index].name
-    priceInput.value = productsArray[index].price
-    category.value = productsArray[index].category
-    countInput.value = productsArray[index].count
-    dateInput.value = productsArray[index].date
-    descripInput.value = productsArray[index].description
-    submitBTN.textContent = "Update"
-    modeOfSubmitBTN = true;
-    mainIndex = index;
+    var userConfirmed = confirm(`"Update : ${productsArray[index].name}`);
+    if(userConfirmed){
+        nameInput.value = productsArray[index].name
+        priceInput.value = productsArray[index].price
+        category.value = productsArray[index].category
+        countInput.value = productsArray[index].count
+        dateInput.value = productsArray[index].date
+        descripInput.value = productsArray[index].description
+        submitBTN.textContent = "Update"
+        modeOfSubmitBTN = true;
+        mainIndex = index;
+    }
 }
 
 function clearForm() {
