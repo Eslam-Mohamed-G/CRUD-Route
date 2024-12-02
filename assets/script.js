@@ -101,24 +101,27 @@ function productToTable(){
 
     for(i=0; i<productsArray.length; i++){
         if(filter ===productsArray[i].category || filter === "all" ){
-            productRow += 
-            `
-            <tr>
-                <td>${i+1}</td>
-                <td>${productsArray[i].name}</td>
-                <td>${productsArray[i].price}</td>
-                <td>${productsArray[i].count}</td>
-                <td>${productsArray[i].category}</td>
-                <td>${productsArray[i].description}</td>
-                <td><button class="btn-warning" onclick="update(${i})">Update</button></td>
-                <td><button class="btn-danger" onclick="remov(${i})">Delete</button></td>
-            </tr>
-            `
+            if(productsArray[i].name.toLowerCase().includes(search.toLowerCase()) || productsArray[i].price.includes(search)){
+                productRow += 
+                `
+                <tr>
+                    <td>${i+1}</td>
+                    <td>${productsArray[i].name}</td>
+                    <td>${productsArray[i].price}</td>
+                    <td>${productsArray[i].count}</td>
+                    <td>${productsArray[i].category}</td>
+                    <td>${productsArray[i].description}</td>
+                    <td><button class="btn-warning" onclick="update(${i})">Update</button></td>
+                    <td><button class="btn-danger" onclick="remov(${i})">Delete</button></td>
+                </tr>
+                `
+            }
         }
     }
     
     table.innerHTML = productRow;
 }
+searchInput.addEventListener("input", productToTable);
 filterInput.addEventListener("change", productToTable);
 
 
