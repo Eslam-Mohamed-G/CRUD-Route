@@ -155,13 +155,36 @@ document.body.addEventListener("keydown", function(e){
 });
 filterInput.addEventListener("change", productToTable);
 
-function remov(i){
-    var userConfirmed = confirm(`"Delete : ${productsArray[i].name}`);
-    if(userConfirmed){
-        productsArray.splice(i, 1);
-        localStorage.setItem("productsArray", JSON.stringify(productsArray))
-        productToTable()
-    }
+function remov(index){
+    // var userConfirmed = confirm(`"Delete : ${productsArray[i].name}`);
+    // if(userConfirmed){
+    //     productsArray.splice(i, 1);
+    //     localStorage.setItem("productsArray", JSON.stringify(productsArray))
+    //     productToTable()
+    // }
+    Swal.fire({
+        title: 'Are you sure?',
+        text: `${productsArray[index].name}`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'red',
+        cancelButtonColor: '#000',
+        confirmButtonText: 'Delete',
+        cancelButtonText: "Cancle"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            productsArray.splice(index, 1);
+            localStorage.setItem("productsArray", JSON.stringify(productsArray)); // تحديث localStorage
+            productToTable(); 
+            Swal.fire({
+                title:'Deleted!',
+                text:'The item was deleted successfully.',
+                icon:'success',
+                timer: 1000,
+                showConfirmButton: false
+            });
+        }
+    });
 }
 
 function update(index){
