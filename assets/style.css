@@ -76,22 +76,7 @@ main{
     display: flex;
     justify-content: space-between;
 }
-.totalCount, .filterCount{
-    border: 1px solid #ddd;
-    position: relative;
-}
-.totalCount::before, .filterCount::before{
-    position: absolute;
-    bottom: 100%;
-}
-.totalCount::before{
-    width: 80px;
-    content: "All Products: "; 
-}
-.filterCount::before {
-    content: var(--my-content);
-    right: 0;
-}
+
 
 .message{
     color: red;

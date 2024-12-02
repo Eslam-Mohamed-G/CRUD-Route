@@ -9,7 +9,7 @@ var searchInput = document.getElementById("searchInput");
 var filterInput = document.getElementById("filter");
 var totalCount = document.getElementById("totalCount");
 var countByFilter = document.getElementById("countByFilter");
-let countBefore = document.querySelector(".filterCount");
+
 
 var table = document.getElementById("productTable").querySelector("tbody");
 
@@ -126,7 +126,6 @@ function productToTable(){
         }
     }
     totalCount.innerHTML = allCount;
-    countBefore.style.setProperty("--my-content", `${search == "" ? search : 'count'}`)
     countByFilter.innerHTML = count;
     table.innerHTML = productRow;
 }
