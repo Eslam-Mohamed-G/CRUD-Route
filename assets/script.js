@@ -9,6 +9,7 @@ var searchInput = document.getElementById("searchInput");
 var filterInput = document.getElementById("filter");
 var totalCount = document.getElementById("totalCount");
 var countByFilter = document.getElementById("countByFilter");
+var searchByName = document.getElementById("searchByName");
 
 
 var table = document.getElementById("productTable").querySelector("tbody");
@@ -101,13 +102,15 @@ function productToTable(){
     var search = searchInput.value;
     var filter = filterInput.value;
     var productRow = '';
+    var productName = '';
     var allCount = 0;
     var count = 0;
 
     for(i=0; i<productsArray.length; i++){
-        allCount = allCount + parseFloat(productsArray[i].count);
         if(filter ===productsArray[i].category || filter === "all" ){
+            allCount = allCount + parseFloat(productsArray[i].count);
             if(productsArray[i].name.toLowerCase().includes(search.toLowerCase()) || productsArray[i].price.includes(search)){
+                productName += search;
                 count += parseFloat(productsArray[i].count)
                 productRow += 
                 `
@@ -126,6 +129,7 @@ function productToTable(){
         }
     }
     totalCount.innerHTML = allCount;
+    searchByName.innerHTML = productName;
     countByFilter.innerHTML = count;
     table.innerHTML = productRow;
 }
