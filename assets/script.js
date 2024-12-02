@@ -112,7 +112,7 @@ function productToTable(){
             if(productsArray[i].name.toLowerCase().includes(search.toLowerCase()) || productsArray[i].price.includes(search)){
                 if(search === ""){
                     dateSearch = '';
-                    count = 0;
+                    count = '';
                 }else {
                     dateSearch += productsArray[i].date;
                     count += parseFloat(productsArray[i].count)
