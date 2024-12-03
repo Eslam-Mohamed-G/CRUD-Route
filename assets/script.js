@@ -271,84 +271,56 @@ function checkPassword(){
     }
 }
 
-logInBTN.addEventListener("click", function() {
-    if(checkName() && checkPassword()){
-        var userNameValue = logInName.value;
-        localStorage.setItem("loggedInUser", userNameValue)
-        userName.textContent = `${logInName.value}`
-        logIn.classList.replace("d-block","d-none")
-        adminScreen.classList.remove("d-none")
-        logout.classList.replace("d-none","d-block");
+// عند تسجيل الدخول
+logInBTN.addEventListener("click", function () {
+    if (checkName() && checkPassword()) {
+        var username = logInName.value;
+        
+        // تخزين اسم المستخدم في localStorage (يظل محفوظًا)
+        localStorage.setItem("username", username);
+        
+        // تخزين حالة الجلسة في sessionStorage (مؤقت)
+        sessionStorage.setItem("sessionActive", "true");
+
+        userName.textContent = username;
+        if(username === "admin"){
+            logIn.classList.replace("d-block", "d-none");
+            logout.classList.replace("d-none","d-block");
+            adminScreen.classList.remove("d-none");
+        }else {
+            logIn.classList.replace("d-block", "d-none");
+            logout.classList.replace("d-none","d-block");
+            adminScreen.classList.add("d-none");
+        }
     }
-})
+});
 
-
-window.onload = function() {
-    var savedUser = localStorage.getItem("loggedInUser");
-    if (savedUser) {
+// عند تحميل الصفحة
+window.onload = function () {
+    // التحقق من اسم المستخدم
+    var savedUser = localStorage.getItem("username");
+    var sessionActive = sessionStorage.getItem("sessionActive");
+    
+    if (savedUser && sessionActive === "true") {
+        // إذا كانت الجلسة نشطة
         userName.textContent = savedUser;
-        logIn.classList.replace("d-block", "d-none");
-        logout.classList.replace("d-none","d-block");
-        adminScreen.classList.remove("d-none");
-    } else {
+        if(savedUser === "admin"){
+            logIn.classList.replace("d-block", "d-none");
+            logout.classList.replace("d-none","d-block");
+            adminScreen.classList.remove("d-none");
+        }else {
+            logIn.classList.replace("d-block", "d-none");
+            logout.classList.replace("d-none","d-block");
+            adminScreen.classList.add("d-none");
+        }
+    }else {
+        // إذا لم تكن الجلسة نشطة
         adminScreen.classList.add("d-none");
         logIn.classList.replace("d-none", "d-block");
-        localStorage.removeItem("loggedInUser");
     }
     productToTable();
     clearForm();
-}
-
-// عند تسجيل الدخول
-// logInBTN.addEventListener("click", function () {
-//     if (checkName() && checkPassword()) {
-//         var username = logInName.value;
-        
-//         // تخزين اسم المستخدم في localStorage (يظل محفوظًا)
-//         localStorage.setItem("username", username);
-        
-//         // تخزين حالة الجلسة في sessionStorage (مؤقت)
-//         sessionStorage.setItem("sessionActive", "true");
-
-//         userName.textContent = username;
-//         if(username === "admin"){
-//             logIn.classList.replace("d-block", "d-none");
-//             logout.classList.replace("d-none","d-block");
-//             adminScreen.classList.remove("d-none");
-//         }else {
-//             logIn.classList.replace("d-block", "d-none");
-//             logout.classList.replace("d-none","d-block");
-//             adminScreen.classList.add("d-none");
-//         }
-//     }
-// });
-
-// // عند تحميل الصفحة
-// window.onload = function () {
-//     // التحقق من اسم المستخدم
-//     var savedUser = localStorage.getItem("username");
-//     var sessionActive = sessionStorage.getItem("sessionActive");
-    
-//     if (savedUser && sessionActive === "true") {
-//         // إذا كانت الجلسة نشطة
-//         userName.textContent = savedUser;
-//         if(savedUser === "admin"){
-//             logIn.classList.replace("d-block", "d-none");
-//             logout.classList.replace("d-none","d-block");
-//             adminScreen.classList.remove("d-none");
-//         }else {
-//             logIn.classList.replace("d-block", "d-none");
-//             logout.classList.replace("d-none","d-block");
-//             adminScreen.classList.add("d-none");
-//         }
-//     }else {
-//         // إذا لم تكن الجلسة نشطة
-//         adminScreen.classList.add("d-none");
-//         logIn.classList.replace("d-none", "d-block");
-//     }
-//     productToTable();
-//     clearForm();
-// };
+};
 
 logout.addEventListener("click", function() {
     Swal.fire({
