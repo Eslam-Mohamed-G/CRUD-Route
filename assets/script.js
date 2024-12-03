@@ -285,6 +285,7 @@ window.onload = function() {
     if (savedUser) {
         userName.textContent = savedUser;
         logIn.classList.replace("d-block", "d-none");
+        logout.classList.replace("d-none","d-block");
         adminScreen.classList.remove("d-none");
     } else {
         adminScreen.classList.add("d-none");
@@ -294,7 +295,6 @@ window.onload = function() {
     productToTable();
     clearForm();
 }
-
 logout.addEventListener("click", function() {
     Swal.fire({
         title: 'Are you sure?',
@@ -308,6 +308,8 @@ logout.addEventListener("click", function() {
     }).then((result)=>{
         if(result.isConfirmed){
             userName.textContent = "";
+            logInName.value = "";
+            logInpassword.value = "";
             localStorage.removeItem("loggedInUser");
             adminScreen.classList.add("d-none");
             logIn.classList.replace("d-none", "d-block");
