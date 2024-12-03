@@ -215,3 +215,13 @@ window.onload = function(){
     productToTable()
     clearForm()
 }
+
+// system of CRUD
+var logout = document.getElementById("logout");
+var userName = document.querySelector("h3") 
+var adminScreen = document.querySelector(".admin")
+
+logout.addEventListener("click", function() {
+    userName.textContent = "";
+    adminScreen.classList.add("d-none")
+})

@@ -20,111 +20,129 @@
         </nav>
     </header>
 
-    <main class="admin">
-        <!-- form -->
-        <div class="form-container">
+
+    <main>
+        <div class="logIn">
             <form action="">
                 <div class="form-control">
-                    <label for="name">Product Name</label>
-                    <input type="text" placeholder="Name" name="name" id="nameInput">
-                    <span  class="message" id="nameError"></span>
+                    <input type="text" id="logInName" placeholder="Name">
                 </div>
-                
-                <!-- price and Category -->
-                <div class="priceCategory">
+
+                <div class="form-control">
+                    <input type="password" id="password" placeholder="password">
+                </div>
+
+                <div class="form-control">
+                    <button type="button" id="logInBTN">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="admin d-none">
+            <!-- form -->
+            <div class="form-container">
+                <form action="">
                     <div class="form-control">
-                        <label for="price">Price</label>
-                        <input type="text" name="price" id="priceInput" placeholder="Price">
-                        <span class="message" id="priceError"></span>
+                        <label for="name">Product Name</label>
+                        <input type="text" placeholder="Name" name="name" id="nameInput">
+                        <span  class="message" id="nameError"></span>
                     </div>
-                    <div  class="form-control">
+                    
+                    <!-- price and Category -->
+                    <div class="priceCategory">
+                        <div class="form-control">
+                            <label for="price">Price</label>
+                            <input type="text" name="price" id="priceInput" placeholder="Price">
+                            <span class="message" id="priceError"></span>
+                        </div>
+                        <div  class="form-control">
+                            <label for="category">Category</label>
+                            <select id="category" required>
+                                <option value="">Category</option>
+                                <option value="samsung">Samsung</option>
+                                <option value="oppo">Oppo</option>
+                                <option value="iphone">iphone</option>
+                                <option value="huawei">huawei</option>
+                            </select>
+                            <span class="message" id="selected"></span>
+                        </div>
+                    </div>
+                    <!-- price and Category -->
+                    <div class="countDate">
+                        <div class="form-control">
+                            <label for="count">count</label>
+                            <input type="number" name="count" id="count" placeholder="count">
+                        </div>
+                        <div class="form-control">
+                            <label for="date">date</label>
+                            <input type="date" name="date" id="dateInput" placeholder="dd/mm/yy">
+                        </div>
+                    </div>
+                    
+                    <div class="form-control">
+                        <label for="productDescription">product Description</label>
+                        <textarea id="descripInput" rows="3"></textarea>
+                    </div>
+    
+                    <div class="form-control">
+                        <button type="button" id="btn">add</button>
+                    </div>
+                </form>
+    
+                <div class="content-action">
+                    <div class="form-control">
                         <label for="category">Category</label>
-                        <select id="category" required>
-                            <option value="">Category</option>
+                        <select id="filter" required>
+                            <option value="all">All Products</option>
                             <option value="samsung">Samsung</option>
                             <option value="oppo">Oppo</option>
                             <option value="iphone">iphone</option>
                             <option value="huawei">huawei</option>
                         </select>
-                        <span class="message" id="selected"></span>
+                        <div class="totalCount">
+                            <h5>All Count :</h5>
+                            <h5 id="totalCount"></h5>
+                        </div>
                     </div>
-                </div>
-                <!-- price and Category -->
-                <div class="countDate">
+    
                     <div class="form-control">
-                        <label for="count">count</label>
-                        <input type="number" name="count" id="count" placeholder="count">
+                        <label for="search">Search</label>
+                        <input type="text" placeholder="Search" name="search" id="searchInput">
                     </div>
-                    <div class="form-control">
-                        <label for="date">date</label>
-                        <input type="date" name="date" id="dateInput" placeholder="dd/mm/yy">
-                    </div>
-                </div>
-                
-                <div class="form-control">
-                    <label for="productDescription">product Description</label>
-                    <textarea id="descripInput" rows="3"></textarea>
-                </div>
-
-                <div class="form-control">
-                    <button type="button" id="btn">add</button>
-                </div>
-            </form>
-
-            <div class="content-action">
-                <div class="form-control">
-                    <label for="category">Category</label>
-                    <select id="filter" required>
-                        <option value="all">All Products</option>
-                        <option value="samsung">Samsung</option>
-                        <option value="oppo">Oppo</option>
-                        <option value="iphone">iphone</option>
-                        <option value="huawei">huawei</option>
-                    </select>
-                    <div class="totalCount">
-                        <h5>All Count :</h5>
-                        <h5 id="totalCount"></h5>
-                    </div>
-                </div>
-
-                <div class="form-control">
-                    <label for="search">Search</label>
-                    <input type="text" placeholder="Search" name="search" id="searchInput">
-                </div>
-
-
-                <div class="count-control">
-                    <div class="countBySearch">
-                        <small id="countBySearch"></small>
-                        <small id="date"></small>
+    
+    
+                    <div class="count-control">
+                        <div class="countBySearch">
+                            <small id="countBySearch"></small>
+                            <small id="date"></small>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- form -->
+    
+            <!-- table -->
+            <div class="table-container">
+                <table id="productTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>name</th>
+                            <th>price</th>
+                            <!-- <th>count</th> -->
+                            <th>category</th>
+                            <th>description</th>
+                            <th>update</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+    
+                    </tbody>
+                </table>
+            </div>
+            <!-- table -->
         </div>
-        <!-- form -->
-
-        <!-- table -->
-        <div class="table-container">
-            <table id="productTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>name</th>
-                        <th>price</th>
-                        <!-- <th>count</th> -->
-                        <th>category</th>
-                        <th>description</th>
-                        <th>update</th>
-                        <th>delete</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
-        <!-- table -->
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
