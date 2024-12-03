@@ -211,10 +211,6 @@ function clearForm() {
     descripInput.value="";
 }
 
-window.onload = function(){
-    productToTable()
-    clearForm()
-}
 
 // system of CRUD
 var logout = document.getElementById("logout");
@@ -273,14 +269,31 @@ function checkPassword(){
 }
 logInBTN.addEventListener("click", function() {
     if(checkName() && checkPassword()){
+        var userNameValue = logInName.value;
+        localStorage.setItem("loggedInUser", userNameValue)
+        userName.textContent = `${logInName.value}`
         logIn.classList.replace("d-block","d-none")
         adminScreen.classList.remove("d-none")
-        // replace("d-block","d-none")
     }
 })
 
+
+window.onload = function() {
+    var savedUser = localStorage.getItem("loggedInUser");
+    if (savedUser) {
+        userName.textContent = savedUser;
+        logIn.classList.replace("d-block", "d-none");
+        adminScreen.classList.remove("d-none");
+    } else {
+        adminScreen.classList.add("d-none");
+        logIn.classList.replace("d-none", "d-block");
+    }
+    productToTable();
+    clearForm();
+}
 logout.addEventListener("click", function() {
     userName.textContent = "";
+    localStorage.removeItem("loggedInUser");
     adminScreen.classList.add("d-none");
-    logIn.classList.replace("d-none","d-block")
-})
+    logIn.classList.replace("d-none", "d-block");
+});
