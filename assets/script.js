@@ -267,6 +267,7 @@ function checkPassword(){
         return true;
     }
 }
+
 logInBTN.addEventListener("click", function() {
     if(checkName() && checkPassword()){
         var userNameValue = logInName.value;
@@ -274,6 +275,7 @@ logInBTN.addEventListener("click", function() {
         userName.textContent = `${logInName.value}`
         logIn.classList.replace("d-block","d-none")
         adminScreen.classList.remove("d-none")
+        logout.classList.replace("d-none","d-block");
     }
 })
 
@@ -287,10 +289,12 @@ window.onload = function() {
     } else {
         adminScreen.classList.add("d-none");
         logIn.classList.replace("d-none", "d-block");
+        localStorage.removeItem("loggedInUser");
     }
     productToTable();
     clearForm();
 }
+
 logout.addEventListener("click", function() {
     Swal.fire({
         title: 'Are you sure?',
@@ -307,6 +311,7 @@ logout.addEventListener("click", function() {
             localStorage.removeItem("loggedInUser");
             adminScreen.classList.add("d-none");
             logIn.classList.replace("d-none", "d-block");
+            logout.classList.replace("d-block","d-none");
         }
     })
 });
