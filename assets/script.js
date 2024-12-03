@@ -292,8 +292,21 @@ window.onload = function() {
     clearForm();
 }
 logout.addEventListener("click", function() {
-    userName.textContent = "";
-    localStorage.removeItem("loggedInUser");
-    adminScreen.classList.add("d-none");
-    logIn.classList.replace("d-none", "d-block");
+    Swal.fire({
+        title: 'Are you sure?',
+        text: `${logInName.value}`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'red',
+        cancelButtonColor: '#000',
+        confirmButtonText: 'ok',
+        cancelButtonText: "Cancle"
+    }).then((result)=>{
+        if(result.isConfirmed){
+            userName.textContent = "";
+            localStorage.removeItem("loggedInUser");
+            adminScreen.classList.add("d-none");
+            logIn.classList.replace("d-none", "d-block");
+        }
+    })
 });
