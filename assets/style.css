@@ -32,6 +32,11 @@ main{
     margin: 0;
     max-width: 100%;
 }
+
+.logIn{
+    width: 33.33%;
+    margin: auto;
+}
 .admin{
     display: flex;
     flex-direction: row;
