@@ -218,9 +218,39 @@ window.onload = function(){
 
 // system of CRUD
 var logout = document.getElementById("logout");
-var userName = document.querySelector("h3") 
+var userName = document.querySelector("h3"); 
+var logInName = document.getElementById("logInName");
+var logInpassword = document.getElementById("logInPassword");
+var logInBTN = document.getElementById("logInBTN");
 var adminScreen = document.querySelector(".admin")
 
+var userArray = [
+    {
+        name: "admin",
+        password: 123
+    }
+]
+// console.log(userArray)
+
+function checkName() {
+    var name = logInName.value;
+    var existsUser = false;
+    for(i=0; i < userArray.length; i++){
+        if(name === userArray[i].name){
+            existsUser = true;
+            break;
+        }
+    }
+
+    if(!existsUser){
+        logInName.style.border = "1px solid red";
+        return false;
+    }else {
+        logInName.style.border = "1px solid #ddd";
+        return true;
+    }
+}
+logInBTN.addEventListener("click", checkName)
 logout.addEventListener("click", function() {
     userName.textContent = "";
     adminScreen.classList.add("d-none")
