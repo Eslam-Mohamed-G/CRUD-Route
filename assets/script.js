@@ -223,11 +223,12 @@ var logInName = document.getElementById("logInName");
 var logInpassword = document.getElementById("logInPassword");
 var logInBTN = document.getElementById("logInBTN");
 var adminScreen = document.querySelector(".admin")
+var logIn = document.querySelector(".logIn")
 
 var userArray = [
     {
         name: "admin",
-        password: 123
+        password: "123"
     }
 ]
 // console.log(userArray)
@@ -250,8 +251,36 @@ function checkName() {
         return true;
     }
 }
-logInBTN.addEventListener("click", checkName)
+
+function checkPassword(){
+    var name = logInName.value;
+    var password = logInpassword.value;
+    var existsPassword = false;
+    for(i=0; i < userArray.length; i++){
+        if(name === userArray[i].name && password === userArray[i].password){
+            existsPassword = true;
+            break;
+        }
+    }
+
+    if(!existsPassword){
+        logInpassword.style.border = "1px solid red";
+        return false;
+    }else {
+        logInpassword.style.border = "1px solid #ddd";
+        return true;
+    }
+}
+logInBTN.addEventListener("click", function() {
+    if(checkName() && checkPassword()){
+        logIn.classList.replace("d-block","d-none")
+        adminScreen.classList.remove("d-none")
+        // replace("d-block","d-none")
+    }
+})
+
 logout.addEventListener("click", function() {
     userName.textContent = "";
-    adminScreen.classList.add("d-none")
+    adminScreen.classList.add("d-none");
+    logIn.classList.replace("d-none","d-block")
 })

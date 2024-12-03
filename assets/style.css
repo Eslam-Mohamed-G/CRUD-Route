@@ -45,6 +45,10 @@ main{
     gap: 25px;
 }
 
+.d-block{
+    display: block;
+}
+
 .d-none{
     display: none;
 }
