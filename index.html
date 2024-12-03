@@ -146,7 +146,51 @@
         </div>
 
         <div class="user">
-            <p class=""></p>
+            <div class="form-container">
+                <form action="">
+                    <div class="form-control">
+                        <label for="name">Product Name</label>
+                        <input type="text" placeholder="Name" name="name" id="nameInput">
+                        <span  class="message" id="nameError"></span>
+                    </div>
+
+                    <!-- price and Taxes -->
+                    <div class="priceTaxes">
+                        <div class="form-control">
+                            <label for="price">Price</label>
+                            <input type="text" name="price" id="priceInput" placeholder="Price">
+                            <span class="message" id="priceError"></span>
+                        </div>
+                        <div  class="form-control">
+                            <label for="Taxes">Taxes</label>
+                            <input type="text" name="Taxes" id="TaxesInput" placeholder="Taxes">
+                            <span class="message" id="priceError"></span>
+                        </div>
+                    </div>
+                    <!-- price and Taxes -->
+                </form>
+            </div>
+
+            <!-- table -->
+            <div class="table-container">
+                <table id="productTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>name</th>
+                            <th>price</th>
+                            <th>count</th>
+                            <th>update</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+    
+                    </tbody>
+                </table>
+            </div>
+            <!-- table -->
         </div>
     </main>
 
