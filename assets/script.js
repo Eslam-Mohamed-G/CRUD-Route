@@ -337,7 +337,7 @@ logout.addEventListener("click", function() {
             userName.textContent = "";
             logInName.value = "";
             logInpassword.value = "";
-            // sessionStorage.removeItem("sessionActive");
+            sessionStorage.removeItem("sessionActive");
             adminScreen.classList.add("d-none");
             logIn.classList.replace("d-none", "d-block");
             logout.classList.replace("d-block","d-none");
