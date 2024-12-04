@@ -491,10 +491,7 @@ function addBill() {
     }
     makeBillTable()
 }
-userBuyBTN.addEventListener("click", function(){
-    addBill()
-    console.log("done")
-})
+userBuyBTN.addEventListener("click", addBill)
 
 function makeBillTable() {
     var bill = '';
@@ -508,10 +505,22 @@ function makeBillTable() {
                 <td>${billArray[i].count}</td>
                 <td>${billArray[i].date}</td>
                 <td>${billArray[i].totalPrice}</td>
-                <td><button class="btn-warning" onclick="update(${i})">Update</button></td>
-                <td><button class="btn-danger" onclick="remov(${i})">Delete</button></td>
+                <td><button class="btn-warning update-btn" value="${i}">Update</button></td>
+                <td><button class="btn-danger delete-btn" value="${i}">Delete</button></td>
             </tr>
         `;
     }
     billTable.innerHTML = bill;
 }
+
+
+billTable.addEventListener("click", function(e){
+    if(e.target && e.target.classList.contains("delete-btn")){
+        billArray.splice(e.target.value, 1);
+        sessionStorage.setItem("billArray", JSON.stringify(billArray));
+        makeBillTable();
+        console.log("Delete button clicked:", e.target.value)
+    }else if(e.target && e.target.classList.contains("update-btn")){
+        console.log("update button clicked:", e.target)
+    }
+})
