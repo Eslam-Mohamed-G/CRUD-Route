@@ -458,6 +458,10 @@ function validateUserCount() {
     }
 }
 var billArray = [];
+if(sessionStorage.getItem("billArray") !=null){
+    billArray = JSON.parse(sessionStorage.getItem("billArray"));
+    console.log(billArray)
+}
 function addBill() {
     var sellPrice = parseFloat(userPriceInput.value) + parseFloat(userTaxesInput.value);
     var totalSellPrice = parseFloat(sellPrice) * parseFloat(userCountInput.value);
@@ -471,7 +475,9 @@ function addBill() {
 
     if(validateUserName() && validateUserCode() && validateUserCount()){
         billArray.push(billProduct)
-        console.log(billArray)
+        sessionStorage.setItem("billArray", JSON.stringify(billArray))
+        data = sessionStorage.getItem("billArray")
+        console.log(data)
     }
 }
 userBuyBTN.addEventListener("click", function(){
