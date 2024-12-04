@@ -137,3 +137,14 @@ td, th {
 th{
     height: 50px;
 }
+
+.user .form-container{
+    width: 50%;
+    height: fit-content;
+    margin: 0px auto 25px;
+}
+
+.user_name_code{
+    display: flex;
+    gap: 20px;
+}
