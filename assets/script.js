@@ -367,6 +367,7 @@ logout.addEventListener("click", function() {
             logInName.value = "";
             logInpassword.value = "";
             sessionStorage.removeItem("sessionActive");
+            sessionStorage.removeItem("billArray");
             userScreen.classList.add("d-none");
             adminScreen.classList.add("d-none");
             logIn.classList.replace("d-none", "d-block");
@@ -476,8 +477,6 @@ function addBill() {
     if(validateUserName() && validateUserCode() && validateUserCount()){
         billArray.push(billProduct)
         sessionStorage.setItem("billArray", JSON.stringify(billArray))
-        data = sessionStorage.getItem("billArray")
-        console.log(data)
     }
 }
 userBuyBTN.addEventListener("click", function(){
