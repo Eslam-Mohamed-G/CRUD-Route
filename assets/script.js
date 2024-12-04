@@ -403,18 +403,18 @@ var userBuyBTN = document.getElementById("buyBTN");
 var confirmBillBTN = document.getElementById("billBTN");
 var billTable = document.getElementById("billTable").querySelector("tbody")
 
-function validateUserName() {
-    var sellUserName = userNameInput.value;
+// function validateUserName() {
+//     var sellUserName = userNameInput.value;
 
-    if(!sellUserName){
-        userNameInput.style.border = "1px solid red";
-        return false
-    }else{
-        validateUserCount()
-        userNameInput.style.border = "1px solid #ddd";
-        return true;
-    }
-}
+//     if(!sellUserName){
+//         userNameInput.style.border = "1px solid red";
+//         return false
+//     }else{
+//         validateUserCount()
+//         userNameInput.style.border = "1px solid #ddd";
+//         return true;
+//     }
+// }
 function validateUserCode() {
     var sellUserCode = userCodeInput.value;
 
@@ -422,26 +422,33 @@ function validateUserCode() {
         userCodeInput.style.border = "1px solid red";
         return false
     }else{
-        validateUserCount()
         userCodeInput.style.border = "1px solid #ddd";
         return true;
     }
 }
 
-userCodeInput.addEventListener("keydown", (e)=>{
+userCodeInput.addEventListener("keydown", function(e){
     var priceValue = false
     if(e.key === "Enter"){
         var enteredCode = userCodeInput.value;
         var productPrice = productsArray.find(p => p.code === enteredCode);
-        priceValue = true;
+        if(productPrice != null){
+            priceValue = true;
+        }else {
+            priceValue = false;
+        }
+        if(priceValue){
+            userPriceInput.value = productPrice.price;
+            userNameInput.value = productPrice.name;
+            userCodeInput.style.border = "1px solid #ddd";
+            console.log(userPriceInput.value)
+        }else{
+            userCodeInput.style.border = "1px solid red";
+            userPriceInput.value = "was not";
+            userNameInput.value = "was not"
+        }
     }
 
-    if(priceValue){
-        userPriceInput.value = productPrice.price
-        console.log(userPriceInput.value)
-    }else{
-        userPriceInput.value = 0;
-    }
 })
 
 function validateUserCount() {
@@ -478,7 +485,7 @@ function addBill() {
         totalPrice: totalSellPrice
     }
 
-    if(validateUserName() && validateUserCode() && validateUserCount()){
+    if(validateUserCode() && validateUserCount()){
         billArray.push(billProduct)
         sessionStorage.setItem("billArray", JSON.stringify(billArray))
     }
