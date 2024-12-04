@@ -9,6 +9,7 @@ var submitBTN = document.getElementById("btn");
 var searchInput = document.getElementById("searchInput");
 var filterInput = document.getElementById("filter");
 var totalCount = document.getElementById("totalCount");
+var codeOfProduct = document.getElementById("codeOfProduct");
 var countBySearch = document.getElementById("countBySearch");
 var date = document.getElementById("date");
 
@@ -131,6 +132,7 @@ function productToTable(){
     var productRow = '';
     var dateSearch = '';
     var allCount = 0;
+    var valueOfcodeOfProduct = '';
     var count = 0;
 
     for(i=0; i<productsArray.length; i++){
@@ -140,9 +142,11 @@ function productToTable(){
                 if(search === ""){
                     dateSearch = '';
                     count = '';
+                    valueOfcodeOfProduct = '';
                 }else {
                     dateSearch += productsArray[i].date;
                     count += parseFloat(productsArray[i].count)
+                    valueOfcodeOfProduct += parseFloat(productsArray[i].code)
                 }
                 productRow += 
                 `
@@ -161,6 +165,7 @@ function productToTable(){
     }
     totalCount.innerHTML = allCount;
     date.innerHTML = `<h4>Date : ${dateSearch}</h4>`;
+    codeOfProduct.innerHTML = `<h4>Code : ${valueOfcodeOfProduct}</h4>`;
     countBySearch.innerHTML = `<h4>Count : ${count}</h4>`;
     table.innerHTML = productRow;
 }
