@@ -341,6 +341,7 @@ window.onload = function () {
             logout.classList.replace("d-none","d-block");
             userScreen.classList.replace("d-none","d-block");
             adminScreen.classList.add("d-none");
+            
         }
     }else {
         // إذا لم تكن الجلسة نشطة
@@ -348,6 +349,7 @@ window.onload = function () {
         logIn.classList.replace("d-none", "d-block");
     }
     productToTable();
+    makeBill()
     clearForm();
 };
 
@@ -399,6 +401,7 @@ var userTaxesInput = document.getElementById("taxesInput");
 var userCountInput = document.getElementById("userCount");
 var userBuyBTN = document.getElementById("buyBTN");
 var confirmBillBTN = document.getElementById("billBTN");
+var billTable = document.getElementById("billTable").querySelector("tbody")
 
 function validateUserName() {
     var sellUserName = userNameInput.value;
@@ -467,6 +470,7 @@ function addBill() {
     var sellPrice = parseFloat(userPriceInput.value) + parseFloat(userTaxesInput.value);
     var totalSellPrice = parseFloat(sellPrice) * parseFloat(userCountInput.value);
     var billProduct = {
+        code: userCodeInput.value,
         name: userNameInput.value,
         price: sellPrice,
         count: userCountInput.value,
@@ -478,8 +482,29 @@ function addBill() {
         billArray.push(billProduct)
         sessionStorage.setItem("billArray", JSON.stringify(billArray))
     }
+    makeBill()
 }
 userBuyBTN.addEventListener("click", function(){
     addBill()
     console.log("done")
 })
+
+function makeBill() {
+    var bill = '';
+    for(i=0; i<billArray.length; i++){
+        bill += 
+        `
+            <tr>
+                <td>${billArray[i].code}</td>
+                <td>${billArray[i].name}</td>
+                <td>${billArray[i].price}</td>
+                <td>${billArray[i].count}</td>
+                <td>${billArray[i].date}</td>
+                <td>${billArray[i].totalPrice}</td>
+                <td><button class="btn-warning" onclick="update(${i})">Update</button></td>
+                <td><button class="btn-danger" onclick="remov(${i})">Delete</button></td>
+            </tr>
+        `;
+    }
+    billTable.innerHTML = bill;
+}
