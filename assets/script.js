@@ -384,8 +384,19 @@ function validateUserName() {
     }
 }
 
+function validateUserPrice() {
+    var sellUserPrice = userPriceInput.value;
+    var priceRegex = /^\d+(\.\d+)?$/;
+    if(!priceRegex.test(sellUserPrice)){
+        userPriceInput.style.border = "1px solid red";
+        return false
+    }else {
+        userPriceInput.style.border = "1px solid #ddd";
+        return true;
+    }
+}
 userBuyBTN.addEventListener("click", function(){
-    if (validateUserName()) {
+    if (validateUserName() && validateUserPrice()) {
         console.log("done")
     }
 })
