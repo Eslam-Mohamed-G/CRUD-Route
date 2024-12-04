@@ -383,3 +383,9 @@ function validateUserName() {
         return true;
     }
 }
+
+userBuyBTN.addEventListener("click", function(){
+    if (validateUserName()) {
+        console.log("done")
+    }
+})
