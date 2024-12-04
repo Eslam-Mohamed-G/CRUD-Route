@@ -406,22 +406,26 @@ function validateUserName() {
         return true;
     }
 }
-// codeIdInput.addEventListener("input", validateUserPrice)
-// var code = codeIdInput.value;
-// for(i=0; i<productsArray.length; i++){
-//     if(code === productsArray[i].category){
-//         sellUserPrice = productsArray[i].price
-//         console.log(sellUserPrice)
-//     }
-// }
+
+userCodeInput.addEventListener("keydown", (e)=>{
+    var priceValue = false
+    if(e.key === "Enter"){
+        var enteredCode = userCodeInput.value;
+        var productPrice = productsArray.find(p => p.code === enteredCode);
+        priceValue = true;
+    }
+
+    if(priceValue){
+        userPriceInput.value = productPrice.price
+        console.log(userPriceInput.value)
+    }else{
+        userPriceInput.value = 0;
+    }
+})
+
 function validateUserPrice() {
     var sellUserPrice = userPriceInput.value;
-    // var code = codeIdInput.value;
-    // for(i=0; i<productsArray.length; i++){
-    //     if(code === productsArray[i].category){
-    //         sellUserPrice = productsArray[i].price
-    //     }
-    // }
+
     var priceRegex = /^\d+(\.\d+)?$/;
     if(!priceRegex.test(sellUserPrice)){
         userPriceInput.style.border = "1px solid red";
@@ -433,16 +437,17 @@ function validateUserPrice() {
 }
 var billArray = [];
 function addBill() {
-    
     var sellPrice = parseFloat(userPriceInput.value) + parseFloat(userTaxesInput.value);
+    var totalSellPrice = parseFloat(sellPrice) * parseFloat(userCountInput.value);
     var billProduct = {
         name: userNameInput.value,
         price: sellPrice,
         count: userCountInput.value,
         date: userDateInput.value,
+        totalPrice: totalSellPrice
     }
 
-    if(validateUserName()){
+    if(validateUserName() && validateUserPrice()){
         billArray.push(billProduct)
         console.log(billArray)
     }
