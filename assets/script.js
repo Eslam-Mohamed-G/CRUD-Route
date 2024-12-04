@@ -23,7 +23,7 @@ if(localStorage.getItem("productsArray") != null){
 function validateName() {
     var messageError = document.getElementById("nameError");
     var name = nameInput.value;
-    var nameRegex = /^[a-zA-Z]{3,}.*$/;   //The name starts with at least three letters
+    var nameRegex = /^[a-zA-Z]{1,}.*$/;   //The name starts with at least three letters
 
     if(!name){
         messageError.textContent = "Name required";
@@ -348,3 +348,17 @@ logout.addEventListener("click", function() {
         }
     })
 });
+
+
+
+// تحديد العنصر
+const userDateInput = document.getElementById('userDate');
+
+// الحصول على تاريخ اليوم بصيغة yyyy-mm-dd
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, '0'); // الأشهر تبدأ من 0 لذا نضيف 1
+const dd = String(today.getDate()).padStart(2, '0');
+
+// تعيين القيمة الافتراضية
+userDateInput.value = `${yyyy}-${mm}-${dd}`;
