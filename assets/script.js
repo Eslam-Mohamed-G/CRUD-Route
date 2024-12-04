@@ -444,8 +444,8 @@ userCodeInput.addEventListener("keydown", function(e){
             console.log(userPriceInput.value)
         }else{
             userCodeInput.style.border = "1px solid red";
-            userPriceInput.value = "was not";
-            userNameInput.value = "was not"
+            userPriceInput.value = "dosn't exists";
+            userNameInput.value = "dosn't exists"
         }
     }
 
