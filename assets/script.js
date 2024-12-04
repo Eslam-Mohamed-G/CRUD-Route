@@ -219,6 +219,7 @@ var logInName = document.getElementById("logInName");
 var logInpassword = document.getElementById("logInPassword");
 var logInBTN = document.getElementById("logInBTN");
 var adminScreen = document.querySelector(".admin")
+var userScreen = document.querySelector(".user")
 var logIn = document.querySelector(".logIn")
 
 var userArray = [
@@ -290,6 +291,7 @@ logInBTN.addEventListener("click", function () {
         }else {
             logIn.classList.replace("d-block", "d-none");
             logout.classList.replace("d-none","d-block");
+            userScreen.classList.replace("d-none","d-block");
             adminScreen.classList.add("d-none");
         }
     }
@@ -311,6 +313,7 @@ window.onload = function () {
         }else {
             logIn.classList.replace("d-block", "d-none");
             logout.classList.replace("d-none","d-block");
+            userScreen.classList.replace("d-none","d-block");
             adminScreen.classList.add("d-none");
         }
     }else {
@@ -338,6 +341,7 @@ logout.addEventListener("click", function() {
             logInName.value = "";
             logInpassword.value = "";
             sessionStorage.removeItem("sessionActive");
+            userScreen.classList.add("d-none");
             adminScreen.classList.add("d-none");
             logIn.classList.replace("d-none", "d-block");
             logout.classList.replace("d-block","d-none");
