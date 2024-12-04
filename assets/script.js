@@ -514,13 +514,16 @@ function makeBillTable() {
 }
 
 
-billTable.addEventListener("click", function(e){
-    if(e.target && e.target.classList.contains("delete-btn")){
-        billArray.splice(e.target.value, 1);
-        sessionStorage.setItem("billArray", JSON.stringify(billArray));
-        makeBillTable();
-        console.log("Delete button clicked:", e.target.value)
-    }else if(e.target && e.target.classList.contains("update-btn")){
+billTable.addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("delete-btn")) {
+        var userConfirmed = confirm(`"Delete : ${billArray[e.target.value].name}`);
+        if (userConfirmed) {
+            billArray.splice(e.target.value, 1);
+            sessionStorage.setItem("billArray", JSON.stringify(billArray));
+            makeBillTable();
+        }
+    } else if (e.target && e.target.classList.contains("update-btn")) {
+
         console.log("update button clicked:", e.target)
     }
 })
