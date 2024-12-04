@@ -349,7 +349,7 @@ window.onload = function () {
         logIn.classList.replace("d-none", "d-block");
     }
     productToTable();
-    makeBill()
+    makeBillTable();
     clearForm();
 };
 
@@ -482,14 +482,14 @@ function addBill() {
         billArray.push(billProduct)
         sessionStorage.setItem("billArray", JSON.stringify(billArray))
     }
-    makeBill()
+    makeBillTable()
 }
 userBuyBTN.addEventListener("click", function(){
     addBill()
     console.log("done")
 })
 
-function makeBill() {
+function makeBillTable() {
     var bill = '';
     for(i=0; i<billArray.length; i++){
         bill += 
