@@ -406,7 +406,7 @@ function validateUserName() {
         userNameInput.style.border = "1px solid red";
         return false
     }else{
-        validateUserPrice()
+        validateUserCount()
         userNameInput.style.border = "1px solid #ddd";
         return true;
     }
@@ -428,16 +428,22 @@ userCodeInput.addEventListener("keydown", (e)=>{
     }
 })
 
-function validateUserPrice() {
-    var sellUserPrice = userPriceInput.value;
+function validateUserCount() {
+    var sellUserCount = userCountInput.value;
 
-    var priceRegex = /^\d+(\.\d+)?$/;
-    if(!priceRegex.test(sellUserPrice)){
-        userPriceInput.style.border = "1px solid red";
+    var countRegex = /^\d+(\.\d+)?$/;
+    if(!sellUserCount){
+        // userCountInput.style.border = "1px solid red";
+        userCountInput.style.border = "1px solid red"
         return false
     }else {
-        userPriceInput.style.border = "1px solid #ddd";
-        return true;
+        if(!countRegex.test(sellUserCount)){
+            userCountInput.style.border = "1px solid red";
+            return false
+        }else {
+            userCountInput.style.border = "1px solid #ddd";
+            return true;
+        }
     }
 }
 var billArray = [];
@@ -452,7 +458,7 @@ function addBill() {
         totalPrice: totalSellPrice
     }
 
-    if(validateUserName() && validateUserPrice()){
+    if(validateUserName() && validateUserCount()){
         billArray.push(billProduct)
         console.log(billArray)
     }
