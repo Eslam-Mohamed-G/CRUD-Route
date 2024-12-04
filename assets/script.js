@@ -489,7 +489,8 @@ function addBill() {
         billArray.push(billProduct)
         sessionStorage.setItem("billArray", JSON.stringify(billArray))
     }
-    makeBillTable()
+    makeBillTable();
+    clearFormBill();
 }
 userBuyBTN.addEventListener("click", addBill)
 
@@ -527,3 +528,12 @@ billTable.addEventListener("click", function (e) {
         console.log("update button clicked:", e.target)
     }
 })
+
+
+function clearFormBill() {
+    userNameInput.value = "";
+    userCodeInput.value = "";
+    userPriceInput.value = "";
+    userTaxesInput.value = "";
+    userCountInput.value = "";
+}
