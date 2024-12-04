@@ -362,3 +362,12 @@ const dd = String(today.getDate()).padStart(2, '0');
 
 // تعيين القيمة الافتراضية
 userDateInput.value = `${yyyy}-${mm}-${dd}`;
+
+
+// variables of user Screen
+var userNameInput = document.getElementById("userNameInput");
+var userPriceInput = document.getElementById("userPriceInput");
+var userTaxesInput = document.getElementById("taxesInput");
+var userCountInput = document.getElementById("userCount");
+var userBuyBTN = document.getElementById("buyBTN");
+var confirmBillBTN = document.getElementById("billBTN");
