@@ -371,3 +371,15 @@ var userTaxesInput = document.getElementById("taxesInput");
 var userCountInput = document.getElementById("userCount");
 var userBuyBTN = document.getElementById("buyBTN");
 var confirmBillBTN = document.getElementById("billBTN");
+
+function validateUserName() {
+    var sellUserName = userNameInput.value;
+
+    if(!sellUserName){
+        userNameInput.style.border = "1px solid red";
+        return false
+    }else{
+        userNameInput.style.border = "1px solid #ddd";
+        return true;
+    }
+}
