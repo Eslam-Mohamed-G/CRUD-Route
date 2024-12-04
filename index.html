@@ -42,10 +42,16 @@
             <!-- form -->
             <div class="form-container">
                 <form action="">
-                    <div class="form-control">
-                        <label for="name">Product Name</label>
-                        <input type="text" placeholder="Name" name="name" id="nameInput">
-                        <span  class="message" id="nameError"></span>
+                    <div class="nameCode">
+                        <div class="form-control">
+                            <label for="name">Product Name</label>
+                            <input type="text" placeholder="Name" name="name" id="nameInput">
+                            <span  class="message" id="nameError"></span>
+                        </div>
+                        <div class="form-control">
+                            <label for="code">Code</label>
+                            <input type="text" placeholder="Code" name="code" id="codeInput">
+                        </div>
                     </div>
                     
                     <!-- price and Category -->
@@ -154,6 +160,11 @@
                         <input type="text" placeholder="Name" name="name" id="userNameInput">
                     </div>
 
+                    <div class="form-control">
+                        <label for="code">Product Code</label>
+                        <input type="text" placeholder="Code" name="code" id="userCodeInput">
+                    </div>
+
                     <!-- price and Taxes -->
                     <div class="priceTaxes">
                         <div class="form-control">
@@ -187,7 +198,7 @@
 
             <!-- table -->
             <div class="table-container">
-                <table id="productTable">
+                <table id="billTable">
                     <thead>
                         <tr>
                             <th>ID</th>

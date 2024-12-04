@@ -1,4 +1,5 @@
 var nameInput = document.getElementById("nameInput");
+var codeInput = document.getElementById("codeInput");
 var priceInput = document.getElementById("priceInput");
 var category = document.getElementById("category");
 var countInput = document.getElementById("count");
@@ -44,6 +45,23 @@ function validateName() {
 }
 nameInput.addEventListener("input",validateName);
 
+function validateCode() {
+    var code = codeInput.value;
+    var codeRegex = /^\d+(\.\d+)?$/;
+    if(!code){
+        codeInput.style.border = "1px solid red";
+        return false;
+    }else {
+        if(!codeRegex.test(code)){
+            codeInput.style.border = "1px solid red";
+            return false;
+        }else {
+            codeInput.style.border = "1px solid #ddd";
+            return true
+        }
+    }
+}
+
 function validatePrice() {
     var priceError = document.getElementById("priceError");
     var price = priceInput.value;
@@ -82,6 +100,7 @@ var mainIndex;
 var modeOfSubmitBTN = false;
 function addProduct() {
     var product = {
+        code: codeInput.value,
         name: nameInput.value,
         price: priceInput.value,
         category: category.value,
@@ -90,7 +109,7 @@ function addProduct() {
         description : descripInput.value,
     }
     
-    if(validateName() &&validatePrice() && validateCategory()){
+    if(validateName() && validateCode() && validatePrice() && validateCategory()){
         if(!modeOfSubmitBTN){
             productsArray.push(product);
         }else {
@@ -191,6 +210,7 @@ function update(index){
     var userConfirmed = confirm(`"Update : ${productsArray[index].name}`);
     if(userConfirmed){
         nameInput.value = productsArray[index].name
+        codeInput.value = productsArray[index].code
         priceInput.value = productsArray[index].price
         category.value = productsArray[index].category
         countInput.value = productsArray[index].count
@@ -204,6 +224,7 @@ function update(index){
 
 function clearForm() {
     nameInput.value="";
+    codeInput.value="";
     priceInput.value="";
     category.value="";
     countInput.value="";
@@ -366,6 +387,7 @@ userDateInput.value = `${yyyy}-${mm}-${dd}`;
 
 // variables of user Screen
 var userNameInput = document.getElementById("userNameInput");
+var userCodeInput = document.getElementById("userCodeInput");
 var userPriceInput = document.getElementById("userPriceInput");
 var userTaxesInput = document.getElementById("taxesInput");
 var userCountInput = document.getElementById("userCount");
@@ -379,13 +401,27 @@ function validateUserName() {
         userNameInput.style.border = "1px solid red";
         return false
     }else{
+        validateUserPrice()
         userNameInput.style.border = "1px solid #ddd";
         return true;
     }
 }
-
+// codeIdInput.addEventListener("input", validateUserPrice)
+// var code = codeIdInput.value;
+// for(i=0; i<productsArray.length; i++){
+//     if(code === productsArray[i].category){
+//         sellUserPrice = productsArray[i].price
+//         console.log(sellUserPrice)
+//     }
+// }
 function validateUserPrice() {
     var sellUserPrice = userPriceInput.value;
+    // var code = codeIdInput.value;
+    // for(i=0; i<productsArray.length; i++){
+    //     if(code === productsArray[i].category){
+    //         sellUserPrice = productsArray[i].price
+    //     }
+    // }
     var priceRegex = /^\d+(\.\d+)?$/;
     if(!priceRegex.test(sellUserPrice)){
         userPriceInput.style.border = "1px solid red";
@@ -395,8 +431,23 @@ function validateUserPrice() {
         return true;
     }
 }
-userBuyBTN.addEventListener("click", function(){
-    if (validateUserName() && validateUserPrice()) {
-        console.log("done")
+var billArray = [];
+function addBill() {
+    
+    var sellPrice = parseFloat(userPriceInput.value) + parseFloat(userTaxesInput.value);
+    var billProduct = {
+        name: userNameInput.value,
+        price: sellPrice,
+        count: userCountInput.value,
+        date: userDateInput.value,
     }
+
+    if(validateUserName()){
+        billArray.push(billProduct)
+        console.log(billArray)
+    }
+}
+userBuyBTN.addEventListener("click", function(){
+    addBill()
+    console.log("done")
 })

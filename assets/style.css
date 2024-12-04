@@ -95,7 +95,7 @@ main{
     background-color: #555;
 }
 
-.priceCategory, .countDate{
+.priceCategory, .countDate, .nameCode{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -121,7 +121,7 @@ main{
     width: 100%;
 }
 
-#productTable {
+#productTable, #billTable {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     font-family: arial, sans-serif;
