@@ -433,7 +433,6 @@ function validateUserCount() {
 
     var countRegex = /^\d+(\.\d+)?$/;
     if(!sellUserCount){
-        // userCountInput.style.border = "1px solid red";
         userCountInput.style.border = "1px solid red"
         return false
     }else {
