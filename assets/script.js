@@ -480,13 +480,20 @@ function addBill() {
         code: userCodeInput.value,
         name: userNameInput.value,
         price: sellPrice,
+        taxes: userTaxesInput.value,
         count: userCountInput.value,
         date: userDateInput.value,
         totalPrice: totalSellPrice
     }
 
     if(validateUserCode() && validateUserCount()){
-        billArray.push(billProduct)
+        if(!modeOfBuyBTN){
+            billArray.push(billProduct);
+        }else{
+            billArray.splice(indexProductBill, 1, billProduct);
+            userBuyBTN.textContent = "Buy";
+            modeOfBuyBTN = false;
+        }
         sessionStorage.setItem("billArray", JSON.stringify(billArray))
     }
     makeBillTable();
@@ -514,7 +521,8 @@ function makeBillTable() {
     billTable.innerHTML = bill;
 }
 
-
+var indexProductBill;
+var modeOfBuyBTN = false;
 billTable.addEventListener("click", function (e) {
     if (e.target && e.target.classList.contains("delete-btn")) {
         var userConfirmed = confirm(`"Delete : ${billArray[e.target.value].name}`);
@@ -524,8 +532,18 @@ billTable.addEventListener("click", function (e) {
             makeBillTable();
         }
     } else if (e.target && e.target.classList.contains("update-btn")) {
-
-        console.log("update button clicked:", e.target)
+        var userConfirmed = confirm(`"Update : ${billArray[e.target.value].name}`);
+        if(userConfirmed){
+            userNameInput.value = billArray[e.target.value].name;
+            userCodeInput.value = billArray[e.target.value].code;
+            userPriceInput.value = billArray[e.target.value].price;
+            userTaxesInput.value = billArray[e.target.value].taxes;
+            userCountInput.value = billArray[e.target.value].count;
+            userBuyBTN.textContent = "Update";
+            indexProductBill = e.target.value;
+            modeOfBuyBTN = true;
+        }
+        console.log("update button clicked:", e.target.value)
     }
 })
 
