@@ -411,6 +411,18 @@ function validateUserName() {
         return true;
     }
 }
+function validateUserCode() {
+    var sellUserCode = userCodeInput.value;
+
+    if(!sellUserCode){
+        userCodeInput.style.border = "1px solid red";
+        return false
+    }else{
+        validateUserCount()
+        userCodeInput.style.border = "1px solid #ddd";
+        return true;
+    }
+}
 
 userCodeInput.addEventListener("keydown", (e)=>{
     var priceValue = false
@@ -457,7 +469,7 @@ function addBill() {
         totalPrice: totalSellPrice
     }
 
-    if(validateUserName() && validateUserCount()){
+    if(validateUserName() && validateUserCode() && validateUserCount()){
         billArray.push(billProduct)
         console.log(billArray)
     }
