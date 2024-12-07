@@ -479,7 +479,7 @@ function validateUserCount() {
             userCountInput.style.border = "1px solid red";
             return false
         }else {
-            if(parseInt(sellUserCount) > parseInt(countFromProducts.textContent)){
+            if(parseInt(countFromProducts.textContent) < parseInt(sellUserCount)){
                 userCountInput.style.border = "1px solid red";
                 return false
             }else {
