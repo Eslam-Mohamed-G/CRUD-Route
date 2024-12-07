@@ -479,8 +479,13 @@ function validateUserCount() {
             userCountInput.style.border = "1px solid red";
             return false
         }else {
-            userCountInput.style.border = "1px solid #ddd";
-            return true;
+            if(parseInt(sellUserCount) > parseInt(countFromProducts.textContent)){
+                userCountInput.style.border = "1px solid red";
+                return false
+            }else {
+                userCountInput.style.border = "1px solid #ddd";
+                return true;
+            }
         }
     }
 }
@@ -518,6 +523,7 @@ function addBill() {
         sessionStorage.setItem("billArray", JSON.stringify(billArray))
     }
     makeBillTable();
+    console.log(parseFloat(countFromProducts.textContent))
 }
 userBuyBTN.addEventListener("click", addBill)
 
