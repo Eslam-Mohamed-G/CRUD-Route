@@ -399,6 +399,7 @@ var userCodeInput = document.getElementById("userCodeInput");
 var userPriceInput = document.getElementById("userPriceInput");
 var userTaxesInput = document.getElementById("taxesInput");
 var userCountInput = document.getElementById("userCount");
+var countFromProducts = document.getElementById("countFromProducts")
 var userBuyBTN = document.getElementById("buyBTN");
 var confirmBillBTN = document.getElementById("billBTN");
 var billTable = document.getElementById("billTable").querySelector("tbody")
@@ -415,6 +416,19 @@ var billTable = document.getElementById("billTable").querySelector("tbody")
 //         return true;
 //     }
 // }
+
+function validateUserPrice() {
+    var sellUserPrice = userPriceInput.value;
+
+    if(!sellUserPrice){
+        userCodeInput.style.border = "1px solid red";
+        return false
+    }else{
+        userCodeInput.style.border = "1px solid #ddd";
+        return true;
+    }
+}
+
 function validateUserCode() {
     var sellUserCode = userCodeInput.value;
 
@@ -440,6 +454,7 @@ userCodeInput.addEventListener("keydown", function(e){
         if(priceValue){
             userPriceInput.value = productPrice.price;
             userNameInput.value = productPrice.name;
+            countFromProducts.textContent = productPrice.count;
             userCodeInput.style.border = "1px solid #ddd";
             console.log(userPriceInput.value)
         }else{
@@ -474,7 +489,8 @@ if(sessionStorage.getItem("billArray") !=null){
     console.log(billArray)
 }
 function addBill() {
-    var sellPrice = parseFloat(userPriceInput.value) + parseFloat(userTaxesInput.value);
+    var taxes = parseFloat(userTaxesInput.value) ? parseFloat(userTaxesInput.value): 0;
+    var sellPrice = parseFloat(userPriceInput.value) + taxes;
     var totalSellPrice = parseFloat(sellPrice) * parseFloat(userCountInput.value);
     var billProduct = {
         code: userCodeInput.value,
@@ -489,15 +505,18 @@ function addBill() {
     if(validateUserCode() && validateUserCount()){
         if(!modeOfBuyBTN){
             billArray.push(billProduct);
+            clearFormBill();
         }else{
-            billArray.splice(indexProductBill, 1, billProduct);
-            userBuyBTN.textContent = "Buy";
-            modeOfBuyBTN = false;
+            if(validateUserPrice()){
+                billArray.splice(indexProductBill, 1, billProduct);
+                userBuyBTN.textContent = "Buy";
+                modeOfBuyBTN = false;
+                clearFormBill();
+            }
         }
         sessionStorage.setItem("billArray", JSON.stringify(billArray))
     }
     makeBillTable();
-    clearFormBill();
 }
 userBuyBTN.addEventListener("click", addBill)
 
@@ -536,7 +555,7 @@ billTable.addEventListener("click", function (e) {
         if(userConfirmed){
             userNameInput.value = billArray[e.target.value].name;
             userCodeInput.value = billArray[e.target.value].code;
-            userPriceInput.value = billArray[e.target.value].price;
+            // userPriceInput.value = billArray[e.target.value].price;
             userTaxesInput.value = billArray[e.target.value].taxes;
             userCountInput.value = billArray[e.target.value].count;
             userBuyBTN.textContent = "Update";
@@ -554,4 +573,5 @@ function clearFormBill() {
     userPriceInput.value = "";
     userTaxesInput.value = "";
     userCountInput.value = "";
+    countFromProducts.textContent = "";
 }

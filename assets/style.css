@@ -53,6 +53,19 @@ main{
     display: none;
 }
 
+.d-flex{
+    display: flex;
+    gap: 10px;
+}
+.d-flex small{
+    width: 35px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border: 1px solid #ddd;
+}
 .form-container {
     background-color: #fff;
     padding: 15px;
