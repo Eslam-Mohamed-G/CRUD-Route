@@ -442,20 +442,29 @@ function validateUserCode() {
     }
 }
 
+var priceValue = false
+var enteredCode = userCodeInput.value;
+var specialCodeOfRoduct = productsArray.find(p => p.code === enteredCode);
+if(specialCodeOfRoduct != null){
+    priceValue = true;
+}else {
+    priceValue = false;
+}
+
 userCodeInput.addEventListener("keydown", function(e){
-    var priceValue = false
+    // var priceValue = false
     if(e.key === "Enter"){
-        var enteredCode = userCodeInput.value;
-        var productPrice = productsArray.find(p => p.code === enteredCode);
-        if(productPrice != null){
-            priceValue = true;
-        }else {
-            priceValue = false;
-        }
+        // var enteredCode = userCodeInput.value;
+        // var specialCodeOfRoduct = productsArray.find(p => p.code === enteredCode);
+        // if(specialCodeOfRoduct != null){
+        //     priceValue = true;
+        // }else {
+        //     priceValue = false;
+        // }
         if(priceValue){
-            userPriceInput.value = productPrice.price;
-            userNameInput.value = productPrice.name;
-            countFromProducts.textContent = productPrice.count;
+            userPriceInput.value = specialCodeOfRoduct.price;
+            userNameInput.value = specialCodeOfRoduct.name;
+            countFromProducts.textContent = specialCodeOfRoduct.count;
             userCodeInput.style.border = "1px solid #ddd";
             // console.log(userPriceInput.value)
         }else{
