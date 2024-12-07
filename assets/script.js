@@ -351,6 +351,7 @@ window.onload = function () {
     productToTable();
     makeBillTable();
     clearForm();
+    clearFormBill()
 };
 
 logout.addEventListener("click", function() {
@@ -515,8 +516,8 @@ function addBill() {
         }else{
             if(validateUserPrice()){
                 billArray.splice(indexProductBill, 1, billProduct);
-                userBuyBTN.textContent = "Buy";
-                modeOfBuyBTN = false;
+                // userBuyBTN.textContent = "Buy";
+                // modeOfBuyBTN = false;
                 clearFormBill();
             }
         }
@@ -581,4 +582,6 @@ function clearFormBill() {
     userTaxesInput.value = "";
     userCountInput.value = "";
     countFromProducts.textContent = "";
+    userBuyBTN.textContent = "Buy";
+    modeOfBuyBTN = false;
 }
