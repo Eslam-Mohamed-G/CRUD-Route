@@ -636,10 +636,10 @@ function updateProductQuantity() {
     })
             
 }
-// billBTN.addEventListener("click", function() {
-//     updateProductQuantity();
-//     localStorage.setItem("productsArray", JSON.stringify(productsArray));
-//     billArray.splice(0, billArray.length)
-//     sessionStorage.setItem("billArray", JSON.stringify(billArray));
-//     makeBillTable()
-// })
+billBTN.addEventListener("click", function() {
+    updateProductQuantity();
+    localStorage.setItem("productsArray", JSON.stringify(productsArray));
+    billArray.splice(0, billArray.length)
+    sessionStorage.setItem("billArray", JSON.stringify(billArray));
+    makeBillTable()
+})
