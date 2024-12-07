@@ -457,7 +457,7 @@ userCodeInput.addEventListener("keydown", function(e){
             userNameInput.value = productPrice.name;
             countFromProducts.textContent = productPrice.count;
             userCodeInput.style.border = "1px solid #ddd";
-            console.log(userPriceInput.value)
+            // console.log(userPriceInput.value)
         }else{
             userCodeInput.style.border = "1px solid red";
             userPriceInput.value = "dosn't exists";
@@ -521,7 +521,7 @@ function addBill() {
         sessionStorage.setItem("billArray", JSON.stringify(billArray))
     }
     makeBillTable();
-    console.log(parseFloat(countFromProducts.textContent))
+    // console.log(parseFloat(countFromProducts.textContent))
 }
 userBuyBTN.addEventListener("click", addBill)
 
@@ -567,7 +567,7 @@ billTable.addEventListener("click", function (e) {
             indexProductBill = e.target.value;
             modeOfBuyBTN = true;
         }
-        console.log("update button clicked:", e.target.value)
+        // console.log("update button clicked:", e.target.value)
     }
 })
 
