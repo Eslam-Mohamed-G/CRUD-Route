@@ -461,6 +461,7 @@ userCodeInput.addEventListener("keydown", function(e){
             userCodeInput.style.border = "1px solid red";
             userPriceInput.value = "dosn't exists";
             userNameInput.value = "dosn't exists"
+            countFromProducts.textContent = "";
         }
     }
 
