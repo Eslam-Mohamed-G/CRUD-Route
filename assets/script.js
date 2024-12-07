@@ -612,18 +612,18 @@ function clearFormBill() {
 var billBTN = document.getElementById("billBTN");
 
 function updateProductQuantity() {
-    // for(i=0; i<billArray.length; i++){
-    //     for(j=0; j<productsArray.length; j++){
-    //         if(billArray[i].code === productsArray[j].code){
-    //             num = productsArray[j].count;
-    //             var newCount = productsArray[j].count - billArray[i].count;
-    //             productsArray[j].count = newCount;
-    //         }
-    //     }
-    // }
-    // console.log(num)
-    // console.log(newCount)
-    // console.log(productsArray)
+    for(i=0; i<billArray.length; i++){
+        for(j=0; j<productsArray.length; j++){
+            if(billArray[i].code === productsArray[j].code){
+                num = productsArray[j].count;
+                var newCount = productsArray[j].count - billArray[i].count;
+                productsArray[j].count = newCount;
+            }
+        }
+    }
+    console.log(num)
+    console.log(newCount)
+    console.log(productsArray)
 }
 
     // var productMap = new Map(productsArray.map(product => [product.code, product]));
