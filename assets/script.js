@@ -64,9 +64,11 @@ function validateCode() {
         } else {
             if(!exists){
                 codeInput.style.border = "1px solid red";
+                document.getElementById("spcialeCode").textContent = "exists";
                 return false;
             }else {
                 codeInput.style.border = "1px solid #ddd";
+                document.getElementById("spcialeCode").textContent = "";
                 return true
             }
         }
