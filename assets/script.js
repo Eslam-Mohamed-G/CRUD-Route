@@ -607,3 +607,39 @@ function clearFormBill() {
     userBuyBTN.textContent = "Buy";
     modeOfBuyBTN = false;
 }
+
+// add bill to localstorge
+var billBTN = document.getElementById("billBTN");
+
+function updateProductQuantity() {
+    // for(i=0; i<billArray.length; i++){
+    //     for(j=0; j<productsArray.length; j++){
+    //         if(billArray[i].code === productsArray[j].code){
+    //             num = productsArray[j].count;
+    //             var newCount = productsArray[j].count - billArray[i].count;
+    //             productsArray[j].count = newCount;
+    //         }
+    //     }
+    // }
+    // console.log(num)
+    // console.log(newCount)
+    // console.log(productsArray)
+}
+
+    // var productMap = new Map(productsArray.map(product => [product.code, product]));
+    // billArray.forEach(billItem =>{
+    //     var product = productMap.get(billItem.code);
+    //     if(product){
+    //         var newCount = product.count - billItem.count;
+    //         product.count = newCount
+    //         console.log(productsArray)
+    //     }
+    // })
+
+// billBTN.addEventListener("click", function() {
+//     updateProductQuantity();
+//     localStorage.setItem("productsArray", JSON.stringify(productsArray));
+//     billArray.splice(0, billArray.length)
+//     sessionStorage.setItem("billArray", JSON.stringify(billArray));
+//     makeBillTable()
+// })
