@@ -509,12 +509,23 @@ function addBill() {
         totalPrice: totalSellPrice
     }
 
+    var enteredCode = userCodeInput.value;
+    var specialCodeOfRoduct = billArray.find(p => p.code === enteredCode);
+    var exists;
+    if(enteredCode == specialCodeOfRoduct.code){
+        exists =  false;
+    }
     if (validateUserCode() && validateUserCount()) {
         if (!modeOfBuyBTN) {
-            billArray.push(billProduct);
-            clearFormBill();
+            if(!exists){
+                document.getElementById("productExists").textContent = "already exixts"
+            }else {
+                billArray.push(billProduct);
+                clearFormBill();
+            }
         } else {
             if (validateUserPrice()) {
+                billArray.splice(indexProductBill, 1, billProduct)
                 clearFormBill();
             }
         }

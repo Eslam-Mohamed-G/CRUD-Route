@@ -161,3 +161,8 @@ th{
     display: flex;
     gap: 20px;
 }
+
+#productExists{
+    text-align: center;
+    color: red;
+}
