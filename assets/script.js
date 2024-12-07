@@ -631,7 +631,7 @@ function updateProductQuantity() {
         if (product) {
             var newCount = product.count - billItem.count;
             product.count = newCount
-            console.log(productsArray)
+            // console.log(productsArray)
         }
     })
             
