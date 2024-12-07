@@ -515,9 +515,6 @@ function addBill() {
             clearFormBill();
         }else{
             if(validateUserPrice()){
-                billArray.splice(indexProductBill, 1, billProduct);
-                // userBuyBTN.textContent = "Buy";
-                // modeOfBuyBTN = false;
                 clearFormBill();
             }
         }
@@ -573,7 +570,6 @@ billTable.addEventListener("click", function (e) {
         console.log("update button clicked:", e.target.value)
     }
 })
-
 
 function clearFormBill() {
     userNameInput.value = "";
