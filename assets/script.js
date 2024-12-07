@@ -402,6 +402,7 @@ var userTaxesInput = document.getElementById("taxesInput");
 var userCountInput = document.getElementById("userCount");
 var countFromProducts = document.getElementById("countFromProducts")
 var userBuyBTN = document.getElementById("buyBTN");
+var productExists = document.getElementById("productExists");
 var confirmBillBTN = document.getElementById("billBTN");
 var billTable = document.getElementById("billTable").querySelector("tbody")
 
@@ -510,15 +511,15 @@ function addBill() {
     }
 
     var enteredCode = userCodeInput.value;
-    var specialCodeOfRoduct = billArray.find(p => p.code === enteredCode);
+    var specialCodeOfRoduct = billArray.find(p => p.code === enteredCode) || 0;
     var exists;
-    if(enteredCode == specialCodeOfRoduct.code){
-        exists =  false;
+    if(enteredCode !== specialCodeOfRoduct.code || enteredCode == 0){
+        exists =  true;
     }
     if (validateUserCode() && validateUserCount()) {
         if (!modeOfBuyBTN) {
             if(!exists){
-                document.getElementById("productExists").textContent = "already exixts"
+                productExists.textContent = "already exixts"
             }else {
                 billArray.push(billProduct);
                 clearFormBill();
@@ -574,6 +575,7 @@ billTable.addEventListener("click", function (e) {
             // userPriceInput.value = billArray[e.target.value].price;
             userTaxesInput.value = billArray[e.target.value].taxes;
             userCountInput.value = billArray[e.target.value].count;
+            productExists.textContent = "";
             userBuyBTN.textContent = "Update";
             indexProductBill = e.target.value;
             modeOfBuyBTN = true;
