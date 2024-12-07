@@ -4,7 +4,7 @@ var priceInput = document.getElementById("priceInput");
 var category = document.getElementById("category");
 var countInput = document.getElementById("count");
 var dateInput = document.getElementById("dateInput");
-var descripInput =document.getElementById("descripInput");
+var descripInput = document.getElementById("descripInput");
 var submitBTN = document.getElementById("btn");
 var searchInput = document.getElementById("searchInput");
 var filterInput = document.getElementById("filter");
@@ -17,7 +17,7 @@ var date = document.getElementById("date");
 var table = document.getElementById("productTable").querySelector("tbody");
 
 var productsArray = [];
-if(localStorage.getItem("productsArray") != null){
+if (localStorage.getItem("productsArray") != null) {
     productsArray = JSON.parse(localStorage.getItem("productsArray"))
     console.log(productsArray)
 }
@@ -27,16 +27,16 @@ function validateName() {
     var name = nameInput.value;
     var nameRegex = /^[a-zA-Z]{1,}.*$/;   //The name starts with at least three letters
 
-    if(!name){
+    if (!name) {
         messageError.textContent = "Name required";
         nameInput.style.border = "1px solid red";
         return false;
-    }else {
-        if(!nameRegex.test(name)){
+    } else {
+        if (!nameRegex.test(name)) {
             messageError.textContent = "must be valid";
             nameInput.style.border = "1px solid red";
             return false;
-        }else{
+        } else {
             messageError.textContent = "";
             nameInput.style.border = "1px solid #ddd"
             return true;
@@ -44,19 +44,19 @@ function validateName() {
     }
 
 }
-nameInput.addEventListener("input",validateName);
+nameInput.addEventListener("input", validateName);
 
 function validateCode() {
     var code = codeInput.value;
     var codeRegex = /^\d+(\.\d+)?$/;
-    if(!code){
+    if (!code) {
         codeInput.style.border = "1px solid red";
         return false;
-    }else {
-        if(!codeRegex.test(code)){
+    } else {
+        if (!codeRegex.test(code)) {
             codeInput.style.border = "1px solid red";
             return false;
-        }else {
+        } else {
             codeInput.style.border = "1px solid #ddd";
             return true
         }
@@ -68,16 +68,16 @@ function validatePrice() {
     var price = priceInput.value;
     var priceRegex = /^\d+(\.\d+)?$/;
 
-    if(!price){
+    if (!price) {
         priceError.textContent = "price required";
         priceInput.style.border = "1px solid red";
         return false;
-    }else {
-        if(!priceRegex.test(price)){
+    } else {
+        if (!priceRegex.test(price)) {
             priceInput.style.border = "1px solid red";
             priceError.textContent = "must be valid";
             return false;
-        }else{
+        } else {
             priceError.textContent = "";
             priceInput.style.border = "1px solid #ddd"
             return true;
@@ -88,10 +88,10 @@ priceInput.addEventListener("input", validatePrice);
 
 function validateCategory() {
     var cate = category.value;
-    if(!cate){
+    if (!cate) {
         category.style.border = "1px solid red";
         return false;
-    }else {
+    } else {
         category.style.border = "1px solid #ddd";
         return true;
     }
@@ -107,13 +107,13 @@ function addProduct() {
         category: category.value,
         count: countInput.value,
         date: dateInput.value,
-        description : descripInput.value,
+        description: descripInput.value,
     }
-    
-    if(validateName() && validateCode() && validatePrice() && validateCategory()){
-        if(!modeOfSubmitBTN){
+
+    if (validateName() && validateCode() && validatePrice() && validateCategory()) {
+        if (!modeOfSubmitBTN) {
             productsArray.push(product);
-        }else {
+        } else {
             productsArray.splice(mainIndex, 1, product)
             submitBTN.textContent = "add"
             modeOfSubmitBTN = false;
@@ -126,7 +126,7 @@ function addProduct() {
 }
 submitBTN.addEventListener("click", addProduct);
 
-function productToTable(){
+function productToTable() {
     var search = searchInput.value;
     var filter = filterInput.value;
     var productRow = '';
@@ -135,23 +135,23 @@ function productToTable(){
     var valueOfcodeOfProduct = '';
     var count = 0;
 
-    for(i=0; i<productsArray.length; i++){
-        if(filter ===productsArray[i].category || filter === "all" ){
+    for (i = 0; i < productsArray.length; i++) {
+        if (filter === productsArray[i].category || filter === "all") {
             allCount = allCount + parseFloat(productsArray[i].count);
-            if(productsArray[i].name.toLowerCase().includes(search.toLowerCase()) || productsArray[i].price.includes(search)){
-                if(search === ""){
+            if (productsArray[i].name.toLowerCase().includes(search.toLowerCase()) || productsArray[i].price.includes(search)) {
+                if (search === "") {
                     dateSearch = '';
                     count = '';
                     valueOfcodeOfProduct = '';
-                }else {
+                } else {
                     dateSearch += productsArray[i].date;
                     count += parseFloat(productsArray[i].count)
                     valueOfcodeOfProduct += parseFloat(productsArray[i].code)
                 }
-                productRow += 
-                `
+                productRow +=
+                    `
                 <tr>
-                    <td>${i+1}</td>
+                    <td>${i + 1}</td>
                     <td>${productsArray[i].name}</td>
                     <td>${productsArray[i].price}</td>
                     <td>${productsArray[i].category}</td>
@@ -169,17 +169,17 @@ function productToTable(){
     countBySearch.innerHTML = `<h4>Count : ${count}</h4>`;
     table.innerHTML = productRow;
 }
-document.body.addEventListener("keydown", function(e){
+document.body.addEventListener("keydown", function (e) {
     switch (e.code) {
         case "Enter":
             productToTable()
-        break;
+            break;
     }
-    
+
 });
 filterInput.addEventListener("change", productToTable);
 
-function remov(index){
+function remov(index) {
     // var userConfirmed = confirm(`"Delete : ${productsArray[i].name}`);
     // if(userConfirmed){
     //     productsArray.splice(i, 1);
@@ -199,11 +199,11 @@ function remov(index){
         if (result.isConfirmed) {
             productsArray.splice(index, 1);
             localStorage.setItem("productsArray", JSON.stringify(productsArray)); // تحديث localStorage
-            productToTable(); 
+            productToTable();
             Swal.fire({
-                title:'Deleted!',
-                text:'The item was deleted successfully.',
-                icon:'success',
+                title: 'Deleted!',
+                text: 'The item was deleted successfully.',
+                icon: 'success',
                 timer: 1000,
                 showConfirmButton: false
             });
@@ -211,9 +211,9 @@ function remov(index){
     });
 }
 
-function update(index){
+function update(index) {
     var userConfirmed = confirm(`"Update : ${productsArray[index].name}`);
-    if(userConfirmed){
+    if (userConfirmed) {
         nameInput.value = productsArray[index].name
         codeInput.value = productsArray[index].code
         priceInput.value = productsArray[index].price
@@ -228,19 +228,19 @@ function update(index){
 }
 
 function clearForm() {
-    nameInput.value="";
-    codeInput.value="";
-    priceInput.value="";
-    category.value="";
-    countInput.value="";
-    dateInput.value="";
-    descripInput.value="";
+    nameInput.value = "";
+    codeInput.value = "";
+    priceInput.value = "";
+    category.value = "";
+    countInput.value = "";
+    dateInput.value = "";
+    descripInput.value = "";
 }
 
 
 // system of CRUD
 var logout = document.getElementById("logout");
-var userName = document.querySelector("h3"); 
+var userName = document.querySelector("h3");
 var logInName = document.getElementById("logInName");
 var logInpassword = document.getElementById("logInPassword");
 var logInBTN = document.getElementById("logInBTN");
@@ -262,37 +262,37 @@ var userArray = [
 function checkName() {
     var name = logInName.value;
     var existsUser = false;
-    for(i=0; i < userArray.length; i++){
-        if(name === userArray[i].name){
+    for (i = 0; i < userArray.length; i++) {
+        if (name === userArray[i].name) {
             existsUser = true;
             break;
         }
     }
 
-    if(!existsUser){
+    if (!existsUser) {
         logInName.style.border = "1px solid red";
         return false;
-    }else {
+    } else {
         logInName.style.border = "1px solid #ddd";
         return true;
     }
 }
 
-function checkPassword(){
+function checkPassword() {
     var name = logInName.value;
     var password = logInpassword.value;
     var existsPassword = false;
-    for(i=0; i < userArray.length; i++){
-        if(name === userArray[i].name && password === userArray[i].password){
+    for (i = 0; i < userArray.length; i++) {
+        if (name === userArray[i].name && password === userArray[i].password) {
             existsPassword = true;
             break;
         }
     }
 
-    if(!existsPassword){
+    if (!existsPassword) {
         logInpassword.style.border = "1px solid red";
         return false;
-    }else {
+    } else {
         logInpassword.style.border = "1px solid #ddd";
         return true;
     }
@@ -302,22 +302,22 @@ function checkPassword(){
 logInBTN.addEventListener("click", function () {
     if (checkName() && checkPassword()) {
         var username = logInName.value;
-        
+
         // تخزين اسم المستخدم في localStorage (يظل محفوظًا)
         localStorage.setItem("username", username);
-        
+
         // تخزين حالة الجلسة في sessionStorage (مؤقت)
         sessionStorage.setItem("sessionActive", "true");
 
         userName.textContent = username;
-        if(username === "admin"){
+        if (username === "admin") {
             logIn.classList.replace("d-block", "d-none");
-            logout.classList.replace("d-none","d-block");
+            logout.classList.replace("d-none", "d-block");
             adminScreen.classList.remove("d-none");
-        }else {
+        } else {
             logIn.classList.replace("d-block", "d-none");
-            logout.classList.replace("d-none","d-block");
-            userScreen.classList.replace("d-none","d-block");
+            logout.classList.replace("d-none", "d-block");
+            userScreen.classList.replace("d-none", "d-block");
             adminScreen.classList.add("d-none");
         }
     }
@@ -328,22 +328,22 @@ window.onload = function () {
     // التحقق من اسم المستخدم
     var savedUser = localStorage.getItem("username");
     var sessionActive = sessionStorage.getItem("sessionActive");
-    
+
     if (savedUser && sessionActive === "true") {
         // إذا كانت الجلسة نشطة
         userName.textContent = savedUser;
-        if(savedUser === "admin"){
+        if (savedUser === "admin") {
             logIn.classList.replace("d-block", "d-none");
-            logout.classList.replace("d-none","d-block");
+            logout.classList.replace("d-none", "d-block");
             adminScreen.classList.remove("d-none");
-        }else {
+        } else {
             logIn.classList.replace("d-block", "d-none");
-            logout.classList.replace("d-none","d-block");
-            userScreen.classList.replace("d-none","d-block");
+            logout.classList.replace("d-none", "d-block");
+            userScreen.classList.replace("d-none", "d-block");
             adminScreen.classList.add("d-none");
-            
+
         }
-    }else {
+    } else {
         // إذا لم تكن الجلسة نشطة
         adminScreen.classList.add("d-none");
         logIn.classList.replace("d-none", "d-block");
@@ -354,7 +354,7 @@ window.onload = function () {
     clearFormBill()
 };
 
-logout.addEventListener("click", function() {
+logout.addEventListener("click", function () {
     Swal.fire({
         title: 'Are you sure?',
         text: `${logInName.value}`,
@@ -364,8 +364,8 @@ logout.addEventListener("click", function() {
         cancelButtonColor: '#000',
         confirmButtonText: 'ok',
         cancelButtonText: "Cancle"
-    }).then((result)=>{
-        if(result.isConfirmed){
+    }).then((result) => {
+        if (result.isConfirmed) {
             userName.textContent = "";
             logInName.value = "";
             logInpassword.value = "";
@@ -374,7 +374,7 @@ logout.addEventListener("click", function() {
             userScreen.classList.add("d-none");
             adminScreen.classList.add("d-none");
             logIn.classList.replace("d-none", "d-block");
-            logout.classList.replace("d-block","d-none");
+            logout.classList.replace("d-block", "d-none");
         }
     })
 });
@@ -421,10 +421,10 @@ var billTable = document.getElementById("billTable").querySelector("tbody")
 function validateUserPrice() {
     var sellUserPrice = userPriceInput.value;
 
-    if(!sellUserPrice){
+    if (!sellUserPrice) {
         userCodeInput.style.border = "1px solid red";
         return false
-    }else{
+    } else {
         userCodeInput.style.border = "1px solid #ddd";
         return true;
     }
@@ -433,35 +433,32 @@ function validateUserPrice() {
 function validateUserCode() {
     var sellUserCode = userCodeInput.value;
 
-    if(!sellUserCode){
+    if (!sellUserCode) {
         userCodeInput.style.border = "1px solid red";
         return false
-    }else{
+    } else {
         userCodeInput.style.border = "1px solid #ddd";
         return true;
     }
 }
 
-var priceValue = false
-var enteredCode = userCodeInput.value;
-var specialCodeOfRoduct = productsArray.find(p => p.code === enteredCode);
-if(specialCodeOfRoduct != null){
-    priceValue = true;
-}else {
-    priceValue = false;
-}
-
-userCodeInput.addEventListener("keydown", function(e){
-    
-    if(e.key === "Enter"){
-
-        if(priceValue){
+userCodeInput.addEventListener("keydown", function (e) {
+    var priceValue = false
+    if (e.key === "Enter") {
+        var enteredCode = userCodeInput.value;
+        var specialCodeOfRoduct = productsArray.find(p => p.code === enteredCode);
+        if (specialCodeOfRoduct != null) {
+            priceValue = true;
+        } else {
+            priceValue = false;
+        }
+        if (priceValue) {
             userPriceInput.value = specialCodeOfRoduct.price;
             userNameInput.value = specialCodeOfRoduct.name;
             countFromProducts.textContent = specialCodeOfRoduct.count;
             userCodeInput.style.border = "1px solid #ddd";
             // console.log(userPriceInput.value)
-        }else{
+        } else {
             userCodeInput.style.border = "1px solid red";
             userPriceInput.value = "dosn't exists";
             userNameInput.value = "dosn't exists"
@@ -475,18 +472,18 @@ function validateUserCount() {
     var sellUserCount = userCountInput.value;
 
     var countRegex = /^\d+(\.\d+)?$/;
-    if(!sellUserCount){
+    if (!sellUserCount) {
         userCountInput.style.border = "1px solid red"
         return false
-    }else {
-        if(!countRegex.test(sellUserCount)){
+    } else {
+        if (!countRegex.test(sellUserCount)) {
             userCountInput.style.border = "1px solid red";
             return false
-        }else {
-            if(parseInt(countFromProducts.textContent) < parseInt(sellUserCount)){
+        } else {
+            if (parseInt(countFromProducts.textContent) < parseInt(sellUserCount)) {
                 userCountInput.style.border = "1px solid red";
                 return false
-            }else {
+            } else {
                 userCountInput.style.border = "1px solid #ddd";
                 return true;
             }
@@ -494,12 +491,12 @@ function validateUserCount() {
     }
 }
 var billArray = [];
-if(sessionStorage.getItem("billArray") !=null){
+if (sessionStorage.getItem("billArray") != null) {
     billArray = JSON.parse(sessionStorage.getItem("billArray"));
     console.log(billArray)
 }
 function addBill() {
-    var taxes = parseFloat(userTaxesInput.value) ? parseFloat(userTaxesInput.value): 0;
+    var taxes = parseFloat(userTaxesInput.value) ? parseFloat(userTaxesInput.value) : 0;
     var sellPrice = parseFloat(userPriceInput.value) + taxes;
     var totalSellPrice = parseFloat(sellPrice) * parseFloat(userCountInput.value);
     var billProduct = {
@@ -512,12 +509,12 @@ function addBill() {
         totalPrice: totalSellPrice
     }
 
-    if(validateUserCode() && validateUserCount()){
-        if(!modeOfBuyBTN){
+    if (validateUserCode() && validateUserCount()) {
+        if (!modeOfBuyBTN) {
             billArray.push(billProduct);
             clearFormBill();
-        }else{
-            if(validateUserPrice()){
+        } else {
+            if (validateUserPrice()) {
                 clearFormBill();
             }
         }
@@ -530,9 +527,9 @@ userBuyBTN.addEventListener("click", addBill)
 
 function makeBillTable() {
     var bill = '';
-    for(i=0; i<billArray.length; i++){
-        bill += 
-        `
+    for (i = 0; i < billArray.length; i++) {
+        bill +=
+            `
             <tr>
                 <td>${billArray[i].code}</td>
                 <td>${billArray[i].name}</td>
@@ -560,7 +557,7 @@ billTable.addEventListener("click", function (e) {
         }
     } else if (e.target && e.target.classList.contains("update-btn")) {
         var userConfirmed = confirm(`"Update : ${billArray[e.target.value].name}`);
-        if(userConfirmed){
+        if (userConfirmed) {
             userNameInput.value = billArray[e.target.value].name;
             userCodeInput.value = billArray[e.target.value].code;
             // userPriceInput.value = billArray[e.target.value].price;
