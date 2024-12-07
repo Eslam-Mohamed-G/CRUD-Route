@@ -452,15 +452,9 @@ if(specialCodeOfRoduct != null){
 }
 
 userCodeInput.addEventListener("keydown", function(e){
-    // var priceValue = false
+    
     if(e.key === "Enter"){
-        // var enteredCode = userCodeInput.value;
-        // var specialCodeOfRoduct = productsArray.find(p => p.code === enteredCode);
-        // if(specialCodeOfRoduct != null){
-        //     priceValue = true;
-        // }else {
-        //     priceValue = false;
-        // }
+
         if(priceValue){
             userPriceInput.value = specialCodeOfRoduct.price;
             userNameInput.value = specialCodeOfRoduct.name;
