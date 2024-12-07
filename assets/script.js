@@ -49,6 +49,11 @@ nameInput.addEventListener("input", validateName);
 function validateCode() {
     var code = codeInput.value;
     var codeRegex = /^\d+(\.\d+)?$/;
+    var existsCode = productsArray.find(item => item.code === codeInput.value) || 0;
+    var exists;
+    if(codeInput.value !== existsCode.code || codeInput.value == 0){
+        exists =  true;
+    }
     if (!code) {
         codeInput.style.border = "1px solid red";
         return false;
@@ -57,8 +62,13 @@ function validateCode() {
             codeInput.style.border = "1px solid red";
             return false;
         } else {
-            codeInput.style.border = "1px solid #ddd";
-            return true
+            if(!exists){
+                codeInput.style.border = "1px solid red";
+                return false;
+            }else {
+                codeInput.style.border = "1px solid #ddd";
+                return true
+            }
         }
     }
 }
