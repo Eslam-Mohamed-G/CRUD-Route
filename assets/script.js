@@ -531,7 +531,7 @@ function addBill() {
     if (validateUserCode() && validateUserCount()) {
         if (!modeOfBuyBTN) {
             if (!exists) {
-                productExists.textContent = "already exixts";
+                productExists.textContent = "Product already exists in the bill!";
             } else {
                 productExists.textContent = "";
                 billArray.push(billProduct);
