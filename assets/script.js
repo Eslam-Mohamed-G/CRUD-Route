@@ -548,36 +548,6 @@ function addBill() {
     makeBillTable();
     // console.log(parseFloat(countFromProducts.textContent))
 }
-
-// function addBill() {
-//     var taxes = parseFloat(userTaxesInput.value) || 0;
-//     var sellPrice = parseFloat(userPriceInput.value) + taxes;
-//     var totalSellPrice = sellPrice * parseFloat(userCountInput.value);
-//     var billProduct = {
-//         code: userCodeInput.value,
-//         name: userNameInput.value,
-//         price: sellPrice.toFixed(2),
-//         taxes: taxes.toFixed(2),
-//         count: parseInt(userCountInput.value),
-//         date: userDateInput.value,
-//         totalPrice: totalSellPrice.toFixed(2)
-//     };
-
-//     var enteredCode = userCodeInput.value;
-//     var existingProduct = billArray.find(p => p.code === enteredCode);
-
-//     if (validateUserCode() && validateUserCount()) {
-//         if (!existingProduct) {
-//             billArray.push(billProduct);
-//             sessionStorage.setItem("billArray", JSON.stringify(billArray));
-//             clearFormBill();
-//             productExists.textContent = "";
-//         } else {
-//             productExists.textContent = "Product already exists in the bill!";
-//         }
-//         makeBillTable();
-//     }
-// }
 userBuyBTN.addEventListener("click", addBill)
 
 function makeBillTable() {
