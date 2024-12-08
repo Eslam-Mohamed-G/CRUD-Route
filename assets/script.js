@@ -508,45 +508,75 @@ if (sessionStorage.getItem("billArray") != null) {
     billArray = JSON.parse(sessionStorage.getItem("billArray"));
     console.log(billArray)
 }
+// function addBill() {
+//     var taxes = parseFloat(userTaxesInput.value) ? parseFloat(userTaxesInput.value) : 0;
+//     var sellPrice = parseFloat(userPriceInput.value) + taxes;
+//     var totalSellPrice = parseFloat(sellPrice) * parseFloat(userCountInput.value);
+//     var billProduct = {
+//         code: userCodeInput.value,
+//         name: userNameInput.value,
+//         price: sellPrice,
+//         taxes: userTaxesInput.value,
+//         count: userCountInput.value,
+//         date: userDateInput.value,
+//         totalPrice: totalSellPrice
+//     }
+
+//     var enteredCode = userCodeInput.value;
+//     var specialCodeOfRoduct = billArray.find(p => p.code === enteredCode) || 0;
+//     var exists;
+//     if(enteredCode !== specialCodeOfRoduct.code || enteredCode == 0){
+//         exists =  true;
+//     }
+//     if (validateUserCode() && validateUserCount()) {
+//         if (!modeOfBuyBTN) {
+//             if(!exists){
+//                 productExists.textContent = "already exixts";
+//             }else {
+//                 productExists.textContent = "";
+//                 billArray.push(billProduct);
+//                 clearFormBill();
+//             }
+//         } else {
+//             if (validateUserPrice()) {
+//                 billArray.splice(indexProductBill, 1, billProduct)
+//                 clearFormBill();
+//             }
+//         }
+//         sessionStorage.setItem("billArray", JSON.stringify(billArray))
+//     }
+//     makeBillTable();
+//     // console.log(parseFloat(countFromProducts.textContent))
+// }
+
 function addBill() {
-    var taxes = parseFloat(userTaxesInput.value) ? parseFloat(userTaxesInput.value) : 0;
+    var taxes = parseFloat(userTaxesInput.value) || 0;
     var sellPrice = parseFloat(userPriceInput.value) + taxes;
-    var totalSellPrice = parseFloat(sellPrice) * parseFloat(userCountInput.value);
+    var totalSellPrice = sellPrice * parseFloat(userCountInput.value);
     var billProduct = {
         code: userCodeInput.value,
         name: userNameInput.value,
-        price: sellPrice,
-        taxes: userTaxesInput.value,
-        count: userCountInput.value,
+        price: sellPrice.toFixed(2),
+        taxes: taxes.toFixed(2),
+        count: parseInt(userCountInput.value),
         date: userDateInput.value,
-        totalPrice: totalSellPrice
-    }
+        totalPrice: totalSellPrice.toFixed(2)
+    };
 
     var enteredCode = userCodeInput.value;
-    var specialCodeOfRoduct = billArray.find(p => p.code === enteredCode) || 0;
-    var exists;
-    if(enteredCode !== specialCodeOfRoduct.code || enteredCode == 0){
-        exists =  true;
-    }
+    var existingProduct = billArray.find(p => p.code === enteredCode);
+
     if (validateUserCode() && validateUserCount()) {
-        if (!modeOfBuyBTN) {
-            if(!exists){
-                productExists.textContent = "already exixts";
-            }else {
-                productExists.textContent = "";
-                billArray.push(billProduct);
-                clearFormBill();
-            }
+        if (!existingProduct) {
+            billArray.push(billProduct);
+            sessionStorage.setItem("billArray", JSON.stringify(billArray));
+            clearFormBill();
+            productExists.textContent = "";
         } else {
-            if (validateUserPrice()) {
-                billArray.splice(indexProductBill, 1, billProduct)
-                clearFormBill();
-            }
+            productExists.textContent = "Product already exists in the bill!";
         }
-        sessionStorage.setItem("billArray", JSON.stringify(billArray))
+        makeBillTable();
     }
-    makeBillTable();
-    // console.log(parseFloat(countFromProducts.textContent))
 }
 userBuyBTN.addEventListener("click", addBill)
 
