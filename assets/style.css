@@ -1,0 +1,42 @@
+:root{
+    --color: rgb(13, 13, 99);
+    --primary-color: rgb(203, 217, 228);
+    --text-color: rgb(13, 59, 102);
+    --bg-color: rgb(232, 233, 235);
+}
+
+*{
+    outline: none !important;
+}
+body{
+    background-color: var(--bg-color);
+}
+
+input{
+    color: var(--text-color) !important;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.09) inset !important;
+}
+label{
+    color: var(--text-color) !important;
+}
+input:focus{
+    border-color: var(--color) !important;
+}
+.container-fluid{
+    color: var(--text-color);
+}
+#logout{
+    background-color: var(--color);
+}
+
+.btn{
+    background-color: var(--color);
+}
+.btn:hover{
+    background-color: var(--color);
+}
+.btn:focus{
+    background-color: var(--color);
+    box-shadow: none;
+    border: none;
+}
