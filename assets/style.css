@@ -7,6 +7,9 @@
 
 *{
     outline: none !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 body{
     background-color: var(--bg-color);
@@ -16,9 +19,7 @@ input, select, textarea{
     color: var(--text-color) !important;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.09) inset !important;
 }
-/* label{
-    color: var(--text-color) !important;
-} */
+
 input:focus, select:focus, textarea:focus{
     border-color: var(--color) !important;
 }
