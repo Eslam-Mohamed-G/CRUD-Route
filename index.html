@@ -20,7 +20,7 @@
             <div class="container d-flex align-content-center">
                 <h1 class="d-none">CRUD</h1>
                 <h3>admin</h3>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs d-none" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
                         type="button" role="tab" aria-controls="nav-home" aria-selected="true">Products</button>
                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
@@ -39,30 +39,32 @@
 
     <main>
         <!-- form for login  form for login -->
-        <form action="" class="container shadow m-auto rounded bg-transparent p-2 p-sm-3 p-md-4 p-lg-5 my-5 d-none">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="userInput" placeholder="Your Name">
-                <label for="userInput">Your Name</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="passwordInput" placeholder="Password">
-                <label for="passwordInput">Password</label>
-            </div>
-            <div class="form-floating mx-auto">
-                <button type="button" class="btn btn-primary border-0 mt-3 px-5 text-white">login</button>
-            </div>
-        </form>
+        <div class="container">
+            <form action="" class="custom-form shadow m-auto rounded p-2 p-sm-3 p-md-4 p-lg-5 my-5">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="userInput" placeholder="Your Name">
+                    <label for="userInput">Your Name</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+                    <label for="passwordInput">Password</label>
+                </div>
+                <div class="form-floating mx-auto">
+                    <button type="button" class="btn btn-primary border-0 mt-3 px-5 text-white">login</button>
+                </div>
+            </form>
+        </div>
         <!-- form for login  form for login -->
 
 
-        <section class="admin">
+        <section class="admin d-none">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
                     tabindex="0">
                     <!-- form for add product -->
                     <div class="container">
                         <form action=""
-                            class="add-form container shadow m-auto rounded p-sm-3 p-md-4 p-lg-5 my-5 gx-3 gy-2 align-items-center">
+                            class="custom-form container shadow m-auto rounded p-sm-3 p-md-4 p-lg-5 my-5 gx-3 gy-2 align-items-center">
                             <div class="row d-flex flex-column flex-md-row mb-3 gy-3">
                                 <div class="col input-group">
                                     <span class="input-group-text">product name</span>
@@ -191,7 +193,7 @@
 
                             <tbody>
                                 <tr>
-                                    <td>1</td>
+                                    <td>1001</td>
                                     <td>oppo A3</td>
                                     <td>10000</td>
                                     <td>oppo</td>
@@ -219,6 +221,8 @@
                 </div>
             </div>
         </section>
+
+        <section class="user d-none"></section>
     </main>
     <footer></footer>
 
