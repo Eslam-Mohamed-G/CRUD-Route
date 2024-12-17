@@ -2,6 +2,7 @@
     --color: rgb(13, 13, 99);
     --primary-color: rgb(203, 217, 228);
     --text-color: rgb(13, 59, 102);
+    --bg-primary-color: rgb(221, 221, 221);
     --bg-color: rgb(232, 233, 235);
 }
 
@@ -12,7 +13,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: var(--bg-color);
+    background-color: var(--bg-primary-color);
 }
 
 input, select, textarea{
@@ -26,18 +27,12 @@ input:focus, select:focus, textarea:focus{
 .container-fluid{
     color: var(--text-color);
 }
-#logout{
+
+#logout, .btn, .btn:hover, .btn:focus{
     background-color: var(--color);
 }
 
-.btn{
-    background-color: var(--color);
-}
-.btn:hover{
-    background-color: var(--color);
-}
 .btn:focus{
-    background-color: var(--color);
     box-shadow: none;
     border: none;
 }
@@ -47,7 +42,11 @@ i{
 }
 
 .active{
-    color: var(--color) !important;
+    color: var(--text-color) !important;
+    background-color: var(--bg-primary-color) !important;
+    border-color: var(--bg-primary-color) !important;
+}
+
+.add-form{
     background-color: var(--bg-color) !important;
-    border-color: var(--bg-color) !important;
 }
