@@ -16,13 +16,22 @@
 <body>
     <!-- header  header  header  header  header -->
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary px-5">
-            <div class="container-fluid d-flex align-content-center">
-                <h1>CRUD</h1>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary pb-0">
+            <div class="container d-flex align-content-center p-0">
+                <h1 class="d-none">CRUD</h1>
                 <h3>admin</h3>
-                <button type="button" id="logout"
-                    class="border-0 rounded p-2 text-white text-center d-flex gap-1 align-content-center align-items-center">LogOut<i
-                        class="fa-solid fa-right-from-bracket"></i></button>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">Products</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">search</button>
+                    <button class="nav-link me-2" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                        type="button" role="tab" aria-controls="nav-contact" aria-selected="false">bill</button>
+                    <button type="button" id="logout"
+                        class="border-0 rounded text-white text-center d-flex gap-1 align-content-center align-items-center px-2">LogOut
+                        <i class="fa-solid fa-right-from-bracket" style="color: white;"></i>
+                    </button>
+                </div>
             </div>
         </nav>
     </header>
@@ -30,7 +39,7 @@
 
     <main>
         <!-- form for login  form for login -->
-        <form action="" class="container shadow m-auto rounded bg-transparent p-2 p-sm-3 p-md-4 p-lg-5 my-5">
+        <form action="" class="container shadow m-auto rounded bg-transparent p-2 p-sm-3 p-md-4 p-lg-5 my-5 d-none">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="userInput" placeholder="Your Name">
                 <label for="userInput">Your Name</label>
@@ -45,92 +54,149 @@
         </form>
         <!-- form for login  form for login -->
 
+
         <section class="admin">
-            <form action=""
-                class="container shadow m-auto rounded bg-transparent p-2 p-sm-3 p-md-4 p-lg-5 my-5 gx-3 gy-2 align-items-center">
-                <div class="row d-flex flex-column flex-md-row mb-3 gy-3">
-                    <div class="col input-group">
-                        <span class="input-group-text">product name</span>
-                        <input type="text" class="form-control" placeholder="name" id="nameInput">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+                    tabindex="0">
+                    <form action=""
+                        class="container shadow m-auto rounded bg-transparent p-2 p-sm-3 p-md-4 p-lg-5 my-5 gx-3 gy-2 align-items-center">
+                        <div class="row d-flex flex-column flex-md-row mb-3 gy-3">
+                            <div class="col input-group">
+                                <span class="input-group-text">product name</span>
+                                <input type="text" class="form-control" placeholder="name" id="nameInput">
+                            </div>
+                            <div class="col input-group">
+                                <span class="input-group-text">product Code</span>
+                                <input type="text" class="form-control" placeholder="code" id="codeInput">
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">product price</span>
+                            <input type="text" class="form-control" placeholder="$" id="priceInput">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Options</span>
+                            <select class="form-select" id="categoryInput">
+                                <option value="" selected class="d-none">Choose...</option>
+                                <option value="samsung">Samsung</option>
+                                <option value="oppo">Oppo</option>
+                                <option value="iphone">iphone</option>
+                                <option value="huawei">huawei</option>
+                            </select>
+                        </div>
+
+                        <div class="row d-flex flex-column flex-md-row mb-3 gy-3">
+                            <div class="col input-group">
+                                <span class="input-group-text" id="basic-addon1">count</span>
+                                <input type="text" class="form-control" placeholder="count" id="countInput">
+                            </div>
+                            <div class="col input-group">
+                                <input type="date" class="form-control" id="dateInput">
+                                <span class="input-group-text" id="basic-addon2">date</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-text">With textarea</span>
+                            <textarea class="form-control" rows="3" id="With textarea"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-primary border-0 mt-3 px-5 text-white">add</button>
+                        </div>
+                    </form>
+
+                    <!-- table table -->
+                    <div class="container p-0">
+                        <table class="table table-bordered align-middle shadow" id="productTable">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>#</th>
+                                    <th>name</th>
+                                    <th>price</th>
+                                    <!-- <th>count</th> -->
+                                    <th>category</th>
+                                    <th class="d-none d-sm-block">description</th>
+                                    <th class="px-3 px-sm-4">tags</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>oppo A3</td>
+                                    <td>10000</td>
+                                    <td>oppo</td>
+                                    <td class="d-none d-sm-block">SIM Card: Dual SIM (Nano-SIM, dual stand-by) Screen:
+                                        6.67
+                                        inches, 720 x 1604 pixels RAM: 8GB Internal memory: 256GB Rear Camera: 50 MP
+                                        Selfie
+                                        Camera: 5 MP</td>
+                                    <td>
+                                        <div class="d-flex flex-row justify-content-between align-items-center px-1">
+                                            <i class="fa-solid fa-pen-to-square d-block" role="button"></i>
+                                            <i class="fa-solid fa-trash-can d-block" role="button"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col input-group">
-                        <span class="input-group-text">product Code</span>
-                        <input type="text" class="form-control" placeholder="code" id="codeInput">
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                    <!-- table table -->
+                    <div class="container p-0">
+                        <table class="table table-bordered align-middle shadow" id="productTable">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>#</th>
+                                    <th>name</th>
+                                    <th>price</th>
+                                    <!-- <th>count</th> -->
+                                    <th>category</th>
+                                    <th class="d-none d-sm-block">description</th>
+                                    <th class="px-3 px-sm-4">tags</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>oppo A3</td>
+                                    <td>10000</td>
+                                    <td>oppo</td>
+                                    <td class="d-none d-sm-block">SIM Card: Dual SIM (Nano-SIM, dual stand-by) Screen:
+                                        6.67
+                                        inches, 720 x 1604 pixels RAM: 8GB Internal memory: 256GB Rear Camera: 50 MP
+                                        Selfie
+                                        Camera: 5 MP</td>
+                                    <td>
+                                        <div class="d-flex flex-row justify-content-between align-items-center px-1">
+                                            <i class="fa-solid fa-pen-to-square d-block" role="button"></i>
+                                            <i class="fa-solid fa-trash-can d-block" role="button"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">product price</span>
-                    <input type="text" class="form-control" placeholder="$" id="priceInput">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Options</span>
-                    <select class="form-select" id="categoryInput">
-                        <option value="" selected class="d-none">Choose...</option>
-                        <option value="samsung">Samsung</option>
-                        <option value="oppo">Oppo</option>
-                        <option value="iphone">iphone</option>
-                        <option value="huawei">huawei</option>
-                    </select>
-                </div>
-
-                <div class="row d-flex flex-column flex-md-row mb-3 gy-3">
-                    <div class="col input-group">
-                        <span class="input-group-text" id="basic-addon1">count</span>
-                        <input type="text" class="form-control" placeholder="count" id="countInput">
-                    </div>
-                    <div class="col input-group">
-                        <input type="date" class="form-control" id="dateInput">
-                        <span class="input-group-text" id="basic-addon2">date</span>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <span class="input-group-text">With textarea</span>
-                    <textarea class="form-control" rows="3" id="With textarea"></textarea>
-                </div>
-                <div class="input-group">
-                    <button type="button" class="btn btn-primary border-0 mt-3 px-5 text-white">add</button>
-                </div>
-            </form>
-            <div class="container">
-                <table class="table table-bordered align-middle shadow" id="productTable">
-                    <thead class="table-primary">
-                        <tr>
-                            <th>#</th>
-                            <th>name</th>
-                            <th>price</th>
-                            <!-- <th>count</th> -->
-                            <th>category</th>
-                            <th class="d-none d-sm-block">description</th>
-                            <th class="px-3 px-sm-4">tags</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>oppo A3</td>
-                            <td>10000</td>
-                            <td>oppo</td>
-                            <td class="d-none d-sm-block">SIM Card: Dual SIM (Nano-SIM, dual stand-by) Screen: 6.67
-                                inches, 720 x 1604 pixels RAM: 8GB Internal memory: 256GB Rear Camera: 50 MP Selfie
-                                Camera: 5 MP</td>
-                            <td>
-                                <div class="d-flex flex-row justify-content-between align-items-center px-1">
-                                    <i class="fa-solid fa-pen-to-square d-block" role="button"></i>
-                                    <i class="fa-solid fa-trash-can d-block" role="button"></i>
-                                </div>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
+                    tabindex="0">
+                    3</div>
+                <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab"
+                    tabindex="0">4</div>
             </div>
+
+
         </section>
     </main>
     <footer></footer>
 
+    <script src="./bootstrap-5.3.3/js/bootstrap.min.js"></script>
 </body>
 
 </html>
