@@ -11,6 +11,9 @@ class StorageData {
         return data ? JSON.parse(data) : [];
     }
 
+    static saveData(data) {
+        localStorage.setItem(this.userArray, JSON.stringify(data));
+    }
 }
 
 export default StorageData;
