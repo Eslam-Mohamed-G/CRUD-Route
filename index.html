@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="./bootstrap-5.3.3/css/bootstrap.min.css">
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="./fontawesome/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
 
     <link rel="stylesheet" href="./assets/style.css">
 </head>
@@ -43,7 +46,7 @@
     <main>
         <!-- form for login  form for login -->
         <div class="container">
-            <form action="" class="custom-form shadow m-auto rounded p-2 p-sm-3 p-md-4 p-lg-5 my-5">
+            <form action="" class="loginForm custom-form shadow m-auto rounded p-2 p-sm-3 p-md-4 p-lg-5 my-5 d-block">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="userInput" placeholder="Your Name">
                     <label for="userInput">Your Name</label>
@@ -52,8 +55,8 @@
                     <input type="password" class="form-control" id="passwordInput" placeholder="Password">
                     <label for="passwordInput">Password</label>
                 </div>
-                <div class="form-floating mx-auto">
-                    <button type="button" class="btn btn-primary border-0 mt-3 px-5 text-white">login</button>
+                <div class="form-floating">
+                    <button type="button" class="btn btn-primary border-0 mt-3 px-5 text-white" id="login">login</button>
                 </div>
             </form>
         </div>
@@ -233,6 +236,9 @@
     <footer></footer>
 
     <script src="./bootstrap-5.3.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="./script.js"></script>
+    <!-- <script type="module" src="./app.js"></script> -->
 </body>
 
 </html>
