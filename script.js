@@ -54,6 +54,17 @@ btnlogout.addEventListener("click", () => {
             nav.classList.replace("d-flex", "d-none")
             loginForm.classList.replace("d-none","d-block")
             adminScreen.classList.replace("d-block", "d-none")
+            sessionStorage.removeItem("sessionActive");
         }
     })
-})
+});
+
+window.onload = function() {
+    const sessionActive = sessionStorage.getItem("sessionActive");
+
+    if(sessionActive === "true"){
+        nav.classList.replace("d-none", "d-flex")
+        loginForm.classList.replace("d-block", "d-none")
+        adminScreen.classList.replace("d-none", "d-block")
+    }
+}
