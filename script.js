@@ -6,7 +6,9 @@ if (!localStorage.getItem(LocalStorageManager.key)) {
     LocalStorageManager.resetToDefault();
 }
 
-const nav = document.querySelector(".nav-tabs");
+const headerName = document.querySelector(".navbar").querySelector("h1")
+const userLogin = document.querySelector(".userLogin");
+const navTabs = document.querySelector(".nav-tabs");
 const loginForm = document.querySelector(".loginForm");
 const adminScreen = document.querySelector(".admin");
 const username = document.getElementById("userInput");
@@ -24,7 +26,9 @@ btnLogin.addEventListener("click", () =>{
         username.style.border = "1px solid transparent";
         password.style.border = "1px solid transparent";
         if(user.role === "admin"){
-            nav.classList.replace("d-none", "d-flex")
+            headerName.classList.replace("d-block", "d-none")
+            userLogin.classList.replace("d-none", "d-flex")
+            navTabs.classList.replace("d-none", "d-flex")
             loginForm.classList.replace("d-block", "d-none")
             adminScreen.classList.replace("d-none", "d-block")
             console.log("admin");
@@ -51,7 +55,9 @@ btnlogout.addEventListener("click", () => {
         if (result.isConfirmed) {
             username.value = "";
             password.value = "";
-            nav.classList.replace("d-flex", "d-none")
+            headerName.classList.replace("d-none", "d-block")
+            userLogin.classList.replace("d-flex", "d-none")
+            navTabs.classList.replace("d-flex", "d-none")
             loginForm.classList.replace("d-none","d-block")
             adminScreen.classList.replace("d-block", "d-none")
             sessionStorage.removeItem("sessionActive");
@@ -63,8 +69,11 @@ window.onload = function() {
     const sessionActive = sessionStorage.getItem("sessionActive");
 
     if(sessionActive === "true"){
-        nav.classList.replace("d-none", "d-flex")
-        loginForm.classList.replace("d-block", "d-none")
-        adminScreen.classList.replace("d-none", "d-block")
+            headerName.classList.replace("d-block", "d-none")
+            userLogin.classList.replace("d-none", "d-flex")
+            navTabs.classList.replace("d-none", "d-flex")
+            loginForm.classList.replace("d-block", "d-none")
+            adminScreen.classList.replace("d-none", "d-block")
+
     }
 }
