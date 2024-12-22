@@ -40,7 +40,7 @@
                     <button class="nav-link me-2" id="nav-auth-tab" data-bs-toggle="tab" data-bs-target="#nav-auth"
                         type="button" role="tab" aria-controls="nav-auth" aria-selected="false">add user
                     </button>
-                    
+
                 </div>
             </div>
         </nav>
@@ -60,7 +60,8 @@
                     <label for="passwordInput">Password</label>
                 </div>
                 <div class="form-floating border-0">
-                    <button type="button" class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white d-block" id="login">login</button>
+                    <button type="button" class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white d-block"
+                        id="login">login</button>
                 </div>
             </form>
         </div>
@@ -85,7 +86,7 @@
                                     <input type="text" class="form-control" placeholder="code" id="codeInput">
                                 </div>
                             </div>
-    
+
                             <div class="input-group mb-3">
                                 <span class="input-group-text">product price</span>
                                 <input type="text" class="form-control" placeholder="$" id="priceInput">
@@ -100,7 +101,7 @@
                                     <option value="huawei">huawei</option>
                                 </select>
                             </div>
-    
+
                             <div class="row d-flex flex-column flex-md-row mb-3 gy-3">
                                 <div class="col input-group">
                                     <span class="input-group-text" id="basic-addon1">count</span>
@@ -111,13 +112,15 @@
                                     <span class="input-group-text" id="basic-addon2">date</span>
                                 </div>
                             </div>
-    
+
                             <div class="input-group">
                                 <span class="input-group-text">With textarea</span>
                                 <textarea class="form-control" rows="3" id="With textarea"></textarea>
                             </div>
                             <div class="input-group">
-                                <button type="button" class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white" id="addProduct">add</button>
+                                <button type="button"
+                                    class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white"
+                                    id="addProduct">add</button>
                             </div>
                         </form>
                     </div>
@@ -150,7 +153,8 @@
                                         Selfie
                                         Camera: 5 MP</td>
                                     <td>
-                                        <div class="d-flex flex-row justify-content-between gap-2 align-items-center px-1">
+                                        <div
+                                            class="d-flex flex-row justify-content-between gap-2 align-items-center px-1">
                                             <i class="fa-solid fa-pen-to-square d-block" role="button"></i>
                                             <i class="fa-solid fa-trash-can d-block" role="button"></i>
                                         </div>
@@ -163,9 +167,11 @@
                 </div>
 
                 <!-- search  search search -->
-                <div class="tab-pane fade py-5" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                <div class="tab-pane fade py-5" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+                    tabindex="0">
                     <div class="container">
-                        <form action="" class="add-form container shadow m-auto rounded bg-transparent mb-5 p-2 p-sm-3 p-md-4 p-lg-5 gx-3 gy-2 align-items-center">
+                        <form action=""
+                            class="add-form container shadow m-auto rounded bg-transparent mb-5 p-2 p-sm-3 p-md-4 p-lg-5 gx-3 gy-2 align-items-center">
                             <div class="row d-flex flex-column flex-md-row mb-3 gy-3">
                                 <div class="col input-group">
                                     <span class="input-group-text">product search</span>
@@ -183,7 +189,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                         </form>
                     </div>
                     <!-- table table -->
@@ -226,12 +232,42 @@
                 </div>
                 <!-- search  search search -->
 
-                <div class="tab-pane fade py-5" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                <div class="tab-pane fade py-5" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
+                    tabindex="0">
                     3
                 </div>
-                <div class="tab-pane fade py-5" id="nav-auth" role="tabpanel" aria-labelledby="nav-auth-tab" tabindex="0">
-                    4
+                <!-- number 4 add user  number 4 add user  number 4 add user -->
+                <div class="tab-pane fade py-5" id="nav-auth" role="tabpanel" aria-labelledby="nav-auth-tab"
+                    tabindex="0">
+                    <div class="container">
+                        <form
+                            class="custom-form container shadow m-auto rounded p-3 p-sm-3 p-md-4 p-lg-5 my-5 align-items-center">
+                            <div class="col input-group mb-3">
+                                <label class="input-group-text" for="newUsername">Username</label>
+                                <input type="text" class="form-control" id="newUsername" placeholder="Enter username">
+                            </div>
+
+                            <div class="col input-group mb-3">
+                                <label class="input-group-text" for="newPassword">Password</label>
+                                <input type="password" class="form-control" id="newPassword" placeholder="Enter password">
+                            </div>
+
+                            <div class="col input-group">
+                                <label class="input-group-text" for="newRole">Role</label>
+                                <select class="form-select" id="newRole">
+                                    <option value="user">User</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <button type="button" class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white" id="addUserForm">Add User</button>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
+                <!-- number 4 add user  number 4 add user  number 4 add user -->
+
             </div>
         </section>
 

@@ -3,7 +3,7 @@ class StorageManager {
 
     static loadData() {
         const data = localStorage.getItem(this.key);
-        console.log(data);
+        console.log(JSON.parse(data));
         return data ? JSON.parse(data) : [];
     }
 
