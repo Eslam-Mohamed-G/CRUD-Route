@@ -63,6 +63,13 @@ btnlogout.addEventListener("click", () => {
     })
 });
 
+// add user  add user  add user
+const newUsername = document.getElementById("newUsername");
+const newPassword = document.getElementById("newPassword");
+const newRole = document.getElementById("newRole");
+const btnAdd = document.getElementById("addUserForm");
+
+
 window.onload = function() {
     const sessionActive = sessionStorage.getItem("sessionActive");
 
