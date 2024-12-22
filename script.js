@@ -19,11 +19,9 @@ btnLogin.addEventListener("click", () =>{
     const user = AuthSystem.login(username.value, password.value);
 
     if (!user) {
-        username.style.border = "1px solid red";
         password.style.border = "1px solid red";
         console.log("false");
     } else {
-        username.style.border = "1px solid transparent";
         password.style.border = "1px solid transparent";
         if(user.role === "admin"){
             headerName.classList.replace("d-block", "d-none")
