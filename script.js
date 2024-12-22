@@ -69,6 +69,9 @@ const newPassword = document.getElementById("newPassword");
 const newRole = document.getElementById("newRole");
 const btnAdd = document.getElementById("addUserForm");
 
+btnAdd.addEventListener("click", ()=>{
+    
+});
 
 window.onload = function() {
     const sessionActive = sessionStorage.getItem("sessionActive");
