@@ -40,11 +40,18 @@ class AuthSystem {
         this.validator.setInputState(newPassword, isNewPasswordValid);
 
         // Fetch the existing data
-        const existingUsers = StorageManager.loadData();
+        const userArray = StorageManager.loadData();
+        const existingUsers = userArray.some(user => user.name === name)
+
         if(isNewNameValid && isNewPasswordValid && isNewRoleValid){
+
             // Add new user to the array and save to localStorage
-            existingUsers.push(newUser);
-            StorageManager.saveData(existingUsers);
+            if(existingUsers){
+                console.log("User already exists!");
+            }else {  
+                existingUsers.push(newUser);
+                StorageManager.saveData(existingUsers);
+            }
             return true;
         }else {
             return false;
