@@ -14,8 +14,7 @@ class StorageManager {
     static resetToDefault() {
         const defaultData = [
             { name: "admin", password: "123", role: "admin" },
-            { name: "any", password: "123", role: "user" },
-            { name: "eslam", password: "147", role: "admin" },
+            { name: "user", password: "123", role: "user" },
         ];
         this.saveData(defaultData);
     }
