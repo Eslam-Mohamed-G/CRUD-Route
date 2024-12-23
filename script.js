@@ -67,23 +67,16 @@ btnlogout.addEventListener("click", () => {
 const newUsername = document.getElementById("newUsername");
 const newPassword = document.getElementById("newPassword");
 const newRole = document.getElementById("newRole");
+const messageError = document.getElementById("messageError");
 const btnAdd = document.getElementById("addUserForm");
 
 btnAdd.addEventListener("click", ()=>{
-    const newUser = {
-        name: newUsername.value,
-        password: newPassword.value,
-        role: newRole.value
-    }
-
     const user = AuthSystem.adduser(newUsername.value, newPassword.value, newRole.value);
-    if(!user){
-        // Clear form fields
+
+    if(user) {
         newUsername.value = "";
         newPassword.value = "";
-        console.log(user);
-    }else {
-        console.log(newUser);
+        messageError.textContent = "";
     }
 });
 

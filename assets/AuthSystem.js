@@ -25,6 +25,7 @@ class AuthSystem {
         const newUsername = document.getElementById("newUsername");
         const newPassword = document.getElementById("newPassword");
         const newRole = document.getElementById("newRole");
+        const messageError = document.getElementById("messageError");
 
         const newUser = {
             name: newUsername.value,
@@ -40,21 +41,21 @@ class AuthSystem {
         this.validator.setInputState(newPassword, isNewPasswordValid);
 
         // Fetch the existing data
-        const userArray = StorageManager.loadData();
-        const existingUsers = userArray.some(user => user.name === name)
+        const existingUsers = StorageManager.loadData();
+        const userExists = existingUsers.some(user => user.name === name)
 
         if(isNewNameValid && isNewPasswordValid && isNewRoleValid){
 
             // Add new user to the array and save to localStorage
-            if(existingUsers){
-                console.log("User already exists!");
+            if(userExists){
+                messageError.textContent = "User already exists!";
+                return false;
             }else {  
                 existingUsers.push(newUser);
                 StorageManager.saveData(existingUsers);
+                return true;
             }
-            return true;
-        }else {
-            return false;
+
         }
     }
 }
