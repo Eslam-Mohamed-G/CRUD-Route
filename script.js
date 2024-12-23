@@ -78,7 +78,10 @@ btnAdd.addEventListener("click", ()=>{
 
     const user = AuthSystem.adduser(newUsername.value, newPassword.value, newRole.value);
     if(!user){
-        console.log("fuck");
+        // Clear form fields
+        newUsername.value = "";
+        newPassword.value = "";
+        console.log(user);
     }else {
         console.log(newUser);
     }

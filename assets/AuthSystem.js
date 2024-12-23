@@ -24,7 +24,13 @@ class AuthSystem {
     static adduser(name, password, role) {
         const newUsername = document.getElementById("newUsername");
         const newPassword = document.getElementById("newPassword");
-        const userArray = StorageManager.loadData();
+        const newRole = document.getElementById("newRole");
+
+        const newUser = {
+            name: newUsername.value,
+            password: newPassword.value,
+            role: newRole.value,
+        }
 
         const isNewNameValid = this.validator.isValidName(name);
         const isNewPasswordValid = this.validator.isValidPassword(password);
@@ -33,9 +39,15 @@ class AuthSystem {
         this.validator.setInputState(newUsername, isNewNameValid);
         this.validator.setInputState(newPassword, isNewPasswordValid);
 
+        // Fetch the existing data
+        const existingUsers = StorageManager.loadData();
         if(isNewNameValid && isNewPasswordValid && isNewRoleValid){
-            console.log("eslam")
+            // Add new user to the array and save to localStorage
+            existingUsers.push(newUser);
+            StorageManager.saveData(existingUsers);
             return true;
+        }else {
+            return false;
         }
     }
 }
