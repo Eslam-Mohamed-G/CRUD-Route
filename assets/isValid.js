@@ -3,9 +3,12 @@ class IsValid {
         return /^[a-zA-Z\s]+$/.test(name);
     }
 
-    // Function to check if phone number is valid
     isValidPassword(password) {
         return /^\d{3,}$/.test(password); // At least 3 digits
+    }
+
+    isValidRole(role){
+        return role ? role : "user";
     }
 
     // General function to set input state

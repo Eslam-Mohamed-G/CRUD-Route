@@ -70,7 +70,19 @@ const newRole = document.getElementById("newRole");
 const btnAdd = document.getElementById("addUserForm");
 
 btnAdd.addEventListener("click", ()=>{
-    
+    const newUser = {
+        name: newUsername.value,
+        password: newPassword.value,
+        role: newRole.value
+    }
+
+    const user = AuthSystem.adduser(newUsername.value, newPassword.value, newRole.value);
+    if(!user){
+        console.log(newUser);
+        console.log("ok");
+    }else {
+        console.log("fuck");
+    }
 });
 
 window.onload = function() {
