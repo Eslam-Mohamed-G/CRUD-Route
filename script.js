@@ -16,9 +16,9 @@ const username = document.getElementById("userInput");
 const password = document.getElementById("passwordInput");
 const btnLogin = document.getElementById("login");
 
-const savedUser = sessionStorage.getItem("sessionUsername");
 btnLogin.addEventListener("click", () =>{
     const user = AuthSystem.login(username.value, password.value);
+    const savedUser = sessionStorage.getItem("sessionUsername");
 
     if (!user) {
         password.style.border = "1px solid red";
@@ -42,6 +42,7 @@ btnLogin.addEventListener("click", () =>{
 
 const btnlogout = document.getElementById("logout");
 btnlogout.addEventListener("click", () => {
+    const savedUser = sessionStorage.getItem("sessionUsername");
     Swal.fire({
         title: 'Are you sure?',
         text: `${savedUser}`,
@@ -86,6 +87,7 @@ btnAdd.addEventListener("click", ()=>{
 
 window.onload = function() {
     const sessionActive = sessionStorage.getItem("sessionActive");
+    const savedUser = sessionStorage.getItem("sessionUsername");
 
     if(sessionActive === "true"){
         theNameOfUser.textContent = `${savedUser}`
