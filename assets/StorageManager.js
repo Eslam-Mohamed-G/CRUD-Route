@@ -1,5 +1,6 @@
 class StorageManager {
     static key = "userArray";
+    static keyProduct = "productsArray";
 
     static loadData() {
         const data = localStorage.getItem(this.key);
@@ -17,6 +18,15 @@ class StorageManager {
             { name: "user", password: "123", role: "user" },
         ];
         this.saveUserData(defaultData);
+    }
+
+    static saveProductData(data) {
+        localStorage.setItem(this.keyProduct, JSON.stringify(data))
+    }
+    
+    static loadProductData() {
+        const data = localStorage.getItem(this.keyProduct);
+        return data ? JSON.parse(data) : [];
     }
 }
 
