@@ -23,9 +23,10 @@ class StorageManager {
     static saveProductData(data) {
         localStorage.setItem(this.keyProduct, JSON.stringify(data))
     }
-    
+
     static loadProductData() {
         const data = localStorage.getItem(this.keyProduct);
+        console.log(JSON.parse(data));
         return data ? JSON.parse(data) : [];
     }
 }

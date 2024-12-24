@@ -27,6 +27,7 @@ class Products {
         this.validator.setInputState(this.countInput, isCountInputValid);
 
         if(isProductInputValid && isCodeInputValid && isPriceInputValid && isCategoryInputValid && isCountInputValid){
+            this.saveProductInLocalStorge()
             return true;
         }else {
             return false;
@@ -34,6 +35,7 @@ class Products {
     }
 
     saveProductInLocalStorge() {
+        const productsArray = StorageManager.loadProductData();
         const product = {
             date: this.dateInput.value,
             code: this.codeInput.value,
@@ -43,6 +45,9 @@ class Products {
             category: this.categoryInput.value,
             description: this.description.value,
         }
+        productsArray.push(product);
+        StorageManager.saveProductData(productsArray);
+        console.log(product);
     }
 }
 

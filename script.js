@@ -91,6 +91,7 @@ const productInput = document.getElementById("nameInput");
 const codeInput = document.getElementById("codeInput");
 const priceInput = document.getElementById("priceInput");
 const categoryInput = document.getElementById("categoryInput");
+const description = document.getElementById("textarea");
 const countInput = document.getElementById("countInput");
 
 const addProductBTN = document.getElementById("addProduct");
@@ -101,11 +102,11 @@ addProductBTN.addEventListener("click", ()=>{
     if( !newProduct ){
         console.log("noooo");
     }else {
-        console.log("eslammmmmm");
         productInput.value = "";
         codeInput.value = "";
         priceInput.value = "";
         countInput.value = "";
+        description.value = "";
     }
 })
 window.onload = function() {
