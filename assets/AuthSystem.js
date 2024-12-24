@@ -53,7 +53,7 @@ class AuthSystem {
                 return false;
             }else {  
                 existingUsers.push(newUser);
-                StorageManager.saveData(existingUsers);
+                StorageManager.saveUserData(existingUsers);
                 return true;
             }
 

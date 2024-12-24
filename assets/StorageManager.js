@@ -6,8 +6,8 @@ class StorageManager {
         console.log(JSON.parse(data));
         return data ? JSON.parse(data) : [];
     }
-
-    static saveData(data) {
+// saveUserData
+    static saveUserData(data) {
         localStorage.setItem(this.key, JSON.stringify(data));
     }
 
@@ -16,7 +16,7 @@ class StorageManager {
             { name: "admin", password: "123", role: "admin" },
             { name: "user", password: "123", role: "user" },
         ];
-        this.saveData(defaultData);
+        this.saveUserData(defaultData);
     }
 }
 
