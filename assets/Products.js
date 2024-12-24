@@ -7,7 +7,11 @@ class Products {
     }
 
     addproduct(name, id, price, category, count) {
-
+        const productInput = document.getElementById("nameInput");
+        const codeInput = document.getElementById("codeInput");
+        const priceInput = document.getElementById("priceInput");
+        const categoryInput = document.getElementById("categoryInput");
+        const countInput = document.getElementById("countInput");
     }
 }
 
