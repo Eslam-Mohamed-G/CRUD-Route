@@ -9,7 +9,11 @@ class Products {
         this.countInput = document.getElementById("countInput");
         this.dateInput = document.getElementById("dateInput");
         this.description = document.getElementById("textarea");
+
+        this.deleteBTN = document.querySelector(".fa-trash-can");
+        this.updateBTN = document.querySelector(".fa-pen-to-square"); 
         this.validator = new IsValid();
+        this.productsArray = StorageManager.loadProductData();
     }
 
     isFormProductValid(name, id, price, category, count) {
@@ -34,7 +38,6 @@ class Products {
     }
 
     saveProductInLocalStorge() {
-        const productsArray = StorageManager.loadProductData();
         const product = {
             date: this.dateInput.value,
             code: this.codeInput.value,
@@ -44,24 +47,23 @@ class Products {
             category: this.categoryInput.value,
             description: this.description.value,
         }
-        productsArray.push(product);
+        this.productsArray.push(product);
         StorageManager.saveProductData(productsArray);
         console.log(product);
     }
 
     productsTable() {
-        const productsArray = StorageManager.loadProductData();
         const tableRows = [];
         
-        for ( let i = 0; i < productsArray.length; i++) {
+        for ( let i = 0; i < this.productsArray.length; i++) {
             const productRow = document.createElement("tr");
             productRow.innerHTML = 
             `
-                <td>${productsArray[i].code}</td>
-                <td>${productsArray[i].name}</td>
-                <td>${productsArray[i].price}</td>
-                <td>${productsArray[i].category}</td>
-                <td class="d-none d-sm-block">${productsArray[i].description}</td>
+                <td>${this.productsArray[i].code}</td>
+                <td>${this.productsArray[i].name}</td>
+                <td>${this.productsArray[i].price}</td>
+                <td>${this.productsArray[i].category}</td>
+                <td class="d-none d-sm-block">${this.productsArray[i].description}</td>
                 <td>
                     <div
                         class="d-flex flex-row justify-content-between gap-2 align-items-center px-1">
