@@ -1,6 +1,6 @@
 class IsValid {
     isValidName(name) {
-        return /^[a-zA-Z\s]+$/.test(name);
+        return /^(?=.*[a-zA-Z])[a-zA-Z0-9\s]+$/.test(name);
     }
 
     isValidPassword(password) {
@@ -12,18 +12,23 @@ class IsValid {
     }
 
     // addProduct  addProduct  addProduct
-    isValidCode(id){
-        const codeRegex = /^\d+(\.\d+)?$/;
-        if( !codeRegex.test(id) ){
+    isValidCode(code){
+        const codeRegex = /^\d+$/;
+        if( !codeRegex.test(code) ){
             return false;
         }else {
             return true;
         }
     }
+    
+    // for price
+    isValidPrice(price){
+        return /^\d+(\.\d+)?$/.test(price)
+    }
 
-    // for price and count
-    isValidNumber(num){
-        return /^\d+(\.\d+)?$/.test(num);
+    // for count
+    isValidCount(num){
+        return /^\d+$/.test(num);
     }
 
     isValidCategory(category) {

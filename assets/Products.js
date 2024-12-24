@@ -6,7 +6,7 @@ class Products {
         this.validator = new IsValid();
     }
 
-    addproduct(name, id, price, category, count) {
+    addProduct(name, id, price, category, count) {
         const productInput = document.getElementById("nameInput");
         const codeInput = document.getElementById("codeInput");
         const priceInput = document.getElementById("priceInput");
@@ -15,9 +15,9 @@ class Products {
 
         const isProductInputValid = this.validator.isValidName(name);
         const isCodeInputValid = this.validator.isValidCode(id);
-        const isPriceInputValid = this.validator.isValidNumber(price);
+        const isPriceInputValid = this.validator.isValidPrice(price);
         const isCategoryInputValid = this.validator.isValidCategory(category);
-        const isCountInputValid = this.validator.isValidNumber(count);
+        const isCountInputValid = this.validator.isValidCount(count);
 
         this.validator.setInputState(productInput, isProductInputValid);
         this.validator.setInputState(codeInput, isCodeInputValid);
@@ -26,7 +26,9 @@ class Products {
         this.validator.setInputState(countInput, isCountInputValid);
 
         if(isProductInputValid && isCodeInputValid && isPriceInputValid && isCategoryInputValid && isCountInputValid){
-            console.log("eslammmmmm");
+            return true;
+        }else {
+            return false;
         }
     }
 }

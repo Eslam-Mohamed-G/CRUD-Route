@@ -1,5 +1,6 @@
 import AuthSystem from './assets/AuthSystem.js';
 import LocalStorageManager from './assets/StorageManager.js';
+import Products from './assets/Products.js'
 
 // التأكد من وجود البيانات الافتراضية عند البداية
 if (!localStorage.getItem(LocalStorageManager.key)) {
@@ -85,6 +86,28 @@ btnAdd.addEventListener("click", ()=>{
     }
 });
 
+// addproducts   addproducts   addproducts   addproducts 
+const productInput = document.getElementById("nameInput");
+const codeInput = document.getElementById("codeInput");
+const priceInput = document.getElementById("priceInput");
+const categoryInput = document.getElementById("categoryInput");
+const countInput = document.getElementById("countInput");
+
+const addProductBTN = document.getElementById("addProduct");
+addProductBTN.addEventListener("click", ()=>{ 
+    const product = new Products();
+    const newProduct = product.addProduct(productInput.value, codeInput.value, priceInput.value, categoryInput.value, countInput.value)
+
+    if( !newProduct ){
+        console.log("noooo");
+    }else {
+        console.log("eslammmmmm");
+        productInput.value = "";
+        codeInput.value = "";
+        priceInput.value = "";
+        countInput.value = "";
+    }
+})
 window.onload = function() {
     const sessionActive = sessionStorage.getItem("sessionActive");
     const savedUser = sessionStorage.getItem("sessionUsername");
