@@ -20,10 +20,14 @@ class IsValid {
             return true;
         }
     }
-    
+
     // for price and count
     isValidNumber(num){
         return /^\d+(\.\d+)?$/.test(num);
+    }
+
+    isValidCategory(category) {
+        return category ? category : false;
     }
     
     // General function to set input state
