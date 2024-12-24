@@ -2,7 +2,6 @@ import StorageManager from "./StorageManager.js";
 import IsValid from "./isValid.js";
 class Products {
     constructor(){
-        this.productContainer = document.getElementById("productTable");
         this.productInput = document.getElementById("nameInput");
         this.codeInput = document.getElementById("codeInput");
         this.priceInput = document.getElementById("priceInput");
@@ -48,6 +47,32 @@ class Products {
         productsArray.push(product);
         StorageManager.saveProductData(productsArray);
         console.log(product);
+    }
+
+    productsTable() {
+        const productsArray = StorageManager.loadProductData();
+        const tableRows = [];
+        
+        for ( let i = 0; i < productsArray.length; i++) {
+            const productRow = document.createElement("tr");
+            productRow.innerHTML = 
+            `
+                <td>${productsArray[i].code}</td>
+                <td>${productsArray[i].name}</td>
+                <td>${productsArray[i].price}</td>
+                <td>${productsArray[i].category}</td>
+                <td class="d-none d-sm-block">${productsArray[i].description}</td>
+                <td>
+                    <div
+                        class="d-flex flex-row justify-content-between gap-2 align-items-center px-1">
+                        <i class="fa-solid fa-pen-to-square d-block" role="button"></i>
+                        <i class="fa-solid fa-trash-can d-block" role="button"></i>
+                    </div>
+                </td>
+            `
+            tableRows.push(productRow);
+        }
+        return tableRows;
     }
 }
 

@@ -120,6 +120,11 @@ window.onload = function () {
         navTabs.classList.replace("d-none", "d-flex")
         loginForm.classList.replace("d-block", "d-none")
         adminScreen.classList.replace("d-none", "d-block")
-
     }
+    const product = new Products();
+    const productRows = product.productsTable();
+    const productContainer = document.getElementById("productTable").querySelector("tbody");
+    productRows.forEach(element => {
+        productContainer.appendChild(element)
+    });
 }
