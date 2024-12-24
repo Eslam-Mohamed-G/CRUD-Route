@@ -17,7 +17,7 @@ const username = document.getElementById("userInput");
 const password = document.getElementById("passwordInput");
 const btnLogin = document.getElementById("login");
 
-btnLogin.addEventListener("click", () =>{
+btnLogin.addEventListener("click", () => {
     const user = AuthSystem.login(username.value, password.value);
     const savedUser = sessionStorage.getItem("sessionUsername");
 
@@ -26,7 +26,7 @@ btnLogin.addEventListener("click", () =>{
         console.log("false");
     } else {
         password.style.border = "1px solid transparent";
-        if(user.role === "admin"){
+        if (user.role === "admin") {
             theNameOfUser.textContent = `${savedUser}`
             headerName.classList.replace("d-block", "d-none")
             userLogin.classList.replace("d-none", "d-flex")
@@ -34,7 +34,7 @@ btnLogin.addEventListener("click", () =>{
             loginForm.classList.replace("d-block", "d-none")
             adminScreen.classList.replace("d-none", "d-block")
             console.log("admin");
-        }else {
+        } else {
             console.log("any");
         }
         // console.log("done");
@@ -60,7 +60,7 @@ btnlogout.addEventListener("click", () => {
             headerName.classList.replace("d-none", "d-block")
             userLogin.classList.replace("d-flex", "d-none")
             navTabs.classList.replace("d-flex", "d-none")
-            loginForm.classList.replace("d-none","d-block")
+            loginForm.classList.replace("d-none", "d-block")
             adminScreen.classList.replace("d-block", "d-none")
             theNameOfUser.textContent = "";
             sessionStorage.removeItem("sessionActive");
@@ -76,10 +76,10 @@ const newRole = document.getElementById("newRole");
 const messageError = document.getElementById("messageError");
 const btnAdd = document.getElementById("addUserForm");
 
-btnAdd.addEventListener("click", ()=>{
+btnAdd.addEventListener("click", () => {
     const user = AuthSystem.adduser(newUsername.value, newPassword.value, newRole.value);
 
-    if(user) {
+    if (user) {
         newUsername.value = "";
         newPassword.value = "";
         messageError.textContent = "";
@@ -95,13 +95,13 @@ const description = document.getElementById("textarea");
 const countInput = document.getElementById("countInput");
 
 const addProductBTN = document.getElementById("addProduct");
-addProductBTN.addEventListener("click", ()=>{ 
+addProductBTN.addEventListener("click", () => {
     const product = new Products();
     const newProduct = product.isFormProductValid(productInput.value, codeInput.value, priceInput.value, categoryInput.value, countInput.value)
 
-    if( !newProduct ){
+    if (!newProduct) {
         console.log("noooo");
-    }else {
+    } else {
         productInput.value = "";
         codeInput.value = "";
         priceInput.value = "";
@@ -109,17 +109,17 @@ addProductBTN.addEventListener("click", ()=>{
         description.value = "";
     }
 })
-window.onload = function() {
+window.onload = function () {
     const sessionActive = sessionStorage.getItem("sessionActive");
     const savedUser = sessionStorage.getItem("sessionUsername");
 
-    if(sessionActive === "true"){
+    if (sessionActive === "true") {
         theNameOfUser.textContent = `${savedUser}`
-            headerName.classList.replace("d-block", "d-none")
-            userLogin.classList.replace("d-none", "d-flex")
-            navTabs.classList.replace("d-none", "d-flex")
-            loginForm.classList.replace("d-block", "d-none")
-            adminScreen.classList.replace("d-none", "d-block")
+        headerName.classList.replace("d-block", "d-none")
+        userLogin.classList.replace("d-none", "d-flex")
+        navTabs.classList.replace("d-none", "d-flex")
+        loginForm.classList.replace("d-block", "d-none")
+        adminScreen.classList.replace("d-none", "d-block")
 
     }
 }
