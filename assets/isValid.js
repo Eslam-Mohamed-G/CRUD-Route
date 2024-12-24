@@ -29,6 +29,7 @@ class IsValid {
     isValidCategory(category) {
         return category ? category : false;
     }
+    // addProduct  addProduct  addProduct
     
     // General function to set input state
     setInputState(input, isValid) {
