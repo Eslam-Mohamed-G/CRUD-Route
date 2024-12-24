@@ -12,6 +12,22 @@ class Products {
         const priceInput = document.getElementById("priceInput");
         const categoryInput = document.getElementById("categoryInput");
         const countInput = document.getElementById("countInput");
+
+        const isProductInputValid = this.validator.isValidName(name);
+        const isCodeInputValid = this.validator.isValidCode(id);
+        const isPriceInputValid = this.validator.isValidNumber(price);
+        const isCategoryInputValid = this.validator.isValidCategory(category);
+        const isCountInputValid = this.validator.isValidNumber(count);
+
+        this.validator.setInputState(productInput, isProductInputValid);
+        this.validator.setInputState(codeInput, isCodeInputValid);
+        this.validator.setInputState(priceInput, isPriceInputValid);
+        this.validator.setInputState(categoryInput, isCategoryInputValid);
+        this.validator.setInputState(countInput, isCountInputValid);
+
+        if(isProductInputValid && isCodeInputValid && isPriceInputValid && isCategoryInputValid && isCountInputValid){
+            console.log("eslammmmmm");
+        }
     }
 }
 
