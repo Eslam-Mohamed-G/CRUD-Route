@@ -48,7 +48,7 @@ class Products {
             description: this.description.value,
         }
         this.productsArray.push(product);
-        StorageManager.saveProductData(productsArray);
+        StorageManager.saveProductData(this.productsArray);
         console.log(product);
     }
 
