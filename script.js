@@ -7,6 +7,7 @@ if (!localStorage.getItem(LocalStorageManager.key)) {
 }
 
 const headerName = document.querySelector(".navbar").querySelector("h1")
+const theNameOfUser = document.querySelector(".theNameOfUser");
 const userLogin = document.querySelector(".userLogin");
 const navTabs = document.querySelector(".nav-tabs");
 const loginForm = document.querySelector(".loginForm");
@@ -15,6 +16,7 @@ const username = document.getElementById("userInput");
 const password = document.getElementById("passwordInput");
 const btnLogin = document.getElementById("login");
 
+const savedUser = sessionStorage.getItem("sessionUsername");
 btnLogin.addEventListener("click", () =>{
     const user = AuthSystem.login(username.value, password.value);
 
@@ -24,6 +26,7 @@ btnLogin.addEventListener("click", () =>{
     } else {
         password.style.border = "1px solid transparent";
         if(user.role === "admin"){
+            theNameOfUser.textContent = `${savedUser}`
             headerName.classList.replace("d-block", "d-none")
             userLogin.classList.replace("d-none", "d-flex")
             navTabs.classList.replace("d-none", "d-flex")
@@ -39,10 +42,9 @@ btnLogin.addEventListener("click", () =>{
 
 const btnlogout = document.getElementById("logout");
 btnlogout.addEventListener("click", () => {
-
     Swal.fire({
         title: 'Are you sure?',
-        text: `admin`,
+        text: `${savedUser}`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: 'red',
@@ -58,7 +60,9 @@ btnlogout.addEventListener("click", () => {
             navTabs.classList.replace("d-flex", "d-none")
             loginForm.classList.replace("d-none","d-block")
             adminScreen.classList.replace("d-block", "d-none")
+            theNameOfUser.textContent = "";
             sessionStorage.removeItem("sessionActive");
+            sessionStorage.removeItem("sessionUsername");
         }
     })
 });
@@ -84,6 +88,7 @@ window.onload = function() {
     const sessionActive = sessionStorage.getItem("sessionActive");
 
     if(sessionActive === "true"){
+        theNameOfUser.textContent = `${savedUser}`
             headerName.classList.replace("d-block", "d-none")
             userLogin.classList.replace("d-none", "d-flex")
             navTabs.classList.replace("d-none", "d-flex")
