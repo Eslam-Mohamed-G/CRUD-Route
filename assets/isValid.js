@@ -10,7 +10,21 @@ class IsValid {
     isValidRole(role){
         return role ? role : "user";
     }
+    
+    // addProduct  addProduct  addProduct
+    isValidCode(id){
+        const codeRegex = /^\d+(\.\d+)?$/;
+        if( !codeRegex.test(id) ){
+            return false;
+        }else {
+            return true;
+        }
+    }
 
+    isValidNumber(num){
+        return /^\d+(\.\d+)?$/.test(num);
+    }
+    
     // General function to set input state
     setInputState(input, isValid) {
         if (isValid) {
