@@ -96,7 +96,7 @@ const countInput = document.getElementById("countInput");
 const addProductBTN = document.getElementById("addProduct");
 addProductBTN.addEventListener("click", ()=>{ 
     const product = new Products();
-    const newProduct = product.addProduct(productInput.value, codeInput.value, priceInput.value, categoryInput.value, countInput.value)
+    const newProduct = product.isFormProductValid(productInput.value, codeInput.value, priceInput.value, categoryInput.value, countInput.value)
 
     if( !newProduct ){
         console.log("noooo");

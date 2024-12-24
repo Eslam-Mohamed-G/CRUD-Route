@@ -6,7 +6,7 @@ class Products {
         this.validator = new IsValid();
     }
 
-    addProduct(name, id, price, category, count) {
+    isFormProductValid(name, id, price, category, count) {
         const productInput = document.getElementById("nameInput");
         const codeInput = document.getElementById("codeInput");
         const priceInput = document.getElementById("priceInput");
