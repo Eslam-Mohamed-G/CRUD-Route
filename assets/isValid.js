@@ -10,7 +10,7 @@ class IsValid {
     isValidRole(role){
         return role ? role : "user";
     }
-    
+
     // addProduct  addProduct  addProduct
     isValidCode(id){
         const codeRegex = /^\d+(\.\d+)?$/;
@@ -20,7 +20,8 @@ class IsValid {
             return true;
         }
     }
-
+    
+    // for price and count
     isValidNumber(num){
         return /^\d+(\.\d+)?$/.test(num);
     }
