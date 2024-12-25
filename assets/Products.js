@@ -72,7 +72,6 @@ class Products {
 
             productRow.querySelector(".delete-btn").addEventListener("click", () => {
                 this.deleteProduct(i);
-                console.log(i);
             });
 
             productRow.querySelector(".update-btn").addEventListener("click", () => {
