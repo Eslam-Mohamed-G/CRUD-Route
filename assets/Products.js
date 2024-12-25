@@ -1,7 +1,7 @@
 import StorageManager from "./StorageManager.js";
 import IsValid from "./isValid.js";
 class Products {
-    constructor(){
+    constructor() {
         this.productInput = document.getElementById("nameInput");
         this.codeInput = document.getElementById("codeInput");
         this.priceInput = document.getElementById("priceInput");
@@ -10,8 +10,6 @@ class Products {
         this.dateInput = document.getElementById("dateInput");
         this.description = document.getElementById("textarea");
 
-        this.deleteBTN = document.querySelector(".fa-trash-can");
-        this.updateBTN = document.querySelector(".fa-pen-to-square"); 
         this.validator = new IsValid();
         this.productsArray = StorageManager.loadProductData();
     }
@@ -29,15 +27,14 @@ class Products {
         this.validator.setInputState(this.categoryInput, isCategoryInputValid);
         this.validator.setInputState(this.countInput, isCountInputValid);
 
-        if(isProductInputValid && isCodeInputValid && isPriceInputValid && isCategoryInputValid && isCountInputValid){
-            this.saveProductInLocalStorge()
+        if (isProductInputValid && isCodeInputValid && isPriceInputValid && isCategoryInputValid && isCountInputValid) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
-    saveProductInLocalStorge() {
+    saveProductInLocalStorage() {
         const product = {
             date: this.dateInput.value,
             code: this.codeInput.value,
@@ -49,16 +46,41 @@ class Products {
         }
         this.productsArray.push(product);
         StorageManager.saveProductData(this.productsArray);
-        console.log(product);
     }
 
-    productsTable() {
-        const tableRows = [];
-        
-        for ( let i = 0; i < this.productsArray.length; i++) {
+
+    // productsTable() {
+    //     const tableRows = [];
+    //     tableBody.innerHTML = "";
+
+    //     for ( let i = 0; i < this.productsArray.length; i++) {
+    //         const productRow = document.createElement("tr");
+    //         productRow.innerHTML = 
+    //         `
+    //             <td>${this.productsArray[i].code}</td>
+    //             <td>${this.productsArray[i].name}</td>
+    //             <td>${this.productsArray[i].price}</td>
+    //             <td>${this.productsArray[i].category}</td>
+    //             <td class="d-none d-sm-block">${this.productsArray[i].description}</td>
+    //             <td>
+    //                 <div
+    //                     class="d-flex flex-row justify-content-between gap-2 align-items-center px-1">
+    //                     <i class="fa-solid fa-pen-to-square d-block" role="button"></i>
+    //                     <i class="fa-solid fa-trash-can d-block" role="button"></i>
+    //                 </div>
+    //             </td>
+    //         `
+    //         tableRows.push(productRow);
+    //     }
+    //     return tableRows;
+    // }
+    renderProductsTable() {
+        const tableBody = document.getElementById("productTable").querySelector("tbody");
+        tableBody.innerHTML = "";
+
+        for (let i = 0; i < this.productsArray.length; i++) {
             const productRow = document.createElement("tr");
-            productRow.innerHTML = 
-            `
+            productRow.innerHTML = `
                 <td>${this.productsArray[i].code}</td>
                 <td>${this.productsArray[i].name}</td>
                 <td>${this.productsArray[i].price}</td>
@@ -67,14 +89,24 @@ class Products {
                 <td>
                     <div
                         class="d-flex flex-row justify-content-between gap-2 align-items-center px-1">
-                        <i class="fa-solid fa-pen-to-square d-block" role="button"></i>
-                        <i class="fa-solid fa-trash-can d-block" role="button"></i>
+                        <i class="fa-solid fa-pen-to-square d-block update-btn" role="button"></i>
+                        <i class="fa-solid fa-trash-can d-block delete-btn" role="button"></i>
                     </div>
                 </td>
-            `
-            tableRows.push(productRow);
+            `;
+            tableBody.appendChild(productRow);
+
+            // إضافة أحداث التحديث والحذف
+            productRow.querySelector(".delete-btn").addEventListener("click", () => {
+                // this.deleteProduct(i);
+                console.log(i);
+            });
+
+            productRow.querySelector(".update-btn").addEventListener("click", () => {
+                // this.updateProduct(i);
+                console.log(i);
+            });
         }
-        return tableRows;
     }
 }
 

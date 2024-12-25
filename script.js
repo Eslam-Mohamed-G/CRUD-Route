@@ -102,6 +102,8 @@ addProductBTN.addEventListener("click", () => {
     if (!newProduct) {
         console.log("noooo");
     } else {
+        product.saveProductInLocalStorage();
+        product.renderProductsTable();
         productInput.value = "";
         codeInput.value = "";
         priceInput.value = "";
@@ -122,9 +124,5 @@ window.onload = function () {
         adminScreen.classList.replace("d-none", "d-block")
     }
     const product = new Products();
-    const productRows = product.productsTable();
-    const productContainer = document.getElementById("productTable").querySelector("tbody");
-    productRows.forEach(element => {
-        productContainer.appendChild(element)
-    });
+    product.renderProductsTable();
 }
