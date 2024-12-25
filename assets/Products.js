@@ -9,9 +9,13 @@ class Products {
         this.countInput = document.getElementById("countInput");
         this.dateInput = document.getElementById("dateInput");
         this.description = document.getElementById("textarea");
+        this.productBTN = document.getElementById("addProduct");
 
         this.validator = new IsValid();
         this.productsArray = StorageManager.loadProductData();
+
+        this.modeOfProductBTN = false;
+        this.mainIndex;
     }
 
     isFormProductValid(name, id, price, category, count) {
@@ -43,10 +47,22 @@ class Products {
             name: this.productInput.value,
             category: this.categoryInput.value,
             description: this.description.value,
+        };
+    
+        if (!this.modeOfProductBTN) {
+            console.log("Adding new product.");
+            this.productsArray.push(product);
+        } else {
+            console.log("Updating product at index:", this.mainIndex);
+            this.productsArray[this.mainIndex] = product;            
+            this.productBTN.textContent = "Add";
+            this.modeOfProductBTN = false;
         }
-        this.productsArray.push(product);
+    
         StorageManager.saveProductData(this.productsArray);
+        this.renderProductsTable();
     }
+    
 
     renderProductsTable() {
         const tableBody = document.getElementById("productTable").querySelector("tbody");
@@ -75,11 +91,11 @@ class Products {
             });
 
             productRow.querySelector(".update-btn").addEventListener("click", () => {
-                // this.updateProduct(i);
-                console.log(i);
+                this.updateProduct(i);
             });
         }
     }
+    
 
     deleteProduct(index) {
         Swal.fire({
@@ -100,6 +116,36 @@ class Products {
         })
     }
 
+    updateProduct(index) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `${this.productsArray[index].name}`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'red',
+            cancelButtonColor: '#000',
+            confirmButtonText: 'ok',
+            cancelButtonText: "Cancel"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.productBTN.textContent = "Update";
+                this.modeOfProductBTN = true;
+                this.mainIndex = index;
+
+                const product = this.productsArray[index];
+                this.dateInput.value = product.date;
+                this.codeInput.value = product.code;
+                this.priceInput.value = product.price;
+                this.countInput.value = product.count;
+                this.productInput.value = product.name;
+                this.categoryInput.value = product.category;
+                this.description.value = product.description;
+    
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    }
+    
 }
 
 export default Products;

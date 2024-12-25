@@ -94,8 +94,8 @@ const categoryInput = document.getElementById("categoryInput");
 const description = document.getElementById("textarea");
 const countInput = document.getElementById("countInput");
 
-const addProductBTN = document.getElementById("addProduct");
-addProductBTN.addEventListener("click", () => {
+const productBTN = document.getElementById("addProduct");
+productBTN.addEventListener("click", () => {
     const product = new Products();
     const newProduct = product.isFormProductValid(productInput.value, codeInput.value, priceInput.value, categoryInput.value, countInput.value)
 
@@ -103,12 +103,12 @@ addProductBTN.addEventListener("click", () => {
         console.log("noooo");
     } else {
         product.saveProductInLocalStorage();
-        product.renderProductsTable();
         productInput.value = "";
         codeInput.value = "";
         priceInput.value = "";
         countInput.value = "";
         description.value = "";
+        productBTN.textContent = "add"
     }
 })
 window.onload = function () {
