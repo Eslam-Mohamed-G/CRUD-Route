@@ -83,9 +83,22 @@ class Products {
     }
 
     deleteProduct(index) {
-        this.productsArray.splice(index, 1);
-        StorageManager.saveProductData(this.productsArray);
-        this.renderProductsTable();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `${this.productsArray[index].name}`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'red',
+            cancelButtonColor: '#000',
+            confirmButtonText: 'ok',
+            cancelButtonText: "Cancle"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.productsArray.splice(index, 1);
+                StorageManager.saveProductData(this.productsArray);
+                this.renderProductsTable();
+            }
+        })
     }
 
 }
