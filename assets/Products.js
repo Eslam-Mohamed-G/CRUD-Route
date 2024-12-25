@@ -48,32 +48,6 @@ class Products {
         StorageManager.saveProductData(this.productsArray);
     }
 
-
-    // productsTable() {
-    //     const tableRows = [];
-    //     tableBody.innerHTML = "";
-
-    //     for ( let i = 0; i < this.productsArray.length; i++) {
-    //         const productRow = document.createElement("tr");
-    //         productRow.innerHTML = 
-    //         `
-    //             <td>${this.productsArray[i].code}</td>
-    //             <td>${this.productsArray[i].name}</td>
-    //             <td>${this.productsArray[i].price}</td>
-    //             <td>${this.productsArray[i].category}</td>
-    //             <td class="d-none d-sm-block">${this.productsArray[i].description}</td>
-    //             <td>
-    //                 <div
-    //                     class="d-flex flex-row justify-content-between gap-2 align-items-center px-1">
-    //                     <i class="fa-solid fa-pen-to-square d-block" role="button"></i>
-    //                     <i class="fa-solid fa-trash-can d-block" role="button"></i>
-    //                 </div>
-    //             </td>
-    //         `
-    //         tableRows.push(productRow);
-    //     }
-    //     return tableRows;
-    // }
     renderProductsTable() {
         const tableBody = document.getElementById("productTable").querySelector("tbody");
         tableBody.innerHTML = "";
@@ -96,9 +70,8 @@ class Products {
             `;
             tableBody.appendChild(productRow);
 
-            // إضافة أحداث التحديث والحذف
             productRow.querySelector(".delete-btn").addEventListener("click", () => {
-                // this.deleteProduct(i);
+                this.deleteProduct(i);
                 console.log(i);
             });
 
@@ -108,6 +81,13 @@ class Products {
             });
         }
     }
+
+    deleteProduct(index) {
+        this.productsArray.splice(index, 1);
+        StorageManager.saveProductData(this.productsArray);
+        this.renderProductsTable();
+    }
+
 }
 
 export default Products;
