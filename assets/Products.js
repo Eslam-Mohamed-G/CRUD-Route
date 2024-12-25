@@ -18,12 +18,12 @@ class Products {
         this.mainIndex;
     }
 
-    isFormProductValid(name, id, price, category, count) {
-        const isProductInputValid = this.validator.isValidName(name);
-        const isCodeInputValid = this.validator.isValidCode(id);
-        const isPriceInputValid = this.validator.isValidPrice(price);
-        const isCategoryInputValid = this.validator.isValidCategory(category);
-        const isCountInputValid = this.validator.isValidCount(count);
+    isFormProductValid() {
+        const isProductInputValid = this.validator.isValidName(this.productInput.value);
+        const isCodeInputValid = this.validator.isValidCode(this.codeInput.value);
+        const isPriceInputValid = this.validator.isValidPrice(this.priceInput.value);
+        const isCategoryInputValid = this.validator.isValidCategory(this.categoryInput.value);
+        const isCountInputValid = this.validator.isValidCount(this.countInput.value);
 
         this.validator.setInputState(this.productInput, isProductInputValid);
         this.validator.setInputState(this.codeInput, isCodeInputValid);
@@ -31,11 +31,7 @@ class Products {
         this.validator.setInputState(this.categoryInput, isCategoryInputValid);
         this.validator.setInputState(this.countInput, isCountInputValid);
 
-        if (isProductInputValid && isCodeInputValid && isPriceInputValid && isCategoryInputValid && isCountInputValid) {
-            return true;
-        } else {
-            return false;
-        }
+        return (isProductInputValid && isCodeInputValid && isPriceInputValid && isCategoryInputValid && isCountInputValid);
     }
 
     saveProductInLocalStorage() {
@@ -61,6 +57,7 @@ class Products {
     
         StorageManager.saveProductData(this.productsArray);
         this.renderProductsTable();
+        this.clearForm();
     }
     
 
@@ -144,6 +141,16 @@ class Products {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
+    }
+
+    clearForm() {
+        this.dateInput.value = "";
+        this.codeInput.value = "";
+        this.priceInput.value = "";
+        this.countInput.value = "";
+        this.productInput.value = "";
+        this.categoryInput.value = "";
+        this.description.value = "";
     }
     
 }

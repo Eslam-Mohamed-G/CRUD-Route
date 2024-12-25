@@ -87,27 +87,13 @@ btnAdd.addEventListener("click", () => {
 });
 
 // addproducts   addproducts   addproducts   addproducts 
-const productInput = document.getElementById("nameInput");
-const codeInput = document.getElementById("codeInput");
-const priceInput = document.getElementById("priceInput");
-const categoryInput = document.getElementById("categoryInput");
-const description = document.getElementById("textarea");
-const countInput = document.getElementById("countInput");
-
 const productBTN = document.getElementById("addProduct");
 productBTN.addEventListener("click", () => {
     const product = new Products();
-    const newProduct = product.isFormProductValid(productInput.value, codeInput.value, priceInput.value, categoryInput.value, countInput.value)
+    // const newProduct = product.isFormProductValid(productInput.value, codeInput.value, priceInput.value, categoryInput.value, countInput.value)
 
-    if (!newProduct) {
-        console.log("noooo");
-    } else {
+    if (product.isFormProductValid()) {
         product.saveProductInLocalStorage();
-        productInput.value = "";
-        codeInput.value = "";
-        priceInput.value = "";
-        countInput.value = "";
-        description.value = "";
         productBTN.textContent = "add"
     }
 })
