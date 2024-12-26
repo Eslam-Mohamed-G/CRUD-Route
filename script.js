@@ -88,7 +88,9 @@ btnAdd.addEventListener("click", () => {
 
 // addproducts   addproducts   addproducts   addproducts 
 const productBTN = document.getElementById("addProduct");
-
+const dateInput = document.getElementById("dateInput");
+const today = new Date();
+const formattedDate = today.toISOString().split('T')[0];
 var modeOfProductBTN = false;
 var mainIndex;
 productBTN.addEventListener("click", () => {
@@ -125,6 +127,11 @@ window.onload = function () {
         loginForm.classList.replace("d-block", "d-none")
         adminScreen.classList.replace("d-none", "d-block")
     }
+
+    if (!dateInput.value) {
+        dateInput.value = formattedDate;
+    }
+    
     const product = new Products();
     product.renderProductsTable();
 }
