@@ -41,7 +41,7 @@ class Products {
             category: this.categoryInput.value,
             description: this.description.value,
         };
-    
+
         if (!mode) {
             this.productsArray.push(product);
         } else {

@@ -87,6 +87,7 @@ btnAdd.addEventListener("click", () => {
 });
 
 // addproducts   addproducts   addproducts   addproducts 
+const codeInput = document.getElementById("codeInput");
 const productBTN = document.getElementById("addProduct");
 const dateInput = document.getElementById("dateInput");
 const today = new Date();
@@ -95,11 +96,18 @@ var modeOfProductBTN = false;
 var mainIndex;
 productBTN.addEventListener("click", () => {
     const product = new Products();
+    const existingCode = LocalStorageManager.loadProductData();
+    const codeExists = existingCode.find((item) => item.code === codeInput.value)
 
     if (product.isFormProductValid()) {
-        product.saveProductInLocalStorage(modeOfProductBTN, mainIndex);
-        productBTN.textContent = "add";
-        modeOfProductBTN = false;
+        if(codeExists && modeOfProductBTN === false){
+            codeInput.style.border = "1px solid red"
+        }else {
+            codeInput.style.border = "1px solid transparent"
+            product.saveProductInLocalStorage(modeOfProductBTN, mainIndex);
+            productBTN.textContent = "add";
+            modeOfProductBTN = false;
+        }
     }
 })
 
@@ -131,7 +139,7 @@ window.onload = function () {
     if (!dateInput.value) {
         dateInput.value = formattedDate;
     }
-    
+
     const product = new Products();
     product.renderProductsTable();
 }

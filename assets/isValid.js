@@ -1,3 +1,4 @@
+import StorageManager from "./StorageManager.js";
 class IsValid {
     isValidName(name) {
         return /^(?=.*[a-zA-Z])[a-zA-Z0-9\s]+$/.test(name);
@@ -13,12 +14,7 @@ class IsValid {
 
     // addProduct  addProduct  addProduct
     isValidCode(code){
-        const codeRegex = /^\d+$/;
-        if( !codeRegex.test(code) ){
-            return false;
-        }else {
-            return true;
-        }
+        return /^\d+$/.test(code)
     }
     
     // for price
