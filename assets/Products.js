@@ -132,7 +132,6 @@ class Products {
     }    
 
     clearForm() {
-        this.dateInput.value = "";
         this.codeInput.value = "";
         this.priceInput.value = "";
         this.countInput.value = "";
