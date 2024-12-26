@@ -88,15 +88,31 @@ btnAdd.addEventListener("click", () => {
 
 // addproducts   addproducts   addproducts   addproducts 
 const productBTN = document.getElementById("addProduct");
+
+var modeOfProductBTN = false;
+var mainIndex;
 productBTN.addEventListener("click", () => {
     const product = new Products();
-    // const newProduct = product.isFormProductValid(productInput.value, codeInput.value, priceInput.value, categoryInput.value, countInput.value)
 
     if (product.isFormProductValid()) {
-        product.saveProductInLocalStorage();
-        productBTN.textContent = "add"
+        product.saveProductInLocalStorage(modeOfProductBTN, mainIndex);
+        productBTN.textContent = "add";
+        modeOfProductBTN = false;
     }
 })
+
+// updateBTN   updateBTN   updateBTN   updateBTN
+const table = document.getElementById("productTable");
+table.addEventListener("click", (event) => {
+    if (event.target.classList.contains("update-btn")) {
+        const index = Array.from(event.target.closest("tbody").children).indexOf(event.target.closest("tr"));
+        modeOfProductBTN = true;
+        mainIndex = index
+        const products = new Products(index);
+        products.updateProduct(index);
+    }
+});
+
 window.onload = function () {
     const sessionActive = sessionStorage.getItem("sessionActive");
     const savedUser = sessionStorage.getItem("sessionUsername");
