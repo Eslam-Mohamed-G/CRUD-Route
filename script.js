@@ -128,6 +128,7 @@ table.addEventListener("click", (event) => {
 const searchBTN = document.getElementById("searchBTN");
 const searchNameInput = document.getElementById("searchNameInput");
 const dataListOfNames = document.getElementById("dataListOfNames");
+const searchCategoryInput = document.getElementById("searchCategoryInput");
 searchNameInput.addEventListener("input", ()=>{
     let dataListOption = "";
     const existingProduct = LocalStorageManager.loadProductData();
@@ -142,9 +143,10 @@ searchNameInput.addEventListener("input", ()=>{
 searchBTN.addEventListener("click", ()=>{
     const validator = new IsValid();
     const isSearchInputValid = validator.isValidName(searchNameInput.value);
+    const isSearchCategoryInputValid = validator.isValidCategory(searchCategoryInput.value)
     
     const product = new Products();
-    if(isSearchInputValid){
+    if(isSearchInputValid || isSearchCategoryInputValid){
         product.searchProducts(searchNameInput.value)
     }else{
         validator.setInputState(searchNameInput, isSearchInputValid);
