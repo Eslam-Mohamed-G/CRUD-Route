@@ -20,7 +20,6 @@ const btnLogin = document.getElementById("login");
 
 btnLogin.addEventListener("click", () => {
     const user = AuthSystem.login(username.value, password.value);
-    console.log(user.role);
     const savedUser = sessionStorage.getItem("sessionUsername");
 
     if (!user) {
