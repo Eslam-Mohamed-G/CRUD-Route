@@ -16,6 +16,7 @@ const loginForm = document.querySelector(".loginForm");
 const adminScreen = document.querySelector(".admin");
 const username = document.getElementById("userInput");
 const password = document.getElementById("passwordInput");
+const logInError = document.getElementById("loginError");
 const btnLogin = document.getElementById("login");
 
 btnLogin.addEventListener("click", () => {
@@ -23,10 +24,9 @@ btnLogin.addEventListener("click", () => {
     const savedUser = sessionStorage.getItem("sessionUsername");
 
     if (!user) {
-        password.style.border = "1px solid red";
-        console.log("false");
+        logInError.textContent = "user name or password may be fales";
     } else {
-        password.style.border = "1px solid transparent";
+        logInError.textContent = "";
         theNameOfUser.textContent = `${savedUser}`
         headerName.classList.replace("d-block", "d-none")
         loginForm.classList.replace("d-block", "d-none")
