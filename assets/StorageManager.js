@@ -4,10 +4,11 @@ class StorageManager {
 
     static loadData() {
         const data = localStorage.getItem(this.key);
-        console.log(JSON.parse(data));
+        // console.log(JSON.parse(data));
         return data ? JSON.parse(data) : [];
     }
-// saveUserData
+
+    // saveUserData
     static saveUserData(data) {
         localStorage.setItem(this.key, JSON.stringify(data));
     }
@@ -26,7 +27,7 @@ class StorageManager {
 
     static loadProductData() {
         const data = localStorage.getItem(this.keyProduct);
-        console.log(JSON.parse(data));
+        // console.log(JSON.parse(data));
         return data ? JSON.parse(data) : [];
     }
 }
