@@ -1,6 +1,7 @@
 import AuthSystem from './assets/AuthSystem.js';
 import LocalStorageManager from './assets/StorageManager.js';
-import Products from './assets/Products.js'
+import Products from './assets/Products.js';
+import IsValid from "./assets/isValid.js";
 
 // التأكد من وجود البيانات الافتراضية عند البداية
 if (!localStorage.getItem(LocalStorageManager.key)) {
@@ -124,6 +125,7 @@ table.addEventListener("click", (event) => {
 });
 
 // search button   search button   search button   search button
+const searchBTN = document.getElementById("searchBTN");
 const searchNameInput = document.getElementById("searchNameInput");
 const dataListOfNames = document.getElementById("dataListOfNames");
 searchNameInput.addEventListener("input", ()=>{
@@ -135,6 +137,18 @@ searchNameInput.addEventListener("input", ()=>{
         }
     }
     dataListOfNames.innerHTML = dataListOption;
+});
+
+searchBTN.addEventListener("click", ()=>{
+    const validator = new IsValid();
+    const isSearchInputValid = validator.isValidName(searchNameInput.value);
+    validator.setInputState(searchNameInput, isSearchInputValid);
+    if(isSearchInputValid){
+        console.log("true");
+    }else{
+        console.log("fales");
+    }
+
 });
 
 window.onload = function () {

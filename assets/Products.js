@@ -11,6 +11,8 @@ class Products {
         this.description = document.getElementById("textarea");
         this.productBTN = document.getElementById("addProduct");
 
+        this.searchNameInput = document.getElementById("searchNameInput");
+
         this.validator = new IsValid();
         this.productsArray = StorageManager.loadProductData();
     }
@@ -130,6 +132,33 @@ class Products {
             }
         });
     }    
+    
+    searchProducts(searchValue){
+        const searchContainer = document.getElementById("searchContainer").querySelector("tbody");
+        searchContainer.innerHTML = "";
+
+        for(let i = 0; i<this.productsArray.length; i++){
+            if(this.productsArray[i].name.includes(searchValue)){
+                const productRow = document.createElement("tr");
+                productRow.innerHTML = `
+                <td>${this.productsArray[i].code}</td>
+                <td>${this.productsArray[i].name}</td>
+                <td>${this.productsArray[i].price}</td>
+                <td>${this.productsArray[i].category}</td>
+                <td class="d-none d-sm-block">${this.productsArray[i].description}</td>
+                <td>
+                    <div
+                        class="d-flex flex-row justify-content-between gap-2 align-items-center px-1">
+                        <i class="fa-solid fa-pen-to-square d-block update-btn" role="button"></i>
+                        <i class="fa-solid fa-trash-can d-block delete-btn" role="button"></i>
+                    </div>
+                </td>
+            `;
+            searchContainer.appendChild(productRow);
+
+            }
+        }
+    }
 
     clearForm() {
         this.codeInput.value = "";
