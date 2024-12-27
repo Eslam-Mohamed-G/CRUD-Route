@@ -15,9 +15,10 @@ class AuthSystem {
         this.validator.setInputState(username, isUserNameValid)
         this.validator.setInputState(userPassword, isUserPasswordValid)
         if (isUserNameValid && isUserPasswordValid) {
-            sessionStorage.setItem("sessionActive", "true");
-            sessionStorage.setItem("sessionUsername", name);
             const user = userArray.find(user => user.name === name && user.password === password);
+            sessionStorage.setItem("sessionActive", true);
+            sessionStorage.setItem("sessionUsername", name);
+            sessionStorage.setItem("sessionRole", user.role)
             return user || null;
         }
     }

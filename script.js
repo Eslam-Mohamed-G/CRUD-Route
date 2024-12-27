@@ -20,6 +20,7 @@ const btnLogin = document.getElementById("login");
 
 btnLogin.addEventListener("click", () => {
     const user = AuthSystem.login(username.value, password.value);
+    console.log(user.role);
     const savedUser = sessionStorage.getItem("sessionUsername");
 
     if (!user) {
@@ -27,18 +28,16 @@ btnLogin.addEventListener("click", () => {
         console.log("false");
     } else {
         password.style.border = "1px solid transparent";
+        theNameOfUser.textContent = `${savedUser}`
+        headerName.classList.replace("d-block", "d-none")
+        loginForm.classList.replace("d-block", "d-none")
+        userLogin.classList.replace("d-none", "d-flex")
         if (user.role === "admin") {
-            theNameOfUser.textContent = `${savedUser}`
-            headerName.classList.replace("d-block", "d-none")
-            userLogin.classList.replace("d-none", "d-flex")
             navTabs.classList.replace("d-none", "d-flex")
-            loginForm.classList.replace("d-block", "d-none")
             adminScreen.classList.replace("d-none", "d-block")
-            console.log("admin");
         } else {
-            console.log("any");
+
         }
-        // console.log("done");
     }
 });
 
@@ -158,14 +157,19 @@ searchBTN.addEventListener("click", ()=>{
 window.onload = function () {
     const sessionActive = sessionStorage.getItem("sessionActive");
     const savedUser = sessionStorage.getItem("sessionUsername");
-
-    if (sessionActive === "true") {
-        theNameOfUser.textContent = `${savedUser}`
-        headerName.classList.replace("d-block", "d-none")
-        userLogin.classList.replace("d-none", "d-flex")
-        navTabs.classList.replace("d-none", "d-flex")
-        loginForm.classList.replace("d-block", "d-none")
-        adminScreen.classList.replace("d-none", "d-block")
+    const roleOfUser = sessionStorage.getItem("sessionRole");
+    
+    if (sessionActive && roleOfUser) {
+        theNameOfUser.textContent = `${savedUser}`;
+        userLogin.classList.replace("d-none", "d-flex");
+        loginForm.classList.replace("d-block", "d-none");
+        headerName.classList.replace("d-block", "d-none");
+        if(roleOfUser === "admin"){
+            navTabs.classList.replace("d-none", "d-flex");
+            adminScreen.classList.replace("d-none", "d-block");
+        }else {
+            
+        }
     }
 
     if (!dateInput.value) {
