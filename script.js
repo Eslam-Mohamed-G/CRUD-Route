@@ -123,6 +123,20 @@ table.addEventListener("click", (event) => {
     }
 });
 
+// search button   search button   search button   search button
+const searchNameInput = document.getElementById("searchNameInput");
+const dataListOfNames = document.getElementById("dataListOfNames");
+searchNameInput.addEventListener("input", ()=>{
+    let dataListOption = "";
+    const existingProduct = LocalStorageManager.loadProductData();
+    for(let i=0; i<existingProduct.length;i++){
+        if(existingProduct[i].name.toLowerCase().includes(searchNameInput.value.toLowerCase())){
+            dataListOption +=`<option>${existingProduct[i].name}</option>`
+        }
+    }
+    dataListOfNames.innerHTML = dataListOption;
+})
+
 window.onload = function () {
     const sessionActive = sessionStorage.getItem("sessionActive");
     const savedUser = sessionStorage.getItem("sessionUsername");

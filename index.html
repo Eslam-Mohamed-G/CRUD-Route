@@ -157,12 +157,16 @@
                             <div class="row d-flex flex-column flex-md-row mb-3 gy-3">
                                 <div class="col input-group">
                                     <span class="input-group-text">product search</span>
-                                    <input type="text" class="form-control" placeholder="Search By Name" id="codeInput">
+                                    <input type="text" list="dataListOfNames" class="form-control rounded-end"
+                                        placeholder="Search By Name" id="searchNameInput">
+                                    <datalist id="dataListOfNames">
+
+                                    </datalist>
                                 </div>
 
                                 <div class="col input-group">
                                     <span class="input-group-text">Options</span>
-                                    <select class="form-select" id="categoryInput">
+                                    <select class="form-select" id="searchCategoryInput">
                                         <option value="" selected class="d-none">Choose...</option>
                                         <option value="samsung">Samsung</option>
                                         <option value="oppo">Oppo</option>
@@ -170,6 +174,12 @@
                                         <option value="huawei">huawei</option>
                                     </select>
                                 </div>
+                            </div>
+
+                            <div class="input-group">
+                                <button type="button"
+                                    class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white"
+                                    id="searchBTN">Search</button>
                             </div>
 
                         </form>
@@ -233,7 +243,8 @@
 
                             <div class="col input-group mb-3">
                                 <label class="input-group-text" for="newPassword">Password</label>
-                                <input type="password" class="form-control" id="newPassword" placeholder="Enter password">
+                                <input type="password" class="form-control" id="newPassword"
+                                    placeholder="Enter password">
                             </div>
 
                             <div class="col input-group">
@@ -244,7 +255,9 @@
                                 </select>
                             </div>
                             <div class="input-group">
-                                <button type="button" class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white" id="addUserForm">Add User</button>
+                                <button type="button"
+                                    class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white"
+                                    id="addUserForm">Add User</button>
                             </div>
 
                         </form>
