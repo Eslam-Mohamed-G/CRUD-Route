@@ -62,8 +62,7 @@ btnlogout.addEventListener("click", () => {
             loginForm.classList.replace("d-none", "d-block")
             adminScreen.classList.replace("d-block", "d-none")
             theNameOfUser.textContent = "";
-            sessionStorage.removeItem("sessionActive");
-            sessionStorage.removeItem("sessionUsername");
+            sessionStorage.clear();
         }
     })
 });
@@ -158,16 +157,15 @@ window.onload = function () {
     const savedUser = sessionStorage.getItem("sessionUsername");
     const roleOfUser = sessionStorage.getItem("sessionRole");
     
-    if (sessionActive && roleOfUser) {
+    if (sessionActive && savedUser && roleOfUser) {
         theNameOfUser.textContent = `${savedUser}`;
         userLogin.classList.replace("d-none", "d-flex");
-        loginForm.classList.replace("d-block", "d-none");
         headerName.classList.replace("d-block", "d-none");
-        if(roleOfUser === "admin"){
+        loginForm.classList.replace("d-block", "d-none");
+        if(savedUser && roleOfUser === "admin"){
             navTabs.classList.replace("d-none", "d-flex");
             adminScreen.classList.replace("d-none", "d-block");
         }else {
-            
         }
     }
 
