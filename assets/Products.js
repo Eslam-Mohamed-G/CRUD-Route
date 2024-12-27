@@ -12,6 +12,7 @@ class Products {
         this.productBTN = document.getElementById("addProduct");
 
         this.searchNameInput = document.getElementById("searchNameInput");
+        this.searchCategoryInput = document.getElementById("searchCategoryInput");
 
         this.validator = new IsValid();
         this.productsArray = StorageManager.loadProductData();
@@ -50,9 +51,10 @@ class Products {
             this.productsArray[index] = product;
             this.productBTN.textContent = "Add";
         }
-    
+
         StorageManager.saveProductData(this.productsArray);
         this.renderProductsTable();
+        this.searchProducts();
         this.clearForm();
     }
 
@@ -78,13 +80,13 @@ class Products {
             `;
             tableBody.appendChild(productRow);
 
-            productRow.querySelector(".delete-btn").addEventListener("click", () => {
-                this.deleteProduct(i);
-            });
+            // productRow.querySelector(".delete-btn").addEventListener("click", () => {
+            //     this.deleteProduct(i);
+            // });
 
         }
     }
-    
+
 
     deleteProduct(index) {
         Swal.fire({
@@ -101,6 +103,7 @@ class Products {
                 this.productsArray.splice(index, 1);
                 StorageManager.saveProductData(this.productsArray);
                 this.renderProductsTable();
+                this.searchProducts();
             }
         })
     }
@@ -127,23 +130,24 @@ class Products {
                 this.productInput.value = product.name;
                 this.categoryInput.value = product.category;
                 this.description.value = product.description;
-    
+
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
-    }    
-    
-    searchProducts(searchValue){
+    }
+
+    searchProducts(searchValue) {
         const searchContainer = document.getElementById("searchContainer").querySelector("tbody");
         searchContainer.innerHTML = "";
 
-        for(let i = 0; i<this.productsArray.length; i++){
-            if(this.productsArray[i].name.includes(searchValue)){
+        for (let i = 0; i < this.productsArray.length; i++) {
+            if (this.productsArray[i].name.includes(searchValue)) {
                 const productRow = document.createElement("tr");
                 productRow.innerHTML = `
                 <td>${this.productsArray[i].code}</td>
                 <td>${this.productsArray[i].name}</td>
                 <td>${this.productsArray[i].price}</td>
+                <td>${this.productsArray[i].count}</td>
                 <td>${this.productsArray[i].category}</td>
                 <td class="d-none d-sm-block">${this.productsArray[i].description}</td>
                 <td>
@@ -154,7 +158,10 @@ class Products {
                     </div>
                 </td>
             `;
-            searchContainer.appendChild(productRow);
+                searchContainer.appendChild(productRow);
+                productRow.querySelector(".delete-btn").addEventListener("click", () => {
+                    this.deleteProduct(i);
+                });
 
             }
         }
@@ -168,7 +175,7 @@ class Products {
         this.categoryInput.value = "";
         this.description.value = "";
     }
-    
+
 }
 
 export default Products;

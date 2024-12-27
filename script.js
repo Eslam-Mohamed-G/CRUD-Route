@@ -142,11 +142,12 @@ searchNameInput.addEventListener("input", ()=>{
 searchBTN.addEventListener("click", ()=>{
     const validator = new IsValid();
     const isSearchInputValid = validator.isValidName(searchNameInput.value);
-    validator.setInputState(searchNameInput, isSearchInputValid);
+    
+    const product = new Products();
     if(isSearchInputValid){
-        console.log("true");
+        product.searchProducts(searchNameInput.value)
     }else{
-        console.log("fales");
+        validator.setInputState(searchNameInput, isSearchInputValid);
     }
 
 });
