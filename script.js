@@ -135,7 +135,7 @@ searchNameInput.addEventListener("input", ()=>{
         }
     }
     dataListOfNames.innerHTML = dataListOption;
-})
+});
 
 window.onload = function () {
     const sessionActive = sessionStorage.getItem("sessionActive");
