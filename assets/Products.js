@@ -80,9 +80,9 @@ class Products {
             `;
             tableBody.appendChild(productRow);
 
-            // productRow.querySelector(".delete-btn").addEventListener("click", () => {
-            //     this.deleteProduct(i);
-            // });
+            productRow.querySelector(".delete-btn").addEventListener("click", () => {
+                this.deleteProduct(i);
+            });
 
         }
     }

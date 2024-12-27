@@ -148,6 +148,7 @@ searchBTN.addEventListener("click", ()=>{
     const product = new Products();
     if(isSearchInputValid || isSearchCategoryInputValid){
         product.searchProducts(searchNameInput.value)
+        validator.setInputState(searchNameInput, isSearchInputValid);
     }else{
         validator.setInputState(searchNameInput, isSearchInputValid);
     }
