@@ -28,5 +28,13 @@ class BuyProducts {
 
         return (isNameInputValid &&  isCodeInputValid && isTaxeInputValid && isCountInputValid && isPriceInputValid)
     };
+
+    clearForm() {
+        this.nameInput.value = "";
+        this.codeInput.value = "";
+        this.taxeInput.value = "";
+        this.priceInput.value = "";
+        this.countInput.value = "";
+    };
 }
 export default BuyProducts;
