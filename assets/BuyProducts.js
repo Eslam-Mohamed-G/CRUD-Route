@@ -13,5 +13,20 @@ class BuyProducts {
         this.productsArray = new StorageManager();
     }
 
+    isFormBuyProductValid () {
+        const isNameInputValid = this.validator.isValidName(this.nameInput.value);
+        const isCodeInputValid = this.validator.isValidName(this.nameInput.value);
+        const isTaxeInputValid = this.validator.isValidName(this.nameInput.value);
+        const isCountInputValid = this.validator.isValidName(this.nameInput.value);
+        const isPriceInputValid = this.validator.isValidName(this.nameInput.value);
+
+        this.validator.setInputState(this.nameInput, isNameInputValid);
+        this.validator.setInputState(this.codeInputt, isCodeInputValid);
+        this.validator.setInputState(this.taxeInput, isTaxeInputValid);
+        this.validator.setInputState(this.countInput, isCountInputValid);
+        this.validator.setInputState(this.priceInput, isPriceInputValid);
+
+        return (isNameInputValid &&  isCodeInputValid && isTaxeInputValid && isCountInputValid && isPriceInputValid)
+    };
 }
 export default BuyProducts;
