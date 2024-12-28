@@ -29,6 +29,19 @@ class BuyProducts {
         return (isNameInputValid &&  isCodeInputValid && isTaxeInputValid && isCountInputValid && isPriceInputValid)
     };
 
+    addProductsInBill() {
+        const taxes = parseFloat(this.taxeInput.value) || 0;
+        const pricePlusTaxes = parseFloat(this.priceInput.value) + taxes;
+        const billProduct = {
+            name: this.nameInput.value,
+            code: this.codeInput.value,
+            count: this.countInput.value,
+            price: this.priceInput.value,
+            totalPrice: pricePlusTaxes,
+        };
+
+    };
+
     clearForm() {
         this.nameInput.value = "";
         this.codeInput.value = "";
