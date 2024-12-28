@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-floating d-flex flex-column-reverse flex-sm-row">
                     <button type="button" class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white d-block"
-                    id="login">login</button>
+                        id="login">login</button>
                     <span class="text-danger d-block w-100 text-center align-content-center" id="loginError"></span>
                 </div>
             </form>
@@ -252,14 +252,67 @@
             </div>
         </section>
 
-        <section class="user d-none"></section>
+        <section class="user d-none">
+            <div class="container">
+                <form class="custom-form shadow m-auto rounded p-3 p-md-4 p-lg-5 my-5 d-block">
+                    <div class="row mb-3 mb-sm-4 gap-3 gap-sm-0">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-text">name</div>
+                                <input type="text" class="form-control" id="buyProductName" placeholder="name">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-text">count</div>
+                                <input type="text" class="form-control" id="buyProductCount" placeholder="count">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <div class="input-group-text">code</div>
+                                <input type="text" class="form-control" id="buyProductCode" placeholder="code">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 mb-sm-4 gap-3 gap-sm-0">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-text">price</div>
+                                <input type="text" class="form-control" id="buyProductPrice" placeholder="price">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-text">taxe</div>
+                                <input type="text" class="form-control" id="buyProductTaxe" placeholder="taxe">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <div class="col input-group">
+                            <input type="date" class="form-control" id="buyProductDate">
+                            <span class="input-group-text" id="basic-addon2">date</span>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white" id="buyProductBTN">buy</button>
+                    </div>
+                </form>
+            </div>
+        </section>
     </main>
     <footer></footer>
 
     <script src="./bootstrap-5.3.3/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="./script.js"></script>
-    <!-- <script type="module" src="./app.js"></script> -->
 </body>
 
 </html>

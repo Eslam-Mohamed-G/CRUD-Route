@@ -14,6 +14,7 @@ const userLogin = document.querySelector(".userLogin");
 const navTabs = document.querySelector(".nav-tabs");
 const loginForm = document.querySelector(".loginForm");
 const adminScreen = document.querySelector(".admin");
+const userScreen = document.querySelector(".user");
 const username = document.getElementById("userInput");
 const password = document.getElementById("passwordInput");
 const logInError = document.getElementById("loginError");
@@ -35,7 +36,7 @@ btnLogin.addEventListener("click", () => {
             navTabs.classList.replace("d-none", "d-flex")
             adminScreen.classList.replace("d-none", "d-block")
         } else {
-
+            userScreen.classList.replace("d-none", "d-block");
         }
     }
 });
@@ -61,6 +62,7 @@ btnlogout.addEventListener("click", () => {
             navTabs.classList.replace("d-flex", "d-none")
             loginForm.classList.replace("d-none", "d-block")
             adminScreen.classList.replace("d-block", "d-none")
+            userScreen.classList.replace("d-block", "d-none");
             theNameOfUser.textContent = "";
             sessionStorage.clear();
         }
@@ -166,6 +168,7 @@ window.onload = function () {
             navTabs.classList.replace("d-none", "d-flex");
             adminScreen.classList.replace("d-none", "d-block");
         }else {
+            userScreen.classList.replace("d-none", "d-block");
         }
     }
 
