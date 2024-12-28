@@ -1,6 +1,7 @@
 import AuthSystem from './assets/AuthSystem.js';
 import LocalStorageManager from './assets/StorageManager.js';
 import Products from './assets/Products.js';
+import BuyProducts from './assets/BuyProducts.js';
 import IsValid from "./assets/isValid.js";
 
 // التأكد من وجود البيانات الافتراضية عند البداية
@@ -152,6 +153,17 @@ searchBTN.addEventListener("click", ()=>{
         validator.setInputState(searchNameInput, isSearchInputValid);
     }
 
+});
+
+
+//  user screen   user screen   user screen
+const buyProductBTN = document.getElementById("buyProductBTN");
+buyProductBTN.addEventListener("click", ()=>{
+    const buyProduct = new BuyProducts();
+
+    if( buyProduct.isFormBuyProductValid() ){
+        console.log("buy");
+    }
 });
 
 window.onload = function () {
