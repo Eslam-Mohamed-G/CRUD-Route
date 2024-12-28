@@ -9,8 +9,9 @@ class BuyProducts {
         this.countInput = document.getElementById("buyProductCount");
         this.priceInput = document.getElementById("buyProductPrice");
 
-        this.IsValid = new IsValid();
+        this.validator = new IsValid();
         this.productsArray = new StorageManager();
     }
+
 }
 export default BuyProducts;
