@@ -11,6 +11,8 @@ class BuyProducts {
 
         this.validator = new IsValid();
         this.productsArray = new StorageManager();
+
+        this.billSessionKey = "billProductsArray";
     }
 
     isFormBuyProductValid () {
@@ -40,8 +42,20 @@ class BuyProducts {
             totalPrice: pricePlusTaxes,
         };
 
+        let billArray = [];
+        if (sessionStorage.getItem("billArray") != null) {
+            billArray = JSON.parse(sessionStorage.getItem("billArray"));
+            console.log(billArray)
+        }
+        billArray.push(billProduct);
+        sessionStorage.setItem("billArray", JSON.stringify(billArray))
+        // if(isFormBuyProductValid()){
+        // }
     };
 
+    saveBillInSessionStorage(data){
+        sessionStorage.setItem(this.billSessionKey, JSON.stringify(data)); 
+    };
     clearForm() {
         this.nameInput.value = "";
         this.codeInput.value = "";

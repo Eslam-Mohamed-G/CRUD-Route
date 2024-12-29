@@ -162,9 +162,11 @@ buyProductBTN.addEventListener("click", ()=>{
     const buyProduct = new BuyProducts();
 
     if( buyProduct.isFormBuyProductValid() ){
+        buyProduct.addProductsInBill();
         console.log("buy");
     }
 });
+
 
 window.onload = function () {
     const sessionActive = sessionStorage.getItem("sessionActive");
