@@ -154,6 +154,7 @@ buyProductBTN.addEventListener("click", ()=>{
 
     if( buyProduct.isFormBuyProductValid() ){
         buyProduct.addProductsInBill();
+        buyProduct.clearForm();
         console.log("buy");
     }
 });

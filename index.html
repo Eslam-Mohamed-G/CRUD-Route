@@ -260,10 +260,16 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <div class="input-group-text">name</div>
-                                <input type="text" list="dataListOfBuyNames" class="form-control" id="buyProductName" placeholder="name">
+                                <input type="text" list="dataListOfBuyNames" class="form-control rounded-end" id="buyProductName" placeholder="name">
                                 <datalist id="dataListOfBuyNames">
 
                                 </datalist>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="buyProductCode" placeholder="existing count" readonly>
                             </div>
                         </div>
 
@@ -273,20 +279,13 @@
                                 <input type="text" class="form-control" id="buyProductCount" placeholder="count">
                             </div>
                         </div>
-
-                        <div class="col-md-2">
-                            <div class="input-group">
-                                <div class="input-group-text">code</div>
-                                <input type="text" class="form-control" id="buyProductCode" placeholder="code">
-                            </div>
-                        </div>
                     </div>
 
                     <div class="row mb-3 mb-sm-4 gap-3 gap-sm-0">
                         <div class="col-md-6">
                             <div class="input-group">
                                 <div class="input-group-text">price</div>
-                                <input type="text" class="form-control" id="buyProductPrice" placeholder="price">
+                                <input type="text" class="form-control" id="buyProductPrice" placeholder="price" readonly>
                             </div>
                         </div>
 
