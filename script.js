@@ -167,6 +167,18 @@ buyProductBTN.addEventListener("click", ()=>{
     }
 });
 
+const buyProductName = document.getElementById("buyProductName");
+const dataListOfBuyNames = document.getElementById("dataListOfBuyNames");
+buyProductName.addEventListener("input", ()=>{
+    let dataListOption = "";
+    const existingProduct = LocalStorageManager.loadProductData();
+    for(let i=0; i<existingProduct.length;i++){
+        if(existingProduct[i].name.toLowerCase().includes(buyProductName.value.toLowerCase())){
+            dataListOption +=`<option>${existingProduct[i].name}</option>`
+        }
+    }
+    dataListOfBuyNames.innerHTML = dataListOption;
+})
 
 window.onload = function () {
     const sessionActive = sessionStorage.getItem("sessionActive");
