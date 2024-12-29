@@ -91,8 +91,7 @@ btnAdd.addEventListener("click", () => {
 const codeInput = document.getElementById("codeInput");
 const productBTN = document.getElementById("addProduct");
 const dateInput = document.getElementById("dateInput");
-const today = new Date();
-const formattedDate = today.toISOString().split('T')[0];
+
 var modeOfProductBTN = false;
 var mainIndex;
 productBTN.addEventListener("click", () => {
@@ -158,6 +157,7 @@ searchBTN.addEventListener("click", ()=>{
 
 //  user screen   user screen   user screen
 const buyProductBTN = document.getElementById("buyProductBTN");
+const buyProductDate = document.getElementById("buyProductDate");
 buyProductBTN.addEventListener("click", ()=>{
     const buyProduct = new BuyProducts();
 
@@ -180,6 +180,8 @@ buyProductName.addEventListener("input", ()=>{
     dataListOfBuyNames.innerHTML = dataListOption;
 })
 
+const today = new Date();
+const formattedDate = today.toISOString().split('T')[0];
 window.onload = function () {
     const sessionActive = sessionStorage.getItem("sessionActive");
     const savedUser = sessionStorage.getItem("sessionUsername");
@@ -200,6 +202,9 @@ window.onload = function () {
 
     if (!dateInput.value) {
         dateInput.value = formattedDate;
+    }
+    if (!buyProductDate.value) {
+        buyProductDate.value = formattedDate;
     }
 
     const product = new Products();
