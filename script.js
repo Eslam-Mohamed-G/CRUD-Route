@@ -128,16 +128,7 @@ const searchBTN = document.getElementById("searchBTN");
 const searchNameInput = document.getElementById("searchNameInput");
 const dataListOfNames = document.getElementById("dataListOfNames");
 const searchCategoryInput = document.getElementById("searchCategoryInput");
-searchNameInput.addEventListener("input", ()=>{
-    let dataListOption = "";
-    const existingProduct = LocalStorageManager.loadProductData();
-    for(let i=0; i<existingProduct.length;i++){
-        if(existingProduct[i].name.toLowerCase().includes(searchNameInput.value.toLowerCase())){
-            dataListOption +=`<option>${existingProduct[i].name}</option>`
-        }
-    }
-    dataListOfNames.innerHTML = dataListOption;
-});
+searchNameInput.addEventListener("input", ()=>{dataList(searchNameInput.value, dataListOfNames)});
 
 searchBTN.addEventListener("click", ()=>{
     const validator = new IsValid();
@@ -169,16 +160,18 @@ buyProductBTN.addEventListener("click", ()=>{
 
 const buyProductName = document.getElementById("buyProductName");
 const dataListOfBuyNames = document.getElementById("dataListOfBuyNames");
-buyProductName.addEventListener("input", ()=>{
+buyProductName.addEventListener("input",()=>{ dataList(buyProductName.value, dataListOfBuyNames)})
+
+function dataList(inputValue, dataList){
     let dataListOption = "";
     const existingProduct = LocalStorageManager.loadProductData();
     for(let i=0; i<existingProduct.length;i++){
-        if(existingProduct[i].name.toLowerCase().includes(buyProductName.value.toLowerCase())){
+        if(existingProduct[i].name.toLowerCase().includes(inputValue.toLowerCase())){
             dataListOption +=`<option>${existingProduct[i].name}</option>`
         }
     }
-    dataListOfBuyNames.innerHTML = dataListOption;
-})
+    dataList.innerHTML = dataListOption;
+}
 
 const today = new Date();
 const formattedDate = today.toISOString().split('T')[0];
