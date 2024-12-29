@@ -31,6 +31,20 @@ class BuyProducts {
         return (isNameInputValid &&  isCodeInputValid && isTaxeInputValid && isCountInputValid && isPriceInputValid)
     };
 
+    checkIfProductExists(){
+        const enterName = this.nameInput.value;
+        const productsArray = StorageManager.loadProductData();
+        const existingProduct = productsArray.find(ele => ele.name === enterName);
+
+        if(!existingProduct){
+            this.codeInput.value = "dosn't exists";
+            this.priceInput.value = "dosn't exists";
+        }else {
+            this.codeInput.value = existingProduct.count
+            this.priceInput.value = existingProduct.price;
+        }
+    }
+
     addProductsInBill() {
         const taxes = parseFloat(this.taxeInput.value) || 0;
         const pricePlusTaxes = parseFloat(this.priceInput.value) + taxes;

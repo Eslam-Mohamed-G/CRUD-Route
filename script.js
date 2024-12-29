@@ -161,7 +161,17 @@ buyProductBTN.addEventListener("click", ()=>{
 
 const buyProductName = document.getElementById("buyProductName");
 const dataListOfBuyNames = document.getElementById("dataListOfBuyNames");
-buyProductName.addEventListener("input",()=>{ dataList(buyProductName.value, dataListOfBuyNames)})
+buyProductName.addEventListener("input",()=>{ 
+    dataList(buyProductName.value, dataListOfBuyNames);
+    const buyProduct = new BuyProducts();
+    buyProduct.checkIfProductExists();
+})
+// buyProductName.addEventListener("keydown", (e)=>{
+//     if(e.key === "Enter"){
+//         const buyProduct = new BuyProducts();
+//         buyProduct.checkIfProductExists();
+//     }
+// })
 
 function dataList(inputValue, dataList){
     let dataListOption = "";
