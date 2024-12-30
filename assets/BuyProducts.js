@@ -90,14 +90,35 @@ class BuyProducts {
                     <td>
                         <div
                             class="d-flex flex-row justify-content-between gap-2 align-items-center px-1">
-                            <i class="fa-solid fa-pen-to-square d-block update-btn" role="button" data-index="${index}"></i>
+                            <i class="fa-solid fa-pen-to-square d-block update-btn" role="button" data-name="${element.name}" data-index="${index}"></i>
                             <i class="fa-solid fa-trash-can d-block delete-btn" role="button"></i>
                         </div>
                     </td>
                 `;
             this.userBillContainer.appendChild(productRow);
+            productRow.querySelector(".delete-btn").addEventListener("click", () => this.deleteProductFromBill(index, element.name));
         });
     };
+
+    deleteProductFromBill(index, name) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `${name}`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'red',
+            cancelButtonColor: '#000',
+            confirmButtonText: 'Ok',
+            cancelButtonText: "Cancel"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const billArray = this.loadBillFromSessionStorage();
+                billArray.splice(index, 1);
+                this.saveBillInSessionStorage(billArray);
+                this.renderBillTable();
+            }
+        })
+    }
 
     clearForm() {
         this.nameInput.value = "";
