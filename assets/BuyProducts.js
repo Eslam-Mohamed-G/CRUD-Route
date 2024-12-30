@@ -24,11 +24,10 @@ class BuyProducts {
 
         this.validator.setInputState(this.nameInput, isNameInputValid);
         this.validator.setInputState(this.codeInput, isCodeInputValid);
-        this.validator.setInputState(this.taxeInput, isTaxeInputValid);
         this.validator.setInputState(this.countInput, isCountInputValid);
         this.validator.setInputState(this.priceInput, isPriceInputValid);
 
-        return (isNameInputValid &&  isCodeInputValid && isTaxeInputValid && isCountInputValid && isPriceInputValid)
+        return (isNameInputValid &&  isCodeInputValid && isCountInputValid && isPriceInputValid)
     };
 
     checkIfProductExists(){
@@ -53,7 +52,7 @@ class BuyProducts {
             code: existingProduct.code,
             price: parseFloat(this.priceInput.value),
             count: parseInt(this.countInput.value),
-            taxes: parseFloat(this.taxeInput.value),
+            taxes: taxes,
             total: totalPrice.toFixed(2),
         };
 
