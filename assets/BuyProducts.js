@@ -8,6 +8,7 @@ class BuyProducts {
         this.dateInput = document.getElementById("buyProductDate");
         this.countInput = document.getElementById("buyProductCount");
         this.priceInput = document.getElementById("buyProductPrice");
+        this.userBillContainer = document.getElementById("userBillContainer").querySelector("tbody");
 
         this.validator = new IsValid();
         this.productsArray = StorageManager.loadProductData();
@@ -67,8 +68,7 @@ class BuyProducts {
         }
         billArray.push(billProduct);
         sessionStorage.setItem("billArray", JSON.stringify(billArray))
-        // if(isFormBuyProductValid()){
-        // }
+        
     };
 
     saveBillInSessionStorage(data){
