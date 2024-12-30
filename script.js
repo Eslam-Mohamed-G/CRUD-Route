@@ -212,4 +212,7 @@ window.onload = function () {
 
     const product = new Products();
     product.renderProductsTable();
+
+    const buyProduct = new BuyProducts();
+    buyProduct.renderBillTable();
 }
