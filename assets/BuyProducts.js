@@ -61,19 +61,21 @@ class BuyProducts {
             total: parseFloat(totalPrice.toFixed(2)),
         };
 
-        let billArray = [];
-        if (sessionStorage.getItem("billArray") != null) {
-            billArray = JSON.parse(sessionStorage.getItem("billArray"));
-            console.log(billArray)
-        }
+        let billArray = this.loadBillFromSessionStorage();
         billArray.push(billProduct);
-        sessionStorage.setItem("billArray", JSON.stringify(billArray))
-        
+        this.saveBillInSessionStorage(billArray);
+        this.renderBillTable(billArray);
     };
 
     saveBillInSessionStorage(data){
-        sessionStorage.setItem(this.billSessionKey, JSON.stringify(data)); 
+        sessionStorage.setItem(this.billSessionKey, JSON.stringify(data));
     };
+
+    loadBillFromSessionStorage() {
+        const data = sessionStorage.getItem(this.billSessionKey);
+        return data ? JSON.parse(data) : [];
+    };
+
     clearForm() {
         this.nameInput.value = "";
         this.codeInput.value = "";
