@@ -48,14 +48,16 @@ class BuyProducts {
     addProductsInBill() {
         const taxes = parseFloat(this.taxeInput.value) || 0;
         const pricePlusTaxes = parseFloat(this.priceInput.value) + taxes;
-        const totalPrice = pricePlusTaxes * parseFloat(countInput.value);
+        const totalPrice = pricePlusTaxes * parseInt(this.countInput.value);
         const billProduct = {
             name: this.nameInput.value,
             code: this.codeInput.value,
-            count: this.countInput.value,
-            price: this.priceInput.value,
-            totalPrice: totalPrice,
+            price: parseFloat(this.priceInput.value),
+            count: parseInt(this.countInput.value),
+            taxes: parseFloat(this.taxeInput.value),
+            total: totalPrice.toFixed(2),
         };
+        console.log(totalPrice);
 
         let billArray = [];
         if (sessionStorage.getItem("billArray") != null) {
