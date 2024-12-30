@@ -13,7 +13,11 @@ class BuyProducts {
         this.productsArray = StorageManager.loadProductData();
 
         this.billSessionKey = "billProductsArray";
-    }
+    };
+
+    findExistingProduct() {
+        return this.productsArray.find(ele => ele.name === this.nameInput.value);
+    };
 
     isFormBuyProductValid () {
         const isNameInputValid = this.validator.isValidName(this.nameInput.value);
@@ -31,7 +35,7 @@ class BuyProducts {
     };
 
     checkIfProductExists(){
-        const existingProduct = this.productsArray.find(ele => ele.name === this.nameInput.value);
+        const existingProduct = this.findExistingProduct();
 
         if(!existingProduct){
             this.codeInput.value = "dosn't exists";
@@ -43,7 +47,7 @@ class BuyProducts {
     }
 
     addProductsInBill() {
-        const existingProduct = this.productsArray.find(ele => ele.name === this.nameInput.value);
+        const existingProduct = this.findExistingProduct();
         const taxes = parseFloat(this.taxeInput.value) || 0;
         const pricePlusTaxes = parseFloat(this.priceInput.value) + taxes;
         const totalPrice = pricePlusTaxes * parseInt(this.countInput.value);
@@ -53,7 +57,7 @@ class BuyProducts {
             price: parseFloat(this.priceInput.value),
             count: parseInt(this.countInput.value),
             taxes: taxes,
-            total: totalPrice.toFixed(2),
+            total: parseFloat(totalPrice.toFixed(2)),
         };
 
         let billArray = [];
