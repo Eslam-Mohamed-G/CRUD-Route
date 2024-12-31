@@ -48,7 +48,7 @@ class BuyProducts {
         }
     }
 
-    addProductsInBill() {
+    addProductsInBill(mode, index) {
         const existingProduct = this.findExistingProduct();
         const taxes = parseFloat(this.taxeInput.value) || 0;
         const pricePlusTaxes = parseFloat(this.priceInput.value) + taxes;
@@ -63,7 +63,11 @@ class BuyProducts {
         };
 
         let billArray = this.loadBillFromSessionStorage();
-        billArray.push(billProduct);
+        if(!mode){
+            billArray.push(billProduct);
+        }else {
+            billArray[index] = billProduct;
+        }
         this.saveBillInSessionStorage(billArray);
         this.renderBillTable(billArray);
     };
@@ -140,6 +144,7 @@ class BuyProducts {
                 this.taxeInput.value = element.taxes;
                 this.priceInput.value = element.price;
                 this.countInput.value = element.count;
+                this.checkIfProductExists();
 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }

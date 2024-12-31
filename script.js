@@ -148,14 +148,27 @@ searchBTN.addEventListener("click", ()=>{
 
 
 //  user screen   user screen   user screen
+var modeOfbuyProductBTN = false;
+var billProductIndex;
 const buyProductBTN = document.getElementById("buyProductBTN");
 const buyProductDate = document.getElementById("buyProductDate");
 buyProductBTN.addEventListener("click", ()=>{
     const buyProduct = new BuyProducts();
 
     if( buyProduct.isFormBuyProductValid() ){
-        buyProduct.addProductsInBill();
+        buyProduct.addProductsInBill(modeOfbuyProductBTN, billProductIndex);
+        buyProductBTN.textContent = "add";
         buyProduct.clearForm();
+    }
+});
+
+// updateBTN   updateBTN   updateBTN   updateBTN
+const billTable = document.getElementById("userBillContainer");
+billTable.addEventListener("click", (event)=>{
+    if(event.target.classList.contains("update-btn")){
+        const index = parseInt(event.target.dataset.index, 10);
+        modeOfbuyProductBTN = true;
+        billProductIndex = index;
     }
 });
 
