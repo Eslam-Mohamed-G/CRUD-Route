@@ -3,7 +3,7 @@ import IsValid from "./isValid.js";
 class BuyProducts {
     constructor() {
         this.nameInput = document.getElementById("buyProductName");
-        this.codeInput = document.getElementById("buyProductCode");
+        this.existingCountInput = document.getElementById("existingProductCount");
         this.taxeInput = document.getElementById("buyProductTaxe");
         this.dateInput = document.getElementById("buyProductDate");
         this.countInput = document.getElementById("buyProductCount");
@@ -23,27 +23,27 @@ class BuyProducts {
 
     isFormBuyProductValid () {
         const isNameInputValid = this.validator.isValidName(this.nameInput.value);
-        const isCodeInputValid = this.validator.isValidCode(this.codeInput.value);
         const isTaxeInputValid = this.validator.isValidPrice(this.taxeInput.value);
         const isCountInputValid = this.validator.isValidCount(this.countInput.value);
         const isPriceInputValid = this.validator.isValidPrice(this.priceInput.value);
+        const isexistingCountInputValid = this.validator.isValidCode(this.existingCountInput.value);
 
         this.validator.setInputState(this.nameInput, isNameInputValid);
-        this.validator.setInputState(this.codeInput, isCodeInputValid);
         this.validator.setInputState(this.countInput, isCountInputValid);
         this.validator.setInputState(this.priceInput, isPriceInputValid);
+        this.validator.setInputState(this.existingCountInput, isexistingCountInputValid);
 
-        return (isNameInputValid &&  isCodeInputValid && isCountInputValid && isPriceInputValid)
+        return (isNameInputValid &&  isexistingCountInputValid && isCountInputValid && isPriceInputValid)
     };
 
     checkIfProductExists(){
         const existingProduct = this.findExistingProduct();
 
         if(!existingProduct){
-            this.codeInput.value = "dosn't exists";
+            this.existingCountInput.value = "dosn't exists";
             this.priceInput.value = "dosn't exists";
         }else {
-            this.codeInput.value = existingProduct.count
+            this.existingCountInput.value = existingProduct.count
             this.priceInput.value = existingProduct.price;
         }
     }
@@ -153,10 +153,10 @@ class BuyProducts {
 
     clearForm() {
         this.nameInput.value = "";
-        this.codeInput.value = "";
         this.taxeInput.value = "";
         this.priceInput.value = "";
         this.countInput.value = "";
+        this.existingCountInput.value = "";
     };
 }
 export default BuyProducts;
