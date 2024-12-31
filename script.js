@@ -157,6 +157,7 @@ buyProductBTN.addEventListener("click", ()=>{
 
     if( buyProduct.isFormBuyProductValid() ){
         buyProduct.addProductsInBill(modeOfbuyProductBTN, billProductIndex);
+        var modeOfbuyProductBTN = false;
         buyProductBTN.textContent = "add";
         buyProduct.clearForm();
     }
