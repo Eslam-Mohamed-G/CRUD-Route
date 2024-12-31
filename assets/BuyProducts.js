@@ -8,6 +8,7 @@ class BuyProducts {
         this.dateInput = document.getElementById("buyProductDate");
         this.countInput = document.getElementById("buyProductCount");
         this.priceInput = document.getElementById("buyProductPrice");
+        this.buyProductBTN = document.getElementById("buyProductBTN");
         this.userBillContainer = document.getElementById("userBillContainer").querySelector("tbody");
 
         this.validator = new IsValid();
@@ -97,6 +98,7 @@ class BuyProducts {
                 `;
             this.userBillContainer.appendChild(productRow);
             productRow.querySelector(".delete-btn").addEventListener("click", () => this.deleteProductFromBill(index, element.name));
+            productRow.querySelector(".update-btn").addEventListener("click", () => this.updateProduct(index, element));
         });
     };
 
@@ -119,6 +121,30 @@ class BuyProducts {
             }
         })
     }
+
+    updateProduct(index, element) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `${element.name}`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'red',
+            cancelButtonColor: '#000',
+            confirmButtonText: 'OK',
+            cancelButtonText: "Cancel"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.buyProductBTN.textContent = "Update";
+                
+                this.nameInput.value = element.name;
+                this.taxeInput.value = element.taxes;
+                this.priceInput.value = element.price;
+                this.countInput.value = element.count;
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    };
 
     clearForm() {
         this.nameInput.value = "";
