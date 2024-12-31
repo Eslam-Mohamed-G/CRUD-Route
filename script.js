@@ -160,6 +160,7 @@ buyProductBTN.addEventListener("click", ()=>{
         var modeOfbuyProductBTN = false;
         buyProductBTN.textContent = "add";
         buyProduct.clearForm();
+        sessionStorage.setItem("modeBillBTN", true);
     }
 });
 
@@ -171,6 +172,12 @@ billTable.addEventListener("click", (event)=>{
         modeOfbuyProductBTN = true;
         billProductIndex = index;
     }
+});
+
+const confirmBillBTN = document.getElementById("confirmBillBTN");
+confirmBillBTN.addEventListener("click", ()=>{
+    const bill = new BuyProducts();
+    bill.saveBillInLocalStorage();
 });
 
 const buyProductName = document.getElementById("buyProductName");
@@ -216,6 +223,10 @@ window.onload = function () {
         }else {
             userScreen.classList.replace("d-none", "d-block");
         }
+    }
+    const modeBillBTN = sessionStorage.getItem("modeBillBTN");
+    if(modeBillBTN){
+        confirmBillBTN.classList.replace("d-none", "d-block");
     }
 
     if (!dateInput.value) {

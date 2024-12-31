@@ -13,6 +13,7 @@ class BuyProducts {
 
         this.validator = new IsValid();
         this.productsArray = StorageManager.loadProductData();
+        this.billArray = StorageManager.loadBillData();
 
         this.billSessionKey = "billProductsArray";
     };
@@ -149,6 +150,18 @@ class BuyProducts {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
+    };
+
+    saveBillInLocalStorage(){
+        const savedUser = sessionStorage.getItem("sessionUsername");
+        const billArray = this.loadBillFromSessionStorage();
+        const bill = {
+            userName: savedUser,
+            date : this.dateInput.value,
+            products: [...billArray],
+        }
+        this.billArray.push(bill);
+        StorageManager.saveBill(this.billArray);
     };
 
     clearForm() {

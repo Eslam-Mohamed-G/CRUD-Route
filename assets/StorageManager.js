@@ -1,6 +1,7 @@
 class StorageManager {
     static key = "userArray";
     static keyProduct = "productsArray";
+    static keyBill = "billArray";
 
     static loadData() {
         const data = localStorage.getItem(this.key);
@@ -34,6 +35,21 @@ class StorageManager {
             console.error("Failed to load product data:", error);
             return [];
         };
+    };
+
+    static saveBill(data){
+        localStorage.setItem(this.keyBill, JSON.stringify(data));
+    };
+
+    static loadBillData() {
+        try {
+            const data = localStorage.getItem(this.keyBill)
+            console.log(JSON.parse(data));
+            return data ? JSON.parse(data) : [];
+        } catch (error) {
+            console.error("Failed to load bill data:", error);
+            return [];
+        }
     };
 }
 
