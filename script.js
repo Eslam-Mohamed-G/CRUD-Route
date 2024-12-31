@@ -115,7 +115,8 @@ productBTN.addEventListener("click", () => {
 const table = document.getElementById("productTable");
 table.addEventListener("click", (event) => {
     if (event.target.classList.contains("update-btn")) {
-        const index = Array.from(event.target.closest("tbody").children).indexOf(event.target.closest("tr"));
+        const index = parseInt(event.target.dataset.index, 10);
+        // const index = Array.from(event.target.closest("tbody").children).indexOf(event.target.closest("tr"));
         modeOfProductBTN = true;
         mainIndex = index
         const products = new Products(index);

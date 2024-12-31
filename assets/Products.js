@@ -76,7 +76,7 @@ class Products {
                     <td>
                         <div
                             class="d-flex flex-row justify-content-between gap-2 align-items-center px-1">
-                            <i class="fa-solid fa-pen-to-square d-block update-btn" role="button"></i>
+                            <i class="fa-solid fa-pen-to-square d-block update-btn" role="button" data-index="${i}"></i>
                             <i class="fa-solid fa-trash-can d-block delete-btn" role="button"></i>
                         </div>
                     </td>
