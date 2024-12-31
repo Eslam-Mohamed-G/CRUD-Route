@@ -161,6 +161,7 @@ buyProductBTN.addEventListener("click", ()=>{
         buyProductBTN.textContent = "add";
         buyProduct.clearForm();
         sessionStorage.setItem("modeBillBTN", true);
+        confirmBillBTN.classList.replace("d-none", "d-block");
     }
 });
 
@@ -177,7 +178,27 @@ billTable.addEventListener("click", (event)=>{
 const confirmBillBTN = document.getElementById("confirmBillBTN");
 confirmBillBTN.addEventListener("click", ()=>{
     const bill = new BuyProducts();
-    bill.saveBillInLocalStorage();
+    const BillFromSessionStorage = bill.loadBillFromSessionStorage();
+    console.log(BillFromSessionStorage);
+    Swal.fire({
+        title: 'Are you sure?',
+        text: `are you`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'red',
+        cancelButtonColor: '#000',
+        confirmButtonText: 'ok',
+        cancelButtonText: "Cancle"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            BillFromSessionStorage.splice(0, BillFromSessionStorage.length);
+            bill.saveBillInLocalStorage();
+            bill.saveBillInSessionStorage(BillFromSessionStorage);
+            confirmBillBTN.classList.replace("d-block", "d-none");
+            sessionStorage.removeItem("modeBillBTN");
+            bill.renderBillTable();
+        }
+    })
 });
 
 const buyProductName = document.getElementById("buyProductName");
