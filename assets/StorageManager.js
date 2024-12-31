@@ -26,10 +26,15 @@ class StorageManager {
     }
 
     static loadProductData() {
-        const data = localStorage.getItem(this.keyProduct);
-        // console.log(JSON.parse(data));
-        return data ? JSON.parse(data) : [];
-    }
+        try {
+            const data = localStorage.getItem(this.keyProduct);
+            // console.log(JSON.parse(data));
+            return data ? JSON.parse(data) : [];
+        } catch (error) {
+            console.error("Failed to load product data:", error);
+            return [];
+        };
+    };
 }
 
 export default StorageManager;
