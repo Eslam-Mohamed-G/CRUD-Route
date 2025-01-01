@@ -8,7 +8,7 @@ class BillContainer {
 
         this.searchNameBTN = document.getElementById("showBillByUserNameInput");
         this.searchDateBTN = document.getElementById("showBillByDateInput");
-        this.showBillContiner = document.getElementById("showBillContiner");
+        this.billContiner = document.getElementById("billContiner");
 
         this.billArray = StorageManager.loadBillData();
         this.validator = new IsValid();
@@ -28,15 +28,17 @@ class BillContainer {
         return isDateInputValid;
     };
 
-    showeBillByUserName() {
-        this.showBillContiner.innerHTML = "";
-        const billByUserName = this.billArray.filter((item) => item.userName === this.nameInput.value);
+    showeBillInContainer(searchValue, trueOrFalse) {
+        this.billContiner.innerHTML = "";
+        const billByUserName = this.billArray.filter((item) => item.userName === searchValue);
+        const billByDateInput = this.billArray.filter((item) => item.date === searchValue);
 
-        for(let i =0; i<billByUserName.length; i++){
-            let {userName, date, products} = billByUserName[i];
-            console.log(products);
-        }
-        billByUserName.forEach((element, index) => {
+        // for(let i =0; i<billByUserName.length; i++){
+        //     let {userName, date, products} = billByUserName[i];
+        //     console.log(products);
+        // }
+        const typeOfShow = trueOrFalse ? billByUserName : billByDateInput;
+        typeOfShow.forEach((element, index) => {
             const billColl = document.createElement("div");
             billColl.classList.add("col-md-4");
             billColl.setAttribute("data-index", index);
@@ -52,7 +54,7 @@ class BillContainer {
                 </div>
 
             `;
-            this.showBillContiner.appendChild(billColl);
+            this.billContiner.appendChild(billColl);
         });
     };
 }

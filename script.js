@@ -130,7 +130,7 @@ const searchBTN = document.getElementById("searchBTN");
 const searchNameInput = document.getElementById("searchNameInput");
 const dataListOfNames = document.getElementById("dataListOfNames");
 const searchCategoryInput = document.getElementById("searchCategoryInput");
-searchNameInput.addEventListener("input", ()=>{dataList(searchNameInput.value, dataListOfNames)});
+searchNameInput.addEventListener("input", ()=>{dataList(searchNameInput.value, dataListOfNames, true)});
 
 searchBTN.addEventListener("click", ()=>{
     const validator = new IsValid();
@@ -148,13 +148,24 @@ searchBTN.addEventListener("click", ()=>{
 });
 
 // showe Bill 
-const showBillByUserNameInput = document.getElementById("showBillByUserNameInput");
-showBillByUserNameInput.addEventListener("click", ()=>{
-    const showBill = new BillContainer();
-    if(showBill.isNameInputValid()){
-        showBill.showeBillByUserName()
+const BillUserNameInput = document.getElementById("BillUserNameInput");
+const dataListOfBillUserNames = document.getElementById("dataListOfBillUserNames");
+BillUserNameInput.addEventListener("input",()=>{dataList(BillUserNameInput.value, dataListOfBillUserNames, false)});
+
+const billForm = document.getElementById("billForm");
+const showBill = new BillContainer();
+billForm.addEventListener("click", (event)=>{
+    if(event.target && event.target.classList.contains("showByName")){
+        if(showBill.isNameInputValid()){
+            showBill.showeBillInContainer(showBill.nameInput.value, true);
+        }
+    }else if(event.target && event.target.classList.contains("showByDate")){
+        if(showBill.isDateInputValid()){
+            showBill.showeBillInContainer(showBill.dateInput.value, false);
+        }
     }
 });
+// showe Bill
 
 
 //  user screen   user screen   user screen
@@ -167,7 +178,7 @@ buyProductBTN.addEventListener("click", ()=>{
 
     if( buyProduct.isFormBuyProductValid() ){
         buyProduct.addProductsInBill(modeOfbuyProductBTN, billProductIndex);
-        var modeOfbuyProductBTN = false;
+        modeOfbuyProductBTN = false;
         buyProductBTN.textContent = "add";
         buyProduct.clearForm();
         sessionStorage.setItem("modeBillBTN", true);
@@ -176,7 +187,6 @@ buyProductBTN.addEventListener("click", ()=>{
     }
 });
 
-// updateBTN   updateBTN   updateBTN   updateBTN
 const billTable = document.getElementById("userBillContainer");
 billTable.addEventListener("click", (event)=>{
     if(event.target.classList.contains("update-btn")){
@@ -185,6 +195,7 @@ billTable.addEventListener("click", (event)=>{
         billProductIndex = index;
     }
 });
+// updateBTN   updateBTN   updateBTN   updateBTN
 
 const confirmBillBTN = document.getElementById("confirmBillBTN");
 confirmBillBTN.addEventListener("click", ()=>{
@@ -215,7 +226,7 @@ confirmBillBTN.addEventListener("click", ()=>{
 const buyProductName = document.getElementById("buyProductName");
 const dataListOfBuyNames = document.getElementById("dataListOfBuyNames");
 buyProductName.addEventListener("input",()=>{ 
-    dataList(buyProductName.value, dataListOfBuyNames);
+    dataList(buyProductName.value, dataListOfBuyNames, true);
     const buyProduct = new BuyProducts();
     buyProduct.checkIfProductExists();
 })
@@ -226,15 +237,25 @@ buyProductName.addEventListener("input",()=>{
 //     }
 // })
 
-function dataList(inputValue, dataList){
+function dataList(inputValue, dataList, data){
     let dataListOption = "";
-    const existingProduct = LocalStorageManager.loadProductData();
-    for(let i=0; i<existingProduct.length;i++){
-        if(existingProduct[i].name.toLowerCase().includes(inputValue.toLowerCase())){
-            dataListOption +=`<option>${existingProduct[i].name}</option>`
+    if(data){
+        const existingProduct = LocalStorageManager.loadProductData();
+        for(let i=0; i<existingProduct.length;i++){
+            if(existingProduct[i].name.toLowerCase().includes(inputValue.toLowerCase())){
+                dataListOption +=`<option>${existingProduct[i].name}</option>`
+            }
         }
+        dataList.innerHTML = dataListOption;
+    }else {
+        const existingBill = LocalStorageManager.loadBillData();
+        for(let i=0; i<existingBill.length;i++){
+            if(existingBill[i].userName.toLowerCase().includes(inputValue.toLowerCase())){
+                dataListOption +=`<option>${existingBill[i].userName}</option>`
+            }
+        }
+        dataList.innerHTML = dataListOption;
     }
-    dataList.innerHTML = dataListOption;
 }
 
 const today = new Date();
