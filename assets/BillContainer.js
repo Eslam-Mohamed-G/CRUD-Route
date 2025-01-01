@@ -27,7 +27,9 @@ class BillContainer {
         const isNameInputValid = this.validator.isValidName(nameInput.value);
         this.validator.setInputState(nameInput, isNameInputValid);
 
-        this.billArray.forEach((element, index) => {
+        const billByUserName = this.billArray.filter((item) => item.name === this.nameInput.value);
+
+        billByUserName.forEach((element, index) => {
             const billColl = document.createElement("div");
             billColl.classList.add("col");
 
