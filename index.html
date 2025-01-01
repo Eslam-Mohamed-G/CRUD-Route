@@ -217,7 +217,8 @@
                             class="add-form container shadow m-auto rounded bg-transparent mb-5 p-2 p-sm-3 p-md-4 p-lg-5 gx-3 gy-2 align-items-center">
                             <div class="row d-flex flex-column flex-md-row mb-3 gy-3">
                                 <div class="col input-group">
-                                    <div class="input-group-text btn btn-primary border-0 text-white showByName" id="showBillByUserNameInput">
+                                    <div class="input-group-text btn btn-primary border-0 text-white showByName"
+                                        id="showBillByUserNameInput">
                                         Search
                                     </div>
                                     <input type="text" list="dataListOfBillUserNames" class="form-control rounded-end"
@@ -229,14 +230,15 @@
 
                                 <div class="col input-group">
                                     <input type="date" class="form-control" id="billDateInput">
-                                    <div class="input-group-text btn btn-primary border-0 text-white showByDate" id="showBillByDateInput">
+                                    <div class="input-group-text btn btn-primary border-0 text-white showByDate"
+                                        id="showBillByDateInput">
                                         Search
                                     </div>
                                 </div>
                             </div>
 
                             <div class="input-group">
-                                
+
                             </div>
 
                         </form>
@@ -246,7 +248,26 @@
                         <div class="row" id="billContiner">
 
                         </div>
+
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Products</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+                    <!-- Modal -->
+
                 </div>
                 <!-- bill container -->
 
@@ -289,7 +310,7 @@
             </div>
         </section>
 
-    <!-- user Screen  user Screen  user Screen  user Screen -->
+        <!-- user Screen  user Screen  user Screen  user Screen -->
         <section class="user d-none">
             <div class="container">
                 <form class="custom-form shadow m-auto rounded p-3 p-md-4 p-lg-5 my-5 d-block">
@@ -297,7 +318,8 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <div class="input-group-text">name</div>
-                                <input type="text" list="dataListOfBuyNames" class="form-control rounded-end" id="buyProductName" placeholder="name">
+                                <input type="text" list="dataListOfBuyNames" class="form-control rounded-end"
+                                    id="buyProductName" placeholder="name">
                                 <datalist id="dataListOfBuyNames">
 
                                 </datalist>
@@ -306,7 +328,8 @@
 
                         <div class="col-md-2">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="existingProductCount" placeholder="existing count" readonly>
+                                <input type="text" class="form-control" id="existingProductCount"
+                                    placeholder="existing count" readonly>
                             </div>
                         </div>
 
@@ -322,7 +345,8 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <div class="input-group-text">price</div>
-                                <input type="text" class="form-control" id="buyProductPrice" placeholder="price" readonly>
+                                <input type="text" class="form-control" id="buyProductPrice" placeholder="price"
+                                    readonly>
                             </div>
                         </div>
 
@@ -342,7 +366,8 @@
                     </div>
 
                     <div class="col-12">
-                        <button type="button" class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white" id="buyProductBTN">buy</button>
+                        <button type="button" class="btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white"
+                            id="buyProductBTN">buy</button>
                     </div>
                 </form>
             </div>
@@ -366,11 +391,13 @@
                 </table>
 
                 <div class="row justify-content-center">
-                    <button type="button" class="w-50 btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white d-none" id="confirmBillBTN">Confirm Bill</button>
+                    <button type="button"
+                        class="w-50 btn btn-primary border-0 m-auto mt-3 mx-sm-0 px-5 text-white d-none"
+                        id="confirmBillBTN">Confirm Bill</button>
                 </div>
             </div>
         </section>
-    <!-- user Screen  user Screen  user Screen  user Screen -->
+        <!-- user Screen  user Screen  user Screen  user Screen -->
     </main>
     <footer></footer>
 

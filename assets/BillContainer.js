@@ -9,6 +9,7 @@ class BillContainer {
         this.searchNameBTN = document.getElementById("showBillByUserNameInput");
         this.searchDateBTN = document.getElementById("showBillByDateInput");
         this.billContiner = document.getElementById("billContiner");
+        this.modal = document.getElementById("staticBackdrop");
 
         this.billArray = StorageManager.loadBillData();
         this.validator = new IsValid();
@@ -43,6 +44,8 @@ class BillContainer {
             const billColl = document.createElement("div");
             billColl.classList.add("col-md-4");
             billColl.setAttribute("data-index", index);
+            billColl.setAttribute("data-bs-toggle", "modal");
+            billColl.setAttribute("data-bs-target", "#staticBackdrop");
             billColl.setAttribute("role", "button");
 
             billColl.innerHTML =
@@ -63,6 +66,20 @@ class BillContainer {
 
     showeDetails(index, details){
         console.log(details);
+        const modalBody = this.modal.querySelector(".modal-body");
+        modalBody.innerHTML = "";
+        details.forEach(element =>{
+            const detailsModal = document.createElement("div")
+            detailsModal.innerHTML= 
+            `
+                <p>Product Name: ${element.name}</p>
+                <p>Price: ${element.price}</p>
+                <p>Quantity: ${element.count}</p>
+                <hr>
+        
+            `
+            modalBody.appendChild(detailsModal);
+        });
     };
 }
 export default BillContainer;
