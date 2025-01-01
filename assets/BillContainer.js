@@ -8,47 +8,52 @@ class BillContainer {
 
         this.searchNameBTN = document.getElementById("showBillByUserNameInput");
         this.searchDateBTN = document.getElementById("showBillByDateInput");
+        this.showBillContiner = document.getElementById("showBillContiner");
 
         this.billArray = StorageManager.loadBillData();
         this.validator = new IsValid();
     };
 
-    isFormBillValid() {
-        const isNameInputValid = this.validator.isValidName(nameInput.value);
+    isNameInputValid(){
+        const isNameInputValid = this.validator.isValidName(this.nameInput.value);
+        this.validator.setInputState(this.nameInput, isNameInputValid);
+        return isNameInputValid;
+
+    };
+
+    isDateInputValid() {
         const isDateInputValid = this.dateInput.value ? this.dateInput.value : false;
+        this.validator.setInputState(this.dateInput, isDateInputValid);
 
-        this.validator.setInputState(nameInput, isNameInputValid);
-        this.validator.setInputState(dateInput, isDateInputValid);
-
-        return (isNameInputValid && isDateInputValid);
+        return isDateInputValid;
     };
 
     showeBillByUserName() {
-        const isNameInputValid = this.validator.isValidName(nameInput.value);
-        this.validator.setInputState(nameInput, isNameInputValid);
+        this.showBillContiner.innerHTML = "";
+        const billByUserName = this.billArray.filter((item) => item.userName === this.nameInput.value);
 
-        const billByUserName = this.billArray.filter((item) => item.name === this.nameInput.value);
-
+        for(let i =0; i<billByUserName.length; i++){
+            let {userName, date, products} = billByUserName[i];
+            console.log(products);
+        }
         billByUserName.forEach((element, index) => {
             const billColl = document.createElement("div");
-            billColl.classList.add("col");
+            billColl.classList.add("col-md-4");
+            billColl.setAttribute("data-index", index);
+            billColl.setAttribute("role", "button");
 
             billColl.innerHTML =
             `
-                <div class="card text-bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Header</div>
+                <div class="card text-bg-light mb-3">
+                    <div class="card-header d-flex justify-content-between"><span>${element.userName}</span> <span>${element.date}</span></div>
                     <div class="card-body">
-                        <h5 class="card-title">Light card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">number of Products ${element.products.length}</p>
                     </div>
                 </div>
 
             `;
+            this.showBillContiner.appendChild(billColl);
         });
-
-        if (isNameInputValid) {
-
-        }
     };
 }
 export default BillContainer;

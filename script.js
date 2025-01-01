@@ -2,6 +2,7 @@ import AuthSystem from './assets/AuthSystem.js';
 import LocalStorageManager from './assets/StorageManager.js';
 import Products from './assets/Products.js';
 import BuyProducts from './assets/BuyProducts.js';
+import BillContainer from './assets/BillContainer.js';
 import IsValid from "./assets/isValid.js";
 
 // التأكد من وجود البيانات الافتراضية عند البداية
@@ -144,6 +145,15 @@ searchBTN.addEventListener("click", ()=>{
         validator.setInputState(searchNameInput, isSearchInputValid);
     }
 
+});
+
+// showe Bill 
+const showBillByUserNameInput = document.getElementById("showBillByUserNameInput");
+showBillByUserNameInput.addEventListener("click", ()=>{
+    const showBill = new BillContainer();
+    if(showBill.isNameInputValid()){
+        showBill.showeBillByUserName()
+    }
 });
 
 
