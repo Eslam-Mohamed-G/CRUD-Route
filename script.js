@@ -157,11 +157,11 @@ const showBill = new BillContainer();
 billForm.addEventListener("click", (event)=>{
     if(event.target && event.target.classList.contains("showByName")){
         if(showBill.isNameInputValid()){
-            showBill.showeBillInContainer(showBill.nameInput.value, true);
+            showBill.showBillInContainer(showBill.nameInput.value, true);
         }
     }else if(event.target && event.target.classList.contains("showByDate")){
         if(showBill.isDateInputValid()){
-            showBill.showeBillInContainer(showBill.dateInput.value, false);
+            showBill.showBillInContainer(showBill.dateInput.value, false);
         }
     }
 });

@@ -28,7 +28,7 @@ class BillContainer {
         return isDateInputValid;
     };
 
-    showeBillInContainer(searchValue, trueOrFalse) {
+    showBillInContainer(searchValue, trueOrFalse) {
         this.billContiner.innerHTML = "";
         const billByUserName = this.billArray.filter((item) => item.userName === searchValue);
         const billByDateInput = this.billArray.filter((item) => item.date === searchValue);
@@ -38,6 +38,7 @@ class BillContainer {
         //     console.log(products);
         // }
         const typeOfShow = trueOrFalse ? billByUserName : billByDateInput;
+        const fragment = document.createDocumentFragment();
         typeOfShow.forEach((element, index) => {
             const billColl = document.createElement("div");
             billColl.classList.add("col-md-4");
@@ -54,8 +55,14 @@ class BillContainer {
                 </div>
 
             `;
-            this.billContiner.appendChild(billColl);
+            fragment.appendChild(billColl);
+            billColl.addEventListener("click", ()=>{this.showeDetails(index, element.products)})
         });
+        this.billContiner.appendChild(fragment);
+    };
+
+    showeDetails(index, details){
+        console.log(details);
     };
 }
 export default BillContainer;
