@@ -209,10 +209,47 @@
                 </div>
                 <!-- search  search search -->
 
+                <!-- bill container -->
                 <div class="tab-pane fade py-5" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
                     tabindex="0">
-                    3
+                    <div class="container">
+                        <form action=""
+                            class="add-form container shadow m-auto rounded bg-transparent mb-5 p-2 p-sm-3 p-md-4 p-lg-5 gx-3 gy-2 align-items-center">
+                            <div class="row d-flex flex-column flex-md-row mb-3 gy-3">
+                                <div class="col input-group">
+                                    <div class="input-group-text btn btn-primary border-0 text-white" id="showBillByUserNameInput">
+                                        Search
+                                    </div>
+                                    <input type="text" list="dataListOfNames" class="form-control rounded-end"
+                                        placeholder="Search By username" id="BillUserNameInput">
+                                    <datalist id="dataListOfNames">
+
+                                    </datalist>
+                                </div>
+
+                                <div class="col input-group">
+                                    <input type="date" class="form-control" id="billDateInput">
+                                    <div class="input-group-text btn btn-primary border-0 text-white" id="showBillByDateInput">
+                                        Search
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="container">
+                        <div class="row" id="showBillContiner">
+
+                        </div>
+                    </div>
                 </div>
+                <!-- bill container -->
+
                 <!-- number 4 add user  number 4 add user  number 4 add user -->
                 <div class="tab-pane fade py-5" id="nav-auth" role="tabpanel" aria-labelledby="nav-auth-tab"
                     tabindex="0">

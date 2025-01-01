@@ -162,6 +162,7 @@ buyProductBTN.addEventListener("click", ()=>{
         buyProduct.clearForm();
         sessionStorage.setItem("modeBillBTN", true);
         confirmBillBTN.classList.replace("d-none", "d-block");
+        // localStorage.removeItem(LocalStorageManager.keyBill);
     }
 });
 
